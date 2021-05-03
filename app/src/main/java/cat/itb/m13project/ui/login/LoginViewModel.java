@@ -11,6 +11,8 @@ import cat.itb.m13project.data.Result;
 import cat.itb.m13project.data.model.LoggedInUser;
 import cat.itb.m13project.R;
 
+import static cat.itb.m13project.ui.login.LoginFragment.PASSWORD_LENGTH;
+
 public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
@@ -29,16 +31,18 @@ public class LoginViewModel extends ViewModel {
         return loginResult;
     }
 
-    public void login(String username, String password) {
+    public boolean login(String username, String password) {
         // can be launched in a separate asynchronous job
         Result<LoggedInUser> result = loginRepository.login(username, password);
-
+        boolean validLogin = false;
         if (result instanceof Result.Success) {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
             loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
+            validLogin = true;
         } else {
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }
+        return validLogin;
     }
 
     public void loginDataChanged(String username, String password) {
@@ -65,6 +69,6 @@ public class LoginViewModel extends ViewModel {
 
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+        return password != null && password.trim().length() > PASSWORD_LENGTH;
     }
 }

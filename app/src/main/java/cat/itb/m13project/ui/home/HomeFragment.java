@@ -1,4 +1,4 @@
-package cat.itb.m13project;
+package cat.itb.m13project.ui.home;
 
 import android.os.Bundle;
 
@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MainFragment extends Fragment {
+import cat.itb.m13project.R;
 
-    public MainFragment() {
+public class HomeFragment extends Fragment {
+
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -22,7 +24,7 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
+        View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         return v;
     }
