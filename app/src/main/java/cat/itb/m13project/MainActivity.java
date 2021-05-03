@@ -25,6 +25,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /* CHANGE FRAGMENT
+        Fragment  newFragment = new HomeFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment, newFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+     */
+
 
 
 

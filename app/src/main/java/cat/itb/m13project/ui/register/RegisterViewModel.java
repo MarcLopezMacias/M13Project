@@ -1,33 +1,33 @@
-package cat.itb.m13project.ui.login;
+package cat.itb.m13project.ui.register;
+
+import android.util.Patterns;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Patterns;
-
+import cat.itb.m13project.R;
 import cat.itb.m13project.data.LoginRepository;
 import cat.itb.m13project.data.Result;
 import cat.itb.m13project.data.model.LoggedInUser;
-import cat.itb.m13project.R;
 
 import static cat.itb.m13project.ConstantVariables.USER_PASSWORD_LENGTH;
 
-public class LoginViewModel extends ViewModel {
+public class RegisterViewModel extends ViewModel {
 
-    private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
-    private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
+    private MutableLiveData<RegisterFormState> loginFormState = new MutableLiveData<>();
+    private MutableLiveData<RegisterResult> loginResult = new MutableLiveData<>();
     private LoginRepository loginRepository;
 
-    LoginViewModel(LoginRepository loginRepository) {
+    RegisterViewModel(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
     }
 
-    LiveData<LoginFormState> getLoginFormState() {
+    LiveData<RegisterFormState> getLoginFormState() {
         return loginFormState;
     }
 
-    LiveData<LoginResult> getLoginResult() {
+    LiveData<RegisterResult> getLoginResult() {
         return loginResult;
     }
 
@@ -37,21 +37,21 @@ public class LoginViewModel extends ViewModel {
         boolean validLogin = false;
         if (result instanceof Result.Success) {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
+            loginResult.setValue(new RegisterResult(new RegisteredInUserView(data.getDisplayName())));
             validLogin = true;
         } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
+            loginResult.setValue(new RegisterResult(R.string.login_failed));
         }
         return validLogin;
     }
 
     public void loginDataChanged(String username, String password) {
         if (!isUserNameValid(username)) {
-            loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
+            loginFormState.setValue(new RegisterFormState(R.string.invalid_username, null));
         } else if (!isPasswordValid(password)) {
-            loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
+            loginFormState.setValue(new RegisterFormState(null, R.string.invalid_password));
         } else {
-            loginFormState.setValue(new LoginFormState(true));
+            loginFormState.setValue(new RegisterFormState(true));
         }
     }
 
