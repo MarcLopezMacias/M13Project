@@ -37,7 +37,7 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return inflater.inflate(R.layout.fragment_register, container, false);
     }
 
     @Override
@@ -46,9 +46,9 @@ public class RegisterFragment extends Fragment {
         registerViewModel = ViewModelProviders.of(this, new RegisterViewModelFactory())
                 .get(RegisterViewModel.class);
 
-        final EditText usernameEditText = view.findViewById(R.id.username);
-        final EditText passwordEditText = view.findViewById(R.id.password);
-        final Button loginButton = view.findViewById(R.id.login);
+        final EditText usernameEditText = view.findViewById(R.id.usernameEditText);
+        final EditText passwordEditText = view.findViewById(R.id.passwordEditText);
+        final Button loginButton = view.findViewById(R.id.loginButton);
         final ProgressBar loadingProgressBar = view.findViewById(R.id.loading);
 
         registerViewModel.getLoginFormState().observe(getViewLifecycleOwner(), new Observer<RegisterFormState>() {

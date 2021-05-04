@@ -16,6 +16,7 @@ import com.google.android.material.button.MaterialButton;
 import cat.itb.m13project.R;
 import cat.itb.m13project.ui.home.HomeFragment;
 import cat.itb.m13project.ui.login.LoginFragment;
+import cat.itb.m13project.ui.register.RegisterFragment;
 
 public class WelcomeFragment extends Fragment {
 
@@ -54,6 +55,18 @@ public class WelcomeFragment extends Fragment {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
+            }
+        });
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment newFragment = new RegisterFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, newFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
         return v;

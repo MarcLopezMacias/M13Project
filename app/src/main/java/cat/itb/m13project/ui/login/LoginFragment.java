@@ -47,7 +47,7 @@ public class LoginFragment extends Fragment {
 
         final EditText usernameEditText = view.findViewById(R.id.username);
         final EditText passwordEditText = view.findViewById(R.id.password);
-        final Button loginButton = view.findViewById(R.id.login);
+        final Button loginButton = view.findViewById(R.id.loginButton);
         final ProgressBar loadingProgressBar = view.findViewById(R.id.loading);
 
         loginViewModel.getLoginFormState().observe(getViewLifecycleOwner(), new Observer<LoginFormState>() {
