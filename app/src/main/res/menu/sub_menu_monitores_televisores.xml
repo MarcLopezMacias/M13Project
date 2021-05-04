@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/accesorios_de_tv_y_monitor"
+        android:title="@string/accesorios_de_tv_y_monitor"
+        />
+
+    <item
+        android:id="@+id/adaptadores_tv_wireless"
+        android:title="@string/adaptadores_tv_wireless"
+        />
+
+    <item
+        android:id="@+id/monitores"
+        android:title="@string/monitores"
+        />
+
+    <item
+        android:id="@+id/satelite"
+        android:title="@string/sat_lite"
+        />
+
+    <item
+        android:id="@+id/tdt_y_reproductes_dvd"
+        android:title="@string/tdt_y_reproductes_dvd"
+        />
+
+    <item
+        android:id="@+id/television"
+        android:title="@string/televisi_n"
+        />
+
+</menu>

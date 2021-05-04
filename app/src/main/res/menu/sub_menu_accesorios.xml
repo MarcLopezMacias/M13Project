@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/capturadoras"
+        android:title="@string/capturadoras" />
+
+    <item
+        android:id="@+id/cargadores"
+        android:title="@string/cargadores" />
+
+    <item
+        android:id="@+id/ergonomia"
+        android:title="@string/ergonom_a" />
+
+    <item
+        android:id="@+id/grabadora_externa"
+        android:title="@string/grabadora_externa" />
+
+    <item
+        android:id="@+id/hub_usb"
+        android:title="@string/hub_usb" />
+
+    <item
+        android:id="@+id/kvm_splitter"
+        android:title="@string/kvm_splitter" />
+
+    <item
+        android:id="@+id/limpieza"
+        android:title="@string/limpieza" />
+
+    <item
+        android:id="@+id/pilas_baterias_y_cargadores"
+        android:title="@string/pilas_bater_as_y_cargadores" />
+
+    <item
+        android:id="@+id/powerbank"
+        android:title="@string/powerbank" />
+
+
+
+</menu>

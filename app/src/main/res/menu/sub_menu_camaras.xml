@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/camaras"
+        android:title="@string/c_maras"
+        />
+
+    <item
+        android:id="@+id/video_conferencia"
+        android:title="@string/videoconferencia"
+        />
+
+    <item
+        android:id="@+id/video_vigilancia"
+        android:title="@string/videovigilancia"
+        />
+
+    <item
+        android:id="@+id/webcam"
+        android:title="@string/webcam"
+        />
+</menu>

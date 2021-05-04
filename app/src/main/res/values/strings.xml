@@ -30,4 +30,124 @@
     <string name="selected_date_is">Selected Date is :</string>
     <string name="select_date">Select Date</string>
     <string name="welcome_back">Welcome Back!</string>
+
+
+    <string name="accesorios">Accesorios</string>
+    <string name="almacenamiento_externo">Almacenamiento Externo</string>
+    <string name="cables_y_adaptadores">Cables y Adaptadores</string>
+    <string name="apple">Apple</string>
+    <string name="c_maras">Cámaras</string>
+    <string name="componentes">Componentes</string>
+    <string name="consumibles">Consumibles</string>
+    <string name="dom_tica">Domótica</string>
+    <string name="electrodom_esticos_pae">Electrodomñesticos PAE</string>
+    <string name="gaming">Gaming</string>
+    <string name="iluminaci_n">Iluminación</string>
+    <string name="impresoras_y_esc_neres">Impresoras y Escáneres</string>
+    <string name="monitores_y_televisores">Monitores y Televisores</string>
+    <string name="mouse_y_touchpad">Mouse y Touchpad</string>
+    <string name="networking">Networking</string>
+    <string name="ocio_y_tiempo_libre">Ocio y Tiempo Libre</string>
+    <string name="ordenadores">Ordenadores</string>
+    <string name="port_tiles">Portátiles</string>
+    <string name="protecci_n_covid_19">Protección COVID-19</string>
+    <string name="proyectores_y_accesorios">Proyectores y Accesorios</string>
+    <string name="sais_regletas_y_racks">Sais, Regletas y Racks</string>
+    <string name="software">Software</string>
+    <string name="sonido_y_multimedia">Sonido y Multimedia</string>
+    <string name="tablet_y_e_book">Tablet y E-Book</string>
+    <string name="teclados">Teclados</string>
+    <string name="telefonia_y_movilidad">Telefonia y Movilidad</string>
+    <string name="tpv">TPV</string>
+
+    <string name="capturadoras">Capturadoras</string>
+    <string name="cargadores">Cargadores</string>
+    <string name="ergonom_a">Ergonomía</string>
+    <string name="grabadora_externa">Grabadora Externa</string>
+    <string name="hub_usb">Hub USB</string>
+    <string name="kvm_splitter">KVM Splitter</string>
+    <string name="limpieza">Limpieza</string>
+    <string name="pilas_bater_as_y_cargadores">Pilas, Baterías y Cargadores</string>
+    <string name="powerbank">Powerbank</string>
+
+    <string name="almacenamieto_nas">Almacenamieto NAS</string>
+    <string name="caja_externa">Caja Externa</string>
+    <string name="disco_duro_externo">Disco Duro Externo</string>
+    <string name="lector_de_tarjetas">Lector de Tarjetas</string>
+    <string name="memoria_flash">Memoria Flash</string>
+
+    <string name="imac">iMac</string>
+    <string name="ipad">iPad</string>
+    <string name="iphone">iPhone</string>
+    <string name="macbook">MacBook</string>
+    <string name="watch">Watch</string>
+
+    <string name="adaptador">Adaptador</string>
+    <string name="cable_alimentaci_n">Cable Alimentación</string>
+    <string name="cable_firewire">Cable Firewire</string>
+    <string name="cable_usb">Cable USB</string>
+    <string name="cable_v_deo_audio">Cable Vídeo-Audio</string>
+    <string name="red_cable_en_bobina">Red (Cable en Bobina)</string>
+    <string name="red_conector_rj45_superf_cie_empotrable_a_reo">Red (Conector RJ45 - superfície/empotrable/aéreo)</string>
+    <string name="red_fibra_ptica">Red (Fibra Óptica)</string>
+    <string name="red_kit_herramientas_crimpadora_tester">Red (Kit Herramientas, Crimpadora, Tester)</string>
+    <string name="red_latiguillo">Red (Latiguillo)</string>
+    <string name="red_patch_panel">Red (Patch Panel)</string>
+    <string name="sata_ide">SATA / IDE</string>
+    <string name="serie_paralelo">Serie / Paralelo</string>
+
+    <string name="videoconferencia">Videoconferencia</string>
+    <string name="videovigilancia">Videovigilancia</string>
+    <string name="webcam">Webcam</string>
+
+    <string name="almacenamiento_hd_ssd_m_2">Almacenamiento (HD, SSD M.2)</string>
+    <string name="caja_de_ordenador">Caja de Ordenador</string>
+    <string name="card_reader">Card Reader</string>
+    <string name="controladora_pci_usb_firewire_sata_serie">Controladora PCI USB / FIREWIRE / SATA / SERIE</string>
+    <string name="fuentes_de_alimentaci_n">Fuentes de Alimentación</string>
+    <string name="grabadora_interna">Grabadora Interna</string>
+    <string name="memoria_interna">Memoria Interna</string>
+    <string name="placa_base">Placa Base</string>
+    <string name="procesadores_amd">Procesadores AMD</string>
+    <string name="procesadores_intel">Procesadores Intel</string>
+    <string name="tarjetas_gr_ficas">Tarjetas Gráficas</string>
+    <string name="ventiladores">Ventiladores</string>
+
+    <string name="consumibles_3d">Consumibles 3D</string>
+    <string name="consumibles_cd_dvd">Consumibles CD / DVD</string>
+    <string name="consumibles_inkjet">Consumibles InkJet</string>
+    <string name="consumibles_l_ser">Consumibles Láser</string>
+    <string name="consumibles_print">Consumibles Print</string>
+    <string name="material_de_oficina">Material de Oficina</string>
+
+    <string name="hogar_inteligente">Hogar Inteligente</string>
+    <string name="hogar">Hogar</string>
+    <string name="salud">Salud</string>
+    <string name="consolas">Consolas</string>
+    <string name="mobiliario_gaming">Mobiliario Gaming</string>
+    <string name="perif_ricos_gaming">Periféricos Gaming</string>
+    <string name="iluminaci_n_led">Iluminación LED</string>
+    <string name="soluciones_de_impresi_n">Soluciones de Impresión</string>
+    <string name="accesorios_de_tv_y_monitor">Accesorios de Tv y Monitor</string>
+    <string name="adaptadores_tv_wireless">Adaptadores TV Wireless</string>
+    <string name="monitores">Monitores</string>
+    <string name="sat_lite">Satélite</string>
+    <string name="tdt_y_reproductes_dvd">TDT y Reproductes DVD</string>
+    <string name="televisi_n">Televisión</string>
+    <string name="mouse_wireless">Mouse Wireless</string>
+    <string name="mouse_corded">Mouse Corded</string>
+    <string name="tableta">Tableta</string>
+    <string name="adaptador_de_red">Adaptador de Red</string>
+    <string name="adaptador_wi_fi">Adaptador Wi-Fi</string>
+    <string name="antena_wi_fi">Antena Wi-Fi</string>
+    <string name="ap_puntos_de_acceso">AP / Puntos de Acceso</string>
+    <string name="caja_nas">Caja NAS</string>
+    <string name="c_maras_ip">Cámaras IP</string>
+    <string name="poe_power_over_ethernet">POE (Power Over Ethernet)</string>
+    <string name="power_plug">Power Plug</string>
+    <string name="print_server">Print Server</string>
+    <string name="router_y_m_dem">Router y Módem</string>
+    <string name="switching">Switching</string>
+
+
 </resources>

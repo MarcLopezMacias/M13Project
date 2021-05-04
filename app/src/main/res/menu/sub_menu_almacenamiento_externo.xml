@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/almacenamiento_nas"
+        android:title="@string/almacenamieto_nas" />
+
+    <item
+        android:id="@+id/caja_externa"
+        android:title="@string/caja_externa" />
+
+    <item
+        android:id="@+id/disco_duro_externo"
+        android:title="@string/disco_duro_externo" />
+
+    <item
+        android:id="@+id/lector_de_tarjetas"
+        android:title="@string/lector_de_tarjetas" />
+
+    <item
+        android:id="@+id/memoria_flash"
+        android:title="@string/memoria_flash" />
+
+</menu>

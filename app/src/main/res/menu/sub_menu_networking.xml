@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/adaptador_de_red"
+        android:title="@string/adaptador_de_red"
+        />
+
+    <item
+        android:id="@+id/adaptador_wifi"
+        android:title="@string/adaptador_wi_fi"
+        />
+
+    <item
+        android:id="@+id/antena_wifi"
+        android:title="@string/antena_wi_fi"
+        />
+
+    <item
+        android:id="@+id/ap_puntos_de_acceso"
+        android:title="@string/ap_puntos_de_acceso"
+        />
+
+    <item
+        android:id="@+id/caja_nas"
+        android:title="@string/caja_nas"
+        />
+
+    <item
+        android:id="@+id/camaras_ip"
+        android:title="@string/c_maras_ip"
+        />
+
+    <item
+        android:id="@+id/poe_power_over_ethernet"
+        android:title="@string/poe_power_over_ethernet"
+        />
+
+    <item
+        android:id="@+id/power_plug"
+        android:title="@string/power_plug"
+        />
+
+    <item
+        android:id="@+id/print_server"
+        android:title="@string/print_server"
+        />
+
+    <item
+        android:id="@+id/router_modem"
+        android:title="@string/router_y_m_dem"
+        />
+
+    <item
+        android:id="@+id/switching"
+        android:title="@string/switching"
+        />
+
+
+
+</menu>

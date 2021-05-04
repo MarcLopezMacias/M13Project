@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mouse_wireless"
+        android:title="@string/mouse_wireless"
+        />
+
+    <item
+        android:id="@+id/mouse_corded"
+        android:title="@string/mouse_corded"
+        />
+
+    <item
+        android:id="@+id/tableta"
+        android:title="@string/tableta"
+        />
+
+</menu>

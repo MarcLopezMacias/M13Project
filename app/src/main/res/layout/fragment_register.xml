@@ -197,41 +197,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/show_selected_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/surnamesEditText"
-            android:layout_gravity="center"
-            style="@style/normalSizeText"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/selected_date_is"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/surnamesTextView"
-            tools:ignore="NotSibling" />
-
-        <!--button to open the material design date picker dialog-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/pick_date_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/select_date"
-            android:textSize="18sp"
-            app:icon="@drawable/ic_baseline_calendar_today_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/show_selected_date"
-            app:layout_constraintTop_toBottomOf="@+id/surnamesTextView" />
-
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/termsCheckBox"
             style="@style/normalSizeText"
@@ -239,13 +204,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:text="@string/accept_terms_conditions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pick_date_button" />
+            app:layout_constraintTop_toBottomOf="@+id/surnamesTextView" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/registerButton"
@@ -254,7 +219,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="69dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="@string/register"
@@ -274,8 +239,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/login"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/registerButton" />

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/imac"
+        android:title="@string/imac"
+        />
+
+    <item
+        android:id="@+id/ipad"
+        android:title="@string/ipad"
+        />
+
+    <item
+        android:id="@+id/iphone"
+        android:title="@string/iphone"
+        />
+
+    <item
+        android:id="@+id/macbook"
+        android:title="@string/macbook"
+        />
+
+    <item
+        android:id="@+id/watch"
+        android:title="@string/watch"
+        />
+
+</menu>

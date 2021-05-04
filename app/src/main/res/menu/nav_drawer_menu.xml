@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/accesorios"
+        android:title="@string/accesorios" />
+
+    <item
+        android:id="@+id/almacenamiento_externo"
+        android:title="@string/almacenamiento_externo" />
+
+    <item
+        android:id="@+id/apple"
+        android:title="@string/apple" />
+
+    <item
+        android:id="@+id/cables_y_adaptadores"
+        android:title="@string/cables_y_adaptadores" />
+
+    <item
+        android:id="@+id/camaras"
+        android:title="@string/c_maras" />
+
+    <item
+        android:id="@+id/componentes"
+        android:title="@string/componentes" />
+
+    <item
+        android:id="@+id/consumibles"
+        android:title="@string/consumibles" />
+
+    <item
+        android:id="@+id/domotica"
+        android:title="@string/dom_tica" />
+
+    <item
+        android:id="@+id/electrodomesticos_pae"
+        android:title="@string/electrodom_esticos_pae" />
+
+    <item
+        android:id="@+id/gaming"
+        android:title="@string/gaming" />
+
+    <item
+        android:id="@+id/iluminacion"
+        android:title="@string/iluminaci_n" />
+
+    <item
+        android:id="@+id/impresoras_y_escaneres"
+        android:title="@string/impresoras_y_esc_neres" />
+
+    <item
+        android:id="@+id/monitores_y_televisores"
+        android:title="@string/monitores_y_televisores" />
+
+    <item
+        android:id="@+id/mouse_y_touchpad"
+        android:title="@string/mouse_y_touchpad" />
+
+    <item
+        android:id="@+id/networking"
+        android:title="@string/networking" />
+
+    <item
+        android:id="@+id/ocio_y_tiempo_libre"
+        android:title="@string/ocio_y_tiempo_libre" />
+
+    <item
+        android:id="@+id/ordenadores"
+        android:title="@string/ordenadores" />
+
+    <item
+        android:id="@+id/portatiles"
+        android:title="@string/port_tiles" />
+
+    <item
+        android:id="@+id/proteccion_covid"
+        android:title="@string/protecci_n_covid_19" />
+
+    <item
+        android:id="@+id/proyectores_y_accesorios"
+        android:title="@string/proyectores_y_accesorios" />
+
+    <item
+        android:id="@+id/sais_regletas_y_racks"
+        android:title="@string/sais_regletas_y_racks" />
+
+    <item
+        android:id="@+id/software"
+        android:title="@string/software" />
+
+    <item
+        android:id="@+id/sonido_y_multimedia"
+        android:title="@string/sonido_y_multimedia" />
+
+    <item
+        android:id="@+id/tablet_y_ebook"
+        android:title="@string/tablet_y_e_book" />
+
+    <item
+        android:id="@+id/teclados"
+        android:title="@string/teclados" />
+
+    <item
+        android:id="@+id/telefonia_y_movilidad"
+        android:title="@string/telefonia_y_movilidad" />
+
+    <item
+        android:id="@+id/tpv"
+        android:title="@string/tpv" />
+
+
+
+</menu>
