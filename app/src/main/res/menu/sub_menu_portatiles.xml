@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/accesorios_de_portatil"
+        android:title="@string/accesorios_de_port_til"
+        />
+
+    <item
+        android:id="@+id/ampliacion_garantia_portatil"
+        android:title="@string/ampliaci_n_garant_a_port_til"
+        />
+
+    <item
+        android:id="@+id/portatil_12.3"
+        android:title="@string/port_til_12_3"
+        />
+
+    <item
+        android:id="@+id/portatil_13.3"
+        android:title="@string/port_til_13_3"
+        />
+
+    <item
+        android:id="@+id/portatil_14"
+        android:title="@string/port_til_14"
+        />
+
+    <item
+        android:id="@+id/portatil_15.6_freedos"
+        android:title="@string/port_til_15_6_freedos"
+        />
+
+    <item
+        android:id="@+id/portatil_15.6_w10"
+        android:title="@string/port_til_15_6_w10"
+        />
+
+    <item
+        android:id="@+id/portatil_15.6_w10_pro"
+        android:title="@string/port_til_15_6_w10_pro"
+        />
+
+    <item
+        android:id="@+id/portatil_17.3"
+        android:title="@string/port_til_17_3"
+        />
+
+    <item
+        android:id="@+id/portatil_chromebook"
+        android:title="@string/port_til_chromebook"
+        />
+
+    <item
+        android:id="@+id/portatil_con_grafica"
+        android:title="@string/port_til_con_gr_fica"
+        />
+
+</menu>

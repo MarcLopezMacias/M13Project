@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/accesorios_de_proyector"
+        android:title="@string/accesorios_de_proyector"
+        />
+
+    <item
+        android:id="@+id/pantalla_proyector"
+        android:title="@string/pantalla_proyector"
+        />
+
+    <item
+        android:id="@+id/pizarra"
+        android:title="@string/pizarra"
+        />
+
+    <item
+        android:id="@+id/proyector"
+        android:title="@string/proyector"
+        />
+
+</menu>

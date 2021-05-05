@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/accesorios_smartphone"
+        android:title="@string/accesorios_smartphone"
+        />
+
+    <item
+        android:id="@+id/smartphone_movil"
+        android:title="@string/smartphone_m_vil"
+        />
+
+    <item
+        android:id="@+id/smartwatch_smartfit_smartband"
+        android:title="@string/smartwatch_smartfit_smartband"
+        />
+
+    <item
+        android:id="@+id/telefonia_fija"
+        android:title="@string/telefon_a_fija"
+        />
+
+</menu>

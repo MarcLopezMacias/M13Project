@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainToolbarLayout"
+    >
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainToolbar"
+        app:menu="@menu/main_toolbar_menu"
+        android:layout_centerHorizontal="true"
+        android:background="@color/backgroundColor"
+        android:layout_alignParentTop="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/homeButton"
+            style="@style/OutlinedButton"
+            android:text="@string/app_name"
+            android:contentDescription="@string/isi_computer_logo_image_button" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+
+
+</RelativeLayout>

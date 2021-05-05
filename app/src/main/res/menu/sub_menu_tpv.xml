@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/control_de_presencia"
+        android:title="@string/control_de_presencia"
+        />
+
+    <item
+        android:id="@+id/terminal_punto_de_venta"
+        android:title="@string/terminal_punto_de_venta"
+        />
+
+</menu>

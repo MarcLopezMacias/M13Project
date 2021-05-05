@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/aio_all_in_one"
+        android:title="@string/aio_all_in_one"
+        />
+
+    <item
+        android:id="@+id/amd"
+        android:title="@string/amd"
+        />
+
+    <item
+        android:id="@+id/ampliacion_ordenador_garantia"
+        android:title="@string/ampliaci_n_ordenador_garant_a"
+        />
+
+    <item
+        android:id="@+id/core_i5"
+        android:title="@string/core_i5"
+        />
+
+    <item
+        android:id="@+id/nuestros_ordenadores"
+        android:title="@string/nuestros_ordenadores"
+        />
+
+    <item
+        android:id="@+id/ordenadores"
+        android:title="@string/ordenadores"
+        />
+
+    <item
+        android:id="@+id/ordenadores_intel_nuc"
+        android:title="@string/ordenadores_intel_nuc"
+        />
+
+    <item
+        android:id="@+id/servidores"
+        android:title="@string/servidores"
+        />
+
+</menu>

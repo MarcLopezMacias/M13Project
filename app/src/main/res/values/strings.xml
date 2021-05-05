@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">M13Project</string>
+    <string name="app_name">ISICOMPUTER</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Strings related to login -->
@@ -8,7 +8,7 @@
     <string name="login">Log In</string>
     <string name="register">Register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
+    <string name="welcome_to">"Welcome to"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >8 characters</string>
     <string name="login_failed">"Login failed"</string>
@@ -123,10 +123,13 @@
     <string name="hogar_inteligente">Hogar Inteligente</string>
     <string name="hogar">Hogar</string>
     <string name="salud">Salud</string>
+
     <string name="consolas">Consolas</string>
     <string name="mobiliario_gaming">Mobiliario Gaming</string>
     <string name="perif_ricos_gaming">Periféricos Gaming</string>
+
     <string name="iluminaci_n_led">Iluminación LED</string>
+
     <string name="soluciones_de_impresi_n">Soluciones de Impresión</string>
     <string name="accesorios_de_tv_y_monitor">Accesorios de Tv y Monitor</string>
     <string name="adaptadores_tv_wireless">Adaptadores TV Wireless</string>
@@ -148,6 +151,62 @@
     <string name="print_server">Print Server</string>
     <string name="router_y_m_dem">Router y Módem</string>
     <string name="switching">Switching</string>
+    <string name="interactivo_educacional">Interactivo / Educacional</string>
+    <string name="movilidad_urbana">Movilidad Urbana</string>
+    <string name="aio_all_in_one">AIO All-In-One</string>
+    <string name="amd">AMD</string>
+    <string name="ampliaci_n_ordenador_garant_a">Ampliación Ordenador Garantía</string>
+    <string name="core_i5">Core i5</string>
+    <string name="nuestros_ordenadores">Nuestros Ordenadores</string>
+    <string name="ordenadores_intel_nuc">Ordenadores Intel Nuc</string>
+    <string name="servidores">Servidores</string>
+    <string name="accesorios_de_port_til">Accesorios de Portátil</string>
+    <string name="ampliaci_n_garant_a_port_til">Ampliación Garantía Portátil</string>
+    <string name="port_til_12_3">Portátil 12.3\'\'</string>
+    <string name="port_til_13_3">Portátil 13.3\'\'</string>
+    <string name="port_til_14">Portátil 14\'\'</string>
+    <string name="port_til_15_6_freedos">Portátil 15.6\'\' FreeDoS</string>
+    <string name="port_til_15_6_w10">Portátil 15.6\'\' W10</string>
+    <string name="port_til_15_6_w10_pro">Portátil 15.6\'\' W10 Pro</string>
+    <string name="port_til_17_3">Portátil 17.3\'\'</string>
+    <string name="port_til_chromebook">Portátil Chromebook</string>
+    <string name="port_til_con_gr_fica">Portátil con Gráfica</string>
+    <string name="accesorios_de_proyector">Accesorios de Proyector</string>
+    <string name="pantalla_proyector">Pantalla Proyector</string>
+    <string name="pizarra">Pizarra</string>
+    <string name="proyector">Proyector</string>
+    <string name="armarios_rack">Armarios Rack</string>
+    <string name="regleta">Regleta</string>
+    <string name="sai">SAI</string>
+    <string name="dise_o">Diseño</string>
+    <string name="licencia_electr_nica">Licencia Electrònica</string>
+    <string name="negocios_y_productividad">Negocios y Productividad</string>
+    <string name="ofim_tica">Ofimática</string>
+    <string name="seguridad">Seguridad</string>
+    <string name="sistema_operativo">Sistema Operativo</string>
+    <string name="accesorios_audio">Accesorios Audio</string>
+    <string name="altavoces">Altavoces</string>
+    <string name="auricular_headset_micr_fono">Auricular Headset Micrófono</string>
+    <string name="cadena_de_m_sica">Cadena de Música</string>
+    <string name="radio_fm">Radio FM</string>
+    <string name="reproductor_mp3_mp4_mp5">Reproductor MP3 / MP4 / MP5</string>
+    <string name="tarjeta_de_sonido">Tarjeta de Sonido</string>
+    <string name="tarjeta_de_sonido_externa">Tarjeta de Sonido Externa</string>
+    <string name="accesorios_tablet">Accesorios Tablet</string>
+    <string name="e_books">E-Books</string>
+    <string name="tablet">Tablet</string>
+    <string name="accesorios_smartphone">Accesorios Smartphone</string>
+    <string name="smartphone_m_vil">Smartphone / Móvil</string>
+    <string name="smartwatch_smartfit_smartband">Smartwatch / Smartfit Smartband</string>
+    <string name="telefon_a_fija">Telefonía Fija</string>
+    <string name="control_de_presencia">Control de Presencia</string>
+    <string name="terminal_punto_de_venta">Terminal Punto de Venta</string>
+    <string name="profile">Profile</string>
+    <string name="ofertas">Ofertas</string>
+    <string name="outlet">Outlet</string>
+    <string name="destacado">Destacado</string>
+    <string name="isi_computer_logo_image_button">ISI COMPUTER LOGO IMAGE BUTTON</string>
+    <string name="cart">Cart</string>
 
 
 </resources>
