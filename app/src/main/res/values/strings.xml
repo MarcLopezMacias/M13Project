@@ -207,6 +207,8 @@
     <string name="destacado">Destacado</string>
     <string name="isi_computer_logo_image_button">ISI COMPUTER LOGO IMAGE BUTTON</string>
     <string name="cart">Cart</string>
+    <string name="cart_product_image_view">CART PRODUCT IMAGE VIEW</string>
+    <string name="shop_item_image_view">SHOP ITEM IMAGE VIEW</string>
 
 
 </resources>

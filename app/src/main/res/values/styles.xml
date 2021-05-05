@@ -75,6 +75,7 @@
 
     <style name="BottomAppBarButton" parent="TextButton">
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/backgroundColor</item>
     </style>
 
     <!-- ALIGNMENT STYLES -->
