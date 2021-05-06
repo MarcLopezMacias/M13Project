@@ -3,42 +3,34 @@
 
     <item
         android:id="@+id/accesorios_audio"
-        android:title="@string/accesorios_audio"
-        />
+        android:title="@string/accesorios_audio" />
 
     <item
         android:id="@+id/altavoces"
-        android:title="@string/altavoces"
-        />
+        android:title="@string/altavoces" />
 
     <item
         android:id="@+id/auricular_headset_microfono"
-        android:title="@string/auricular_headset_micr_fono"
-        />
+        android:title="@string/auricular_headset_micr_fono" />
 
     <item
         android:id="@+id/cadena_de_musica"
-        android:title="@string/cadena_de_m_sica"
-        />
+        android:title="@string/cadena_de_m_sica" />
 
     <item
         android:id="@+id/radio_fm"
-        android:title="@string/radio_fm"
-        />
+        android:title="@string/radio_fm" />
 
     <item
         android:id="@+id/reproductor_mp3_mp4_mp5"
-        android:title="@string/reproductor_mp3_mp4_mp5"
-        />
+        android:title="@string/reproductor_mp3_mp4_mp5" />
 
     <item
         android:id="@+id/tarjeta_de_sonido"
-        android:title="@string/tarjeta_de_sonido"
-        />
+        android:title="@string/tarjeta_de_sonido" />
 
     <item
         android:id="@+id/tarjeta_de_sonido_externa"
-        android:title="@string/tarjeta_de_sonido_externa"
-        />
+        android:title="@string/tarjeta_de_sonido_externa" />
 
 </menu>

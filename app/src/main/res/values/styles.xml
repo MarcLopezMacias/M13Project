@@ -28,7 +28,7 @@
     </style>
 
     <style name="bigText" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColorHint">@color/colorPrimary</item>
@@ -73,9 +73,10 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-    <style name="BottomAppBarButton" parent="TextButton">
+    <style name="BottomAppBarButton" parent="Borderless">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/backgroundColor</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="color">@color/colorPrimary</item>
     </style>
 
     <!-- ALIGNMENT STYLES -->

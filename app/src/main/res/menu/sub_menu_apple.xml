@@ -3,27 +3,22 @@
 
     <item
         android:id="@+id/imac"
-        android:title="@string/imac"
-        />
+        android:title="@string/imac" />
 
     <item
         android:id="@+id/ipad"
-        android:title="@string/ipad"
-        />
+        android:title="@string/ipad" />
 
     <item
         android:id="@+id/iphone"
-        android:title="@string/iphone"
-        />
+        android:title="@string/iphone" />
 
     <item
         android:id="@+id/macbook"
-        android:title="@string/macbook"
-        />
+        android:title="@string/macbook" />
 
     <item
         android:id="@+id/watch"
-        android:title="@string/watch"
-        />
+        android:title="@string/watch" />
 
 </menu>

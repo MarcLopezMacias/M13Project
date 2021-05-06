@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Item;
 
-public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopItemViewHolder> implements View.OnClickListener{
+public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopItemViewHolder> implements View.OnClickListener {
 
     private View.OnClickListener shopItemListener;
 

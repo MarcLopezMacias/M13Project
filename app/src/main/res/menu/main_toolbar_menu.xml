@@ -4,16 +4,14 @@
 
     <item
         android:id="@+id/shopping_cart"
-        android:title="@string/cart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
-        app:showAsAction="always"
-        />
+        android:title="@string/cart"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/profile"
-        android:title="@string/profile"
         android:icon="@drawable/ic_baseline_person_24"
-        app:showAsAction="always"
-        />
+        android:title="@string/profile"
+        app:showAsAction="always" />
 
 </menu>

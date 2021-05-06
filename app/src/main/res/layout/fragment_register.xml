@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity"
-    android:background="@color/backgroundColor">
+    android:background="@color/backgroundColor"
+    tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -46,15 +46,15 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/usernameEditText"
-                android:layout_width="match_parent"
-                android:textColor="@color/colorPrimary"
                 style="@style/normalSizeText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/registerTextView"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:hint="@string/username" />
+                android:hint="@string/username"
+                android:textColor="@color/colorPrimary" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,19 +65,19 @@
             android:layout_below="@+id/usernameTextView"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:textColorHint="@color/colorPrimary"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:textColorHint="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/usernameTextView">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEditText"
+                style="@style/normalSizeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/normalSizeText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
@@ -89,7 +89,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/repeatPasswordTextView"
             android:layout_width="match_parent"
-            android:textColorHint="@color/colorPrimary"
             android:layout_height="wrap_content"
             android:layout_below="@+id/passwordTextView"
             android:layout_marginStart="8dp"
@@ -97,6 +96,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:textColorHint="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordTextView">
@@ -123,8 +123,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:textColorHint="@color/colorPrimary"
             android:layout_marginRight="8dp"
+            android:textColorHint="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -151,8 +151,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:textColorHint="@color/colorPrimary"
             android:layout_marginRight="8dp"
+            android:textColorHint="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailTextView">
@@ -176,10 +176,10 @@
             android:layout_below="@+id/nameTextView"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:textColorHint="@color/colorPrimary"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:textColorHint="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -263,7 +263,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </ScrollView>

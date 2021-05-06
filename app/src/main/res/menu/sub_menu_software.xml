@@ -3,32 +3,26 @@
 
     <item
         android:id="@+id/disenyo"
-        android:title="@string/dise_o"
-        />
+        android:title="@string/dise_o" />
 
     <item
         android:id="@+id/licencia_electronica"
-        android:title="@string/licencia_electr_nica"
-        />
+        android:title="@string/licencia_electr_nica" />
 
     <item
         android:id="@+id/negocios_y_productividad"
-        android:title="@string/negocios_y_productividad"
-        />
+        android:title="@string/negocios_y_productividad" />
 
     <item
         android:id="@+id/ofimatica"
-        android:title="@string/ofim_tica"
-        />
+        android:title="@string/ofim_tica" />
 
     <item
         android:id="@+id/seguridad"
-        android:title="@string/seguridad"
-        />
+        android:title="@string/seguridad" />
 
     <item
         android:id="@+id/sistema_operativo"
-        android:title="@string/sistema_operativo"
-        />
+        android:title="@string/sistema_operativo" />
 
 </menu>

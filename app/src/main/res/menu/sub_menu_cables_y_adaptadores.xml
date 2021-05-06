@@ -3,67 +3,54 @@
 
     <item
         android:id="@+id/adaptador"
-        android:title="@string/adaptador"
-        />
+        android:title="@string/adaptador" />
 
     <item
         android:id="@+id/cable_alimentacion"
-        android:title="@string/cable_alimentaci_n"
-        />
+        android:title="@string/cable_alimentaci_n" />
 
     <item
         android:id="@+id/cable_firewire"
-        android:title="@string/cable_firewire"
-        />
+        android:title="@string/cable_firewire" />
 
     <item
         android:id="@+id/cable_usb"
-        android:title="@string/cable_usb"
-        />
+        android:title="@string/cable_usb" />
 
     <item
         android:id="@+id/cable_video_audio"
-        android:title="@string/cable_v_deo_audio"
-        />
+        android:title="@string/cable_v_deo_audio" />
 
     <item
         android:id="@+id/red_cable_en_bobina"
-        android:title="@string/red_cable_en_bobina"
-        />
+        android:title="@string/red_cable_en_bobina" />
 
     <item
         android:id="@+id/red_conector_rj45_superficie_empotrable_aereo"
-        android:title="@string/red_conector_rj45_superf_cie_empotrable_a_reo"
-        />
+        android:title="@string/red_conector_rj45_superf_cie_empotrable_a_reo" />
 
     <item
         android:id="@+id/red_fibra_optica"
-        android:title="@string/red_fibra_ptica"
-        />
+        android:title="@string/red_fibra_ptica" />
 
     <item
         android:id="@+id/red_kit_herramientas_crimpadora_tester"
-        android:title="@string/red_kit_herramientas_crimpadora_tester"
-        />
+        android:title="@string/red_kit_herramientas_crimpadora_tester" />
 
     <item
         android:id="@+id/red_latiguillo"
-        android:title="@string/red_latiguillo"
-        />
+        android:title="@string/red_latiguillo" />
 
     <item
         android:id="@+id/red_patch_panel"
-        android:title="@string/red_patch_panel"
-        />
+        android:title="@string/red_patch_panel" />
 
     <item
         android:id="@+id/sata_ide"
-        android:title="@string/sata_ide"
-        />
+        android:title="@string/sata_ide" />
 
     <item
         android:id="@+id/serie_paralelo"
-        android:title="@string/serie_paralelo"
-        />
+        android:title="@string/serie_paralelo" />
 
 </menu>

@@ -3,22 +3,18 @@
 
     <item
         android:id="@+id/caja_de_ordenador"
-        android:title="@string/caja_de_ordenador"
-        />
+        android:title="@string/caja_de_ordenador" />
 
     <item
         android:id="@+id/consolas"
-        android:title="@string/consolas"
-        />
+        android:title="@string/consolas" />
 
     <item
         android:id="@+id/mobiliario_gaming"
-        android:title="@string/mobiliario_gaming"
-        />
+        android:title="@string/mobiliario_gaming" />
 
     <item
         android:id="@+id/perifericos_gaming"
-        android:title="@string/perif_ricos_gaming"
-        />
+        android:title="@string/perif_ricos_gaming" />
 
 </menu>

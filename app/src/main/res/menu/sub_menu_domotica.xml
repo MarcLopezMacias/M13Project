@@ -3,7 +3,6 @@
 
     <item
         android:id="@+id/hogar_inteligente"
-        android:title="@string/hogar_inteligente"
-        />
+        android:title="@string/hogar_inteligente" />
 
 </menu>

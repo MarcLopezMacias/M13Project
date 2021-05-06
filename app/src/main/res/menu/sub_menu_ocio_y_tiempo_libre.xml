@@ -3,13 +3,11 @@
 
     <item
         android:id="@+id/interactivo_educacional"
-        android:title="@string/interactivo_educacional"
-        />
+        android:title="@string/interactivo_educacional" />
 
     <item
         android:id="@+id/movilidad_urbana"
-        android:title="@string/movilidad_urbana"
-        />
+        android:title="@string/movilidad_urbana" />
 
 
 </menu>

@@ -3,17 +3,14 @@
 
     <item
         android:id="@+id/mouse_wireless"
-        android:title="@string/mouse_wireless"
-        />
+        android:title="@string/mouse_wireless" />
 
     <item
         android:id="@+id/mouse_corded"
-        android:title="@string/mouse_corded"
-        />
+        android:title="@string/mouse_corded" />
 
     <item
         android:id="@+id/tableta"
-        android:title="@string/tableta"
-        />
+        android:title="@string/tableta" />
 
 </menu>

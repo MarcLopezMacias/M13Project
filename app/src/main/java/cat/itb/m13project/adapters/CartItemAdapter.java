@@ -2,18 +2,14 @@ package cat.itb.m13project.adapters;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Item;
 
 
-public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder> implements View.OnClickListener{
-
+public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder> implements View.OnClickListener {
 
 
     @Override

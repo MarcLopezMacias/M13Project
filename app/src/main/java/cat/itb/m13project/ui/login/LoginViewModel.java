@@ -1,15 +1,15 @@
 package cat.itb.m13project.ui.login;
 
+import android.util.Patterns;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Patterns;
-
+import cat.itb.m13project.R;
 import cat.itb.m13project.data.LoginRepository;
 import cat.itb.m13project.data.Result;
 import cat.itb.m13project.data.model.LoggedInUser;
-import cat.itb.m13project.R;
 
 import static cat.itb.m13project.ConstantVariables.USER_PASSWORD_LENGTH;
 

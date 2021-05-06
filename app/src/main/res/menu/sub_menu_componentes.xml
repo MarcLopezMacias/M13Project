@@ -3,62 +3,50 @@
 
     <item
         android:id="@+id/almacenamiento_hd_ssd_m2"
-        android:title="@string/almacenamiento_hd_ssd_m_2"
-        />
+        android:title="@string/almacenamiento_hd_ssd_m_2" />
 
     <item
         android:id="@+id/caja_de_ordenador"
-        android:title="@string/caja_de_ordenador"
-        />
+        android:title="@string/caja_de_ordenador" />
 
     <item
         android:id="@+id/card_reader"
-        android:title="@string/card_reader"
-        />
+        android:title="@string/card_reader" />
 
     <item
         android:id="@+id/controladora_pci_usb_firewire_sata_serie"
-        android:title="@string/controladora_pci_usb_firewire_sata_serie"
-        />
+        android:title="@string/controladora_pci_usb_firewire_sata_serie" />
 
     <item
         android:id="@+id/fuentes_de_alimentacion"
-        android:title="@string/fuentes_de_alimentaci_n"
-        />
+        android:title="@string/fuentes_de_alimentaci_n" />
 
     <item
         android:id="@+id/grabadora_interna"
-        android:title="@string/grabadora_interna"
-        />
+        android:title="@string/grabadora_interna" />
 
     <item
         android:id="@+id/memoria_interna"
-        android:title="@string/memoria_interna"
-        />
+        android:title="@string/memoria_interna" />
 
     <item
         android:id="@+id/placa_base"
-        android:title="@string/placa_base"
-        />
+        android:title="@string/placa_base" />
 
     <item
         android:id="@+id/procesadores_amd"
-        android:title="@string/procesadores_amd"
-        />
+        android:title="@string/procesadores_amd" />
 
     <item
         android:id="@+id/procesadores_intel"
-        android:title="@string/procesadores_intel"
-        />
+        android:title="@string/procesadores_intel" />
 
     <item
         android:id="@+id/tarjetas_graficas"
-        android:title="@string/tarjetas_gr_ficas"
-        />
+        android:title="@string/tarjetas_gr_ficas" />
 
     <item
         android:id="@+id/ventiladores"
-        android:title="@string/ventiladores"
-        />
+        android:title="@string/ventiladores" />
 
 </menu>

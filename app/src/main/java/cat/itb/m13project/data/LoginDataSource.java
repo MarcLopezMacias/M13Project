@@ -1,8 +1,8 @@
 package cat.itb.m13project.data;
 
-import cat.itb.m13project.data.model.LoggedInUser;
-
 import java.io.IOException;
+
+import cat.itb.m13project.data.model.LoggedInUser;
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.

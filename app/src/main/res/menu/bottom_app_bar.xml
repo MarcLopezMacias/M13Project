@@ -4,23 +4,20 @@
 
     <item
         android:id="@+id/ofertas"
-        android:title="@string/ofertas"
-        app:showAsAction="always"
         android:icon="@drawable/ic_baseline_local_offer_24"
-        />
+        android:title="@string/ofertas"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/outlet_liquidaciones"
-        android:title="@string/outlet"
-        app:showAsAction="always"
         android:icon="@drawable/ic_baseline_calendar_today_24"
-        />
+        android:title="@string/outlet"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/lo_mas_buscado"
-        android:title="@string/destacado"
-        app:showAsAction="always"
         android:icon="@drawable/ic_baseline_new_releases_24"
-        />
+        android:title="@string/destacados"
+        app:showAsAction="always" />
 
 </menu>

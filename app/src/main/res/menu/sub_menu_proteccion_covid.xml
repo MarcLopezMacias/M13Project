@@ -3,7 +3,6 @@
 
     <item
         android:id="@+id/proteccion_covid"
-        android:title="@string/protecci_n_covid_19"
-        />
+        android:title="@string/protecci_n_covid_19" />
 
 </menu>

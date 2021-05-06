@@ -120,7 +120,7 @@ public class RegisterFragment extends Fragment {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 if (registerViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString())) {
-                    Fragment  newFragment = new HomeFragment();
+                    Fragment newFragment = new HomeFragment();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment, newFragment);

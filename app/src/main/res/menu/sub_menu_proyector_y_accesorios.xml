@@ -3,22 +3,18 @@
 
     <item
         android:id="@+id/accesorios_de_proyector"
-        android:title="@string/accesorios_de_proyector"
-        />
+        android:title="@string/accesorios_de_proyector" />
 
     <item
         android:id="@+id/pantalla_proyector"
-        android:title="@string/pantalla_proyector"
-        />
+        android:title="@string/pantalla_proyector" />
 
     <item
         android:id="@+id/pizarra"
-        android:title="@string/pizarra"
-        />
+        android:title="@string/pizarra" />
 
     <item
         android:id="@+id/proyector"
-        android:title="@string/proyector"
-        />
+        android:title="@string/proyector" />
 
 </menu>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ISICOMPUTER</string>
+    <string name="app_name">ISI COMPUTER</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Strings related to login -->
@@ -13,8 +13,10 @@
     <string name="invalid_password">Password must be >8 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="login_title">L O G I N</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password">Forgot Password?</string>
 
+    <string name="open">OPEN</string>
+    <string name="close">CLOSE</string>
 
     <string name="best_userform">Best Userform</string>
     <string name="username">Username</string>
@@ -204,7 +206,7 @@
     <string name="profile">Profile</string>
     <string name="ofertas">Ofertas</string>
     <string name="outlet">Outlet</string>
-    <string name="destacado">Destacado</string>
+    <string name="destacados">Destacados</string>
     <string name="isi_computer_logo_image_button">ISI COMPUTER LOGO IMAGE BUTTON</string>
     <string name="cart">Cart</string>
     <string name="cart_product_image_view">CART PRODUCT IMAGE VIEW</string>

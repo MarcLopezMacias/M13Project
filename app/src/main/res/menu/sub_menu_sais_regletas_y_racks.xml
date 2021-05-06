@@ -3,17 +3,14 @@
 
     <item
         android:id="@+id/armarios_rack"
-        android:title="@string/armarios_rack"
-        />
+        android:title="@string/armarios_rack" />
 
     <item
         android:id="@+id/regleta"
-        android:title="@string/regleta"
-        />
+        android:title="@string/regleta" />
 
     <item
         android:id="@+id/sai"
-        android:title="@string/sai"
-        />
+        android:title="@string/sai" />
 
 </menu>

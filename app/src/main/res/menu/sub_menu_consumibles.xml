@@ -3,32 +3,26 @@
 
     <item
         android:id="@+id/consumibles_3d"
-        android:title="@string/consumibles_3d"
-        />
+        android:title="@string/consumibles_3d" />
 
     <item
         android:id="@+id/consumibles_cd_dvd"
-        android:title="@string/consumibles_cd_dvd"
-        />
+        android:title="@string/consumibles_cd_dvd" />
 
     <item
         android:id="@+id/consumibles_inkjet"
-        android:title="@string/consumibles_inkjet"
-        />
+        android:title="@string/consumibles_inkjet" />
 
     <item
         android:id="@+id/consumibles_laser"
-        android:title="@string/consumibles_l_ser"
-        />
+        android:title="@string/consumibles_l_ser" />
 
     <item
         android:id="@+id/consumibles_print"
-        android:title="@string/consumibles_print"
-        />
+        android:title="@string/consumibles_print" />
 
     <item
         android:id="@+id/material_de_oficina"
-        android:title="@string/material_de_oficina"
-        />
+        android:title="@string/material_de_oficina" />
 
 </menu>

@@ -3,21 +3,17 @@
 
     <item
         android:id="@+id/camaras"
-        android:title="@string/c_maras"
-        />
+        android:title="@string/c_maras" />
 
     <item
         android:id="@+id/video_conferencia"
-        android:title="@string/videoconferencia"
-        />
+        android:title="@string/videoconferencia" />
 
     <item
         android:id="@+id/video_vigilancia"
-        android:title="@string/videovigilancia"
-        />
+        android:title="@string/videovigilancia" />
 
     <item
         android:id="@+id/webcam"
-        android:title="@string/webcam"
-        />
+        android:title="@string/webcam" />
 </menu>
