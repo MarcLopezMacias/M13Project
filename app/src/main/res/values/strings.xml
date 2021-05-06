@@ -5,8 +5,8 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="login">Log In</string>
-    <string name="register">Register</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome_to">"Welcome to"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -23,7 +23,7 @@
     <string name="password">Password</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="e_mail">E-Mail</string>
-    <string name="name">Name</string>
+    <string name="name">Name &amp; Surnames</string>
     <string name="surnames">Surnames</string>
     <string name="birth_date">Birth Date</string>
     <string name="gender_pronoun">Gender Pronoun</string>
@@ -211,6 +211,7 @@
     <string name="cart">Cart</string>
     <string name="cart_product_image_view">CART PRODUCT IMAGE VIEW</string>
     <string name="shop_item_image_view">SHOP ITEM IMAGE VIEW</string>
+    <string name="address">Address</string>
 
 
 </resources>

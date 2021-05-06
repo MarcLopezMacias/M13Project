@@ -8,50 +8,53 @@ import androidx.lifecycle.ViewModel;
 
 import cat.itb.m13project.R;
 import cat.itb.m13project.data.LoginRepository;
-import cat.itb.m13project.data.Result;
+import cat.itb.m13project.data.LoginResult;
 import cat.itb.m13project.data.model.LoggedInUser;
+import cat.itb.m13project.pojo.Usuario;
 
 import static cat.itb.m13project.ConstantVariables.USER_PASSWORD_LENGTH;
 
 public class RegisterViewModel extends ViewModel {
 
-    private MutableLiveData<RegisterFormState> loginFormState = new MutableLiveData<>();
-    private MutableLiveData<RegisterResult> loginResult = new MutableLiveData<>();
-    private LoginRepository loginRepository;
+    private MutableLiveData<RegisterFormState> registerFormState = new MutableLiveData<>();
+    private MutableLiveData<RegisterResult> registerResult = new MutableLiveData<>();
+    private LoginRepository registerRepository;
 
-    RegisterViewModel(LoginRepository loginRepository) {
-        this.loginRepository = loginRepository;
+    RegisterViewModel(LoginRepository registerRepository) {
+        this.registerRepository = registerRepository;
     }
 
-    LiveData<RegisterFormState> getLoginFormState() {
-        return loginFormState;
+    LiveData<RegisterFormState> getRegisterFormState() {
+        return registerFormState;
     }
 
-    LiveData<RegisterResult> getLoginResult() {
-        return loginResult;
+    LiveData<RegisterResult> getRegisterResult() {
+        return registerResult;
     }
 
-    public boolean login(String username, String password) {
+    public boolean register(Usuario user) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password);
+        LoginResult<LoggedInUser> loginResult = registerRepository.login(user.getEmail(), user.getPassword());
         boolean validLogin = false;
-        if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new RegisterResult(new RegisteredInUserView(data.getDisplayName())));
+        if (loginResult instanceof LoginResult.Success) {
+            LoggedInUser data = ((LoginResult.Success<LoggedInUser>) loginResult).getData();
+            registerResult.setValue(new RegisterResult(new RegisteredInUserView(data.getDisplayName())));
             validLogin = true;
         } else {
-            loginResult.setValue(new RegisterResult(R.string.login_failed));
+            registerResult.setValue(new RegisterResult(R.string.login_failed));
         }
         return validLogin;
     }
 
-    public void loginDataChanged(String username, String password) {
+    public void loginDataChanged(String username, String password, String repeatPassword) {
         if (!isUserNameValid(username)) {
-            loginFormState.setValue(new RegisterFormState(R.string.invalid_username, null));
+            registerFormState.setValue(new RegisterFormState(R.string.invalid_username, null, null));
         } else if (!isPasswordValid(password)) {
-            loginFormState.setValue(new RegisterFormState(null, R.string.invalid_password));
+            registerFormState.setValue(new RegisterFormState(null, R.string.invalid_password, null));
+        } else if (!isRepeatPasswordValid(repeatPassword)) {
+            registerFormState.setValue(new RegisterFormState(null, null, R.string.invalid_password));
         } else {
-            loginFormState.setValue(new RegisterFormState(true));
+            registerFormState.setValue(new RegisterFormState(true));
         }
     }
 
@@ -69,6 +72,11 @@ public class RegisterViewModel extends ViewModel {
 
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
+        return password != null && password.trim().length() > USER_PASSWORD_LENGTH;
+    }
+
+    // A placeholder password validation check
+    private boolean isRepeatPasswordValid(String password) {
         return password != null && password.trim().length() > USER_PASSWORD_LENGTH;
     }
 }

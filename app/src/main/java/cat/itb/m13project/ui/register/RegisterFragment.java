@@ -24,6 +24,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import cat.itb.m13project.R;
+import cat.itb.m13project.pojo.Usuario;
 import cat.itb.m13project.ui.home.HomeFragment;
 
 public class RegisterFragment extends Fragment {
@@ -46,28 +47,35 @@ public class RegisterFragment extends Fragment {
         registerViewModel = ViewModelProviders.of(this, new RegisterViewModelFactory())
                 .get(RegisterViewModel.class);
 
-        final EditText usernameEditText = view.findViewById(R.id.usernameEditText);
+        final EditText nameEditText = view.findViewById(R.id.nameEditText);
+        final EditText emailEditText = view.findViewById(R.id.emailEditText);
         final EditText passwordEditText = view.findViewById(R.id.passwordEditText);
-        final Button loginButton = view.findViewById(R.id.loginButton);
+        final EditText repeatPasswordEditText = view.findViewById(R.id.repeatPasswordEditText);
+        final EditText addressEditText = view.findViewById(R.id.addressEditText);
+
+        final Button registerButton = view.findViewById(R.id.registerButton);
         final ProgressBar loadingProgressBar = view.findViewById(R.id.loading);
 
-        registerViewModel.getLoginFormState().observe(getViewLifecycleOwner(), new Observer<RegisterFormState>() {
+        registerViewModel.getRegisterFormState().observe(getViewLifecycleOwner(), new Observer<RegisterFormState>() {
             @Override
             public void onChanged(@Nullable RegisterFormState registerFormState) {
                 if (registerFormState == null) {
                     return;
                 }
-                loginButton.setEnabled(registerFormState.isDataValid());
+                registerButton.setEnabled(registerFormState.isDataValid());
                 if (registerFormState.getUsernameError() != null) {
-                    usernameEditText.setError(getString(registerFormState.getUsernameError()));
+                    emailEditText.setError(getString(registerFormState.getUsernameError()));
                 }
                 if (registerFormState.getPasswordError() != null) {
                     passwordEditText.setError(getString(registerFormState.getPasswordError()));
                 }
+                if (registerFormState.getRepeatPasswordError() != null) {
+                    repeatPasswordEditText.setError(getString(registerFormState.getRepeatPasswordError()));
+                }
             }
         });
 
-        registerViewModel.getLoginResult().observe(getViewLifecycleOwner(), new Observer<RegisterResult>() {
+        registerViewModel.getRegisterResult().observe(getViewLifecycleOwner(), new Observer<RegisterResult>() {
             @Override
             public void onChanged(@Nullable RegisterResult registerResult) {
                 if (registerResult == null) {
@@ -96,30 +104,38 @@ public class RegisterFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                registerViewModel.loginDataChanged(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                registerViewModel.loginDataChanged(emailEditText.getText().toString(),
+                        passwordEditText.getText().toString(), repeatPasswordEditText.getText().toString());
             }
         };
-        usernameEditText.addTextChangedListener(afterTextChangedListener);
+        emailEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    registerViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
+                    Usuario user = new Usuario();
+                    user.setName(nameEditText.getText().toString());
+                    user.setEmail(emailEditText.getText().toString());
+                    user.setPassword(passwordEditText.getText().toString());
+                    user.setAddress(addressEditText.getText().toString());
+                    registerViewModel.register(user);
                 }
                 return false;
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                if (registerViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString())) {
+                Usuario user = new Usuario(
+                        nameEditText.getText().toString(),
+                        emailEditText.getText().toString(),
+                        passwordEditText.getText().toString(),
+                        addressEditText.getText().toString());
+                if (registerViewModel.register(user)) {
                     Fragment newFragment = new HomeFragment();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
