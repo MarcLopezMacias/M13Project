@@ -9,8 +9,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static FirebaseDatabase db;
+    public static DatabaseReference dbRef;
 
     public static ActionBar applicationActionBar;
 
@@ -23,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTheme(R.style.AppTheme);
+
+        db = FirebaseDatabase.getInstance();
+        dbRef = db.getReference("Usuario");
+
         getSupportActionBar();
         applicationActionBar = getSupportActionBar();
     }
