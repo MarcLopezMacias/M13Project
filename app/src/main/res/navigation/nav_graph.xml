@@ -7,7 +7,7 @@
     696969
     <fragment
         android:id="@+id/loginFragment"
-        android:name="cat.itb.m13project.ui.login.LoginFragment"
+        android:name="cat.itb.m13project.Fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="cat.itb.m13project.ui.home.HomeFragment"
+        android:name="cat.itb.m13project.Fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="cat.itb.m13project.ui.welcome.WelcomeFragment"
+        android:name="cat.itb.m13project.Fragments.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome">
         <action
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="cat.itb.m13project.ui.register.RegisterFragment"
+        android:name="cat.itb.m13project.Fragments.RegisterFragment"
         android:label="RegisterFragment">
         <action
             android:id="@+id/action_registerFragment_to_homeFragment"

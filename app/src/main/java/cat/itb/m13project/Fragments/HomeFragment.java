@@ -1,9 +1,8 @@
-package cat.itb.m13project.ui.home;
+package cat.itb.m13project.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -12,13 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.adapters.ShopItemAdapter;
+import cat.itb.m13project.adapters.*;
 
 public class HomeFragment extends Fragment {
 

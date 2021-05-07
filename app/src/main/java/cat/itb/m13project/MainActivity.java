@@ -1,7 +1,10 @@
 package cat.itb.m13project;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar();
         applicationActionBar = getSupportActionBar();
+
+
     }
 
     @Override
@@ -47,14 +52,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /* CHANGE FRAGMENT
-        Fragment  newFragment = new HomeFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, newFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-     */
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.nav_drawer_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.menu_mapa:
+//                currentFragment = new MapsFragment();
+//                break;
+//            case R.id.menu_places:
+//                currentFragment = new MarcadorsFragment();
+//        }
+//        changeFragment(currentFragment);
+//        return super.onOptionsItemSelected(item);
+//    }
+
+//     CHANGE FRAGMENT
+//        Fragment  newFragment = new HomeFragment();
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.fragment, newFragment);
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.commit();
+
 
 
 

@@ -1,4 +1,4 @@
-package cat.itb.m13project.ui.register;
+package cat.itb.m13project.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,8 +15,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.pojo.Usuario;
-import cat.itb.m13project.ui.home.HomeFragment;
+
+import cat.itb.m13project.pojo.*;
 
 import static cat.itb.m13project.MainActivity.dbRef;
 
