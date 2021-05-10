@@ -1,5 +1,6 @@
 package cat.itb.m13project.Fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,21 +49,26 @@ public class RegisterFragment extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String key = dbRef.push().getKey();
-                Usuario user = new Usuario(
-                        key,
-                        nameEditText.getText().toString(),
-                        emailEditText.getText().toString(),
-                        passwordEditText.getText().toString(),
-                        addressEditText.getText().toString());
-                dbRef.child(key).setValue(user);
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                Fragment newFragment = new HomeFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, newFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                if (!emailEditText.getText().toString().contains("@")) {
+                    emailEditText.setBackgroundColor(0xFF2800);
+                } else {
+                    String key = dbRef.push().getKey();
+                    Usuario user = new Usuario(
+                            key,
+                            nameEditText.getText().toString(),
+                            emailEditText.getText().toString(),
+                            passwordEditText.getText().toString(),
+                            addressEditText.getText().toString());
+                    dbRef.child(key).setValue(user);
+                    loadingProgressBar.setVisibility(View.VISIBLE);
+                    Fragment newFragment = new HomeFragment();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment, newFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+
             }
         });
     }

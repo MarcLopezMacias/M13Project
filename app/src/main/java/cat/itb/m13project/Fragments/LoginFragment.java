@@ -17,19 +17,22 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import cat.itb.m13project.MainActivity;
-import cat.itb.m13project.R;
-import cat.itb.m13project.pojo.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import static cat.itb.m13project.MainActivity.db;
-import static cat.itb.m13project.MainActivity.dbRef;
+import cat.itb.m13project.R;
+import cat.itb.m13project.pojo.Usuario;
+
+import static cat.itb.m13project.MainActivity.loggedUser;
 
 
 public class LoginFragment extends Fragment {
+
+    List<Usuario> userList;
 
     @Nullable
     @Override
@@ -43,6 +46,8 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        userList = new ArrayList<>();
+
         final EditText emailEditText = view.findViewById(R.id.email);
         final EditText passwordEditText = view.findViewById(R.id.password);
         final Button loginButton = view.findViewById(R.id.loginButton);
@@ -52,37 +57,35 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-
-                final Usuario userAttempt = new Usuario();
-                userAttempt.setEmail(emailEditText.getText().toString().toLowerCase());
-                userAttempt.setPassword(passwordEditText.getText().toString());
-
-                Query q = dbRef.orderByChild("email").equalTo(userAttempt.getEmail());
-                q.addListenerForSingleValueEvent(new ValueEventListener() {
+                loggedUser.setEmail(emailEditText.getText().toString().toLowerCase());
+                loggedUser.setPassword(passwordEditText.getText().toString());
+                Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                        Toast.makeText(getContext(), snapshot.child("email").toString(), Toast.LENGTH_SHORT).show();
-                        Usuario user = new Usuario();
-
-                        Toast.makeText(getContext(), snapshot.getKey(), Toast.LENGTH_SHORT).show();
-
-                        user.setEmail(dbRef.child(snapshot.getKey()).child("email").toString().toLowerCase());
-                        user.setPassword(dbRef.child(snapshot.getKey()).child("password").toString());
-
-                        Toast.makeText(getContext(), user.getEmail(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(), user.getPassword(), Toast.LENGTH_SHORT).show();
-
-                        if (user.getEmail().equals(userAttempt.getEmail()) && user.getPassword().equals(userAttempt.getPassword())) {
-                            Fragment newFragment = new HomeFragment();
-                            FragmentManager fragmentManager = getFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.fragment, newFragment);
-                            fragmentTransaction.addToBackStack(null);
-                            fragmentTransaction.commit();
+                        userList.clear();
+                        if (snapshot.exists()) {
+                            for (DataSnapshot ds : snapshot.getChildren()) {
+                                Usuario user = ds.getValue(Usuario.class);
+                                userList.add(user);
+                            }
+                        }
+                        if (userList.size() == 1) {
+                            if (userList.get(0).getEmail().toLowerCase().equals(loggedUser.getEmail()) && userList.get(0).getPassword().equals(loggedUser.getPassword())) {
+                                loggedUser = userList.get(0);
+                                Fragment newFragment = new HomeFragment();
+                                FragmentManager fragmentManager = getFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.fragment, newFragment);
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                            }else {
+                                loadingProgressBar.setVisibility(View.INVISIBLE);
+                                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             loadingProgressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "User not Found", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -94,4 +97,5 @@ public class LoginFragment extends Fragment {
             }
         });
     }
+
 }

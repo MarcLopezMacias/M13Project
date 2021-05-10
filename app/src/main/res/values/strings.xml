@@ -212,6 +212,10 @@
     <string name="cart_product_image_view">CART PRODUCT IMAGE VIEW</string>
     <string name="shop_item_image_view">SHOP ITEM IMAGE VIEW</string>
     <string name="address">Address</string>
+    <string name="brand">Brand</string>
+    <string name="unit_price">Unit Price</string>
+    <string name="amount">Amount</string>
+    <string name="edit_profile">EDIT PROFILE</string>
 
 
 </resources>

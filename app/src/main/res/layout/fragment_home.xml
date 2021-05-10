@@ -21,6 +21,8 @@
                 layout="@layout/main_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/OptionsMenu"
+
                 android:layout_centerHorizontal="true" />
 
             <include
@@ -71,6 +73,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
+            style="@style/NavigationView"
             app:menu="@menu/nav_drawer_menu"
             />
 
