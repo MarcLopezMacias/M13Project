@@ -6,5 +6,6 @@
     <color name="white">#EEEEEE</color>
     <color name="backgroundColor">#000000</color>
     <color name="oldBackgroundColor">#3c3b37</color>
+    <color name="red">#ff2800</color>
 
 </resources>

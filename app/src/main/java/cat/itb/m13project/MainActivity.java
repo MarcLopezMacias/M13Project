@@ -1,30 +1,38 @@
 package cat.itb.m13project;
 
 import android.os.Bundle;
+import android.view.Menu;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.material.navigation.NavigationView;
+
+import cat.itb.m13project.pojo.*;
+
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static ActionBar applicationActionBar;
+    public static FirebaseDatabase db;
+    public static DatabaseReference dbRef;
 
-    public static void setApplicationActionBar() {
-        applicationActionBar.setDisplayHomeAsUpEnabled(true);
-    }
+    public static Usuario loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTheme(R.style.AppTheme);
-        getSupportActionBar();
-        applicationActionBar = getSupportActionBar();
+
+        db = FirebaseDatabase.getInstance();
+        dbRef = db.getReference("Usuario");
+
+        if (savedInstanceState == null) {
+            loggedUser = new Usuario();
+            loggedUser.setName("Guest");
+        }
+
     }
 
     @Override
@@ -38,14 +46,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /* CHANGE FRAGMENT
-        Fragment  newFragment = new HomeFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, newFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_toolbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+//     CHANGE FRAGMENT
+//        Fragment  newFragment = new HomeFragment();
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.fragment, newFragment);
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.commit();
+
 
 
 

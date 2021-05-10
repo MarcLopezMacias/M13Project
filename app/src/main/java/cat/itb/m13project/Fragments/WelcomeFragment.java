@@ -1,4 +1,4 @@
-package cat.itb.m13project.ui.welcome;
+package cat.itb.m13project.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,8 +13,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.button.MaterialButton;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.ui.login.LoginFragment;
-import cat.itb.m13project.ui.register.RegisterFragment;
+import cat.itb.m13project.Fragments.LoginFragment;
+import cat.itb.m13project.Fragments.RegisterFragment;
 
 public class WelcomeFragment extends Fragment {
 
