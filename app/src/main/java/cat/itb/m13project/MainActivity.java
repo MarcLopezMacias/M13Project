@@ -12,12 +12,16 @@ import cat.itb.m13project.pojo.*;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     public static FirebaseDatabase db;
     public static DatabaseReference dbRef;
 
     public static Usuario loggedUser;
+    public static List<Usuario> userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             loggedUser = new Usuario();
-            loggedUser.setName("Guest");
+            loggedUser.setEmail("Guest");
         }
+
+        userList = new ArrayList<>();
 
     }
 

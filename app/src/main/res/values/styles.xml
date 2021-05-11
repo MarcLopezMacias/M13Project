@@ -37,6 +37,15 @@
         <item name="fontFamily">@font/montserrat_bold</item>
     </style>
 
+    <style name="warning" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="android:gravity">center</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+    </style>
+
     <style name="materialTextInputLayout">
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimary</item>

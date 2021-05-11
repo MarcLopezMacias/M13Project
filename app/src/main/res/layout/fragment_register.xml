@@ -179,6 +179,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addressTextView" />
 
+        <TextView
+            android:id="@+id/termsMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/termsMessage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/termsCheckBox" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/registerButton"
             style="@style/TextButton"

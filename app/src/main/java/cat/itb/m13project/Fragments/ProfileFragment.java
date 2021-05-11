@@ -44,8 +44,6 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Bundle b = new Bundle();
                 b.putSerializable("currentUser", loggedUser);
-                getParentFragmentManager().setFragmentResult("email", b);
-                Navigation.findNavController(getActivity(), R.id.profileFragment).navigate(R.id.registerFragment);
 
             }
         });
