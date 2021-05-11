@@ -9,16 +9,18 @@ public class Usuario implements Serializable {
     String email;
     String password;
     String address;
+    String forgottenPasswordHint;
 
     public Usuario() {
     }
 
-    public Usuario(String id, String name, String email, String password, String address) {
+    public Usuario(String id, String name, String email, String password, String address, String forgottenPasswordHint) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.address = address;
+        this.forgottenPasswordHint = forgottenPasswordHint;
     }
 
     public String getId() {
@@ -61,14 +63,11 @@ public class Usuario implements Serializable {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+    public String getForgottenPasswordHint() {
+        return forgottenPasswordHint;
+    }
+
+    public void setForgottenPasswordHint(String forgottenPasswordHint) {
+        this.forgottenPasswordHint = forgottenPasswordHint;
     }
 }

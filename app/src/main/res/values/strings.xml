@@ -22,6 +22,7 @@
     <string name="termsMessage">You must accept the terms and conditions</string>
     <string name="guest">Guest</string>
     <string name="fillForm">Please, fill the form</string>
+    <string name="hint">Password Recovery Hint</string>
 
 
     <string name="open">OPEN</string>
