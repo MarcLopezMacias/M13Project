@@ -13,8 +13,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.button.MaterialButton;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.Fragments.LoginFragment;
-import cat.itb.m13project.Fragments.RegisterFragment;
 
 public class WelcomeFragment extends Fragment {
 

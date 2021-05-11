@@ -5,15 +5,13 @@ import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import cat.itb.m13project.pojo.*;
-
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cat.itb.m13project.pojo.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
 //        fragmentTransaction.replace(R.id.fragment, newFragment);
 //        fragmentTransaction.addToBackStack(null);
 //        fragmentTransaction.commit();
-
-
 
 
 }

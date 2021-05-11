@@ -1,10 +1,8 @@
 package cat.itb.m13project.Fragments;
 
-import android.app.ActionBar;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +23,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
-
 import cat.itb.m13project.R;
-import cat.itb.m13project.adapters.*;
+import cat.itb.m13project.adapters.ShopItemAdapter;
 
 import static cat.itb.m13project.ConstantVariables.CART;
 import static cat.itb.m13project.ConstantVariables.PROFILE;
@@ -63,7 +60,7 @@ public class HomeFragment extends Fragment {
 
         // TOOLBAR
         MaterialToolbar toolbar = v.findViewById(R.id.mainToolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

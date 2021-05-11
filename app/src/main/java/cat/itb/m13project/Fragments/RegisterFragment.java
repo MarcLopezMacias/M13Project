@@ -1,6 +1,5 @@
 package cat.itb.m13project.Fragments;
 
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -34,20 +33,16 @@ import static cat.itb.m13project.MainActivity.userList;
 
 public class RegisterFragment extends Fragment {
 
+    protected static final int PASSWORD_LENGTH = 7;
     TextInputLayout name;
     TextInputLayout email;
     TextInputLayout password;
     TextInputLayout repeatedPassword;
     TextInputLayout address;
-
-
     Button registerButton;
     ProgressBar loadingProgressBar;
     MaterialCheckBox termsCheckBox;
     TextView termsTextView;
-
-    protected static final int PASSWORD_LENGTH = 7;
-
 
     @Nullable
     @Override
@@ -153,7 +148,7 @@ public class RegisterFragment extends Fragment {
             return false;
         }
         if (!u.getPassword().equals(password.getEditText().getText().toString())
-            && !u.getPassword().equals(repeatedPassword.getEditText().getText().toString())) {
+                && !u.getPassword().equals(repeatedPassword.getEditText().getText().toString())) {
             password.getEditText().setHintTextColor(Color.RED);
             password.getEditText().setText(R.string.blank);
             password.setHint(R.string.invalid_password);

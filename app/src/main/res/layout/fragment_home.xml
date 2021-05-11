@@ -18,10 +18,10 @@
 
             <include
                 android:id="@+id/mainToolbarLayout"
+                style="@style/OptionsMenu"
                 layout="@layout/main_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/OptionsMenu"
 
                 android:layout_centerHorizontal="true" />
 
@@ -69,13 +69,12 @@
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_view"
+            style="@style/NavigationView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            style="@style/NavigationView"
-            app:menu="@menu/nav_drawer_menu"
-            />
+            app:menu="@menu/nav_drawer_menu" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

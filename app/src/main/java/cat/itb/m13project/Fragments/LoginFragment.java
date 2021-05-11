@@ -34,42 +34,6 @@ public class LoginFragment extends Fragment {
     EditText passwordEditText;
     Button loginButton;
     ProgressBar loadingProgressBar;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_login, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        emailEditText = view.findViewById(R.id.email);
-        passwordEditText = view.findViewById(R.id.password);
-        loginButton = view.findViewById(R.id.loginButton);
-        loadingProgressBar = view.findViewById(R.id.loading);
-
-        if (!(loggedUser.getEmail().equals(getString(R.string.guest)))) {
-            emailEditText.setText(loggedUser.getEmail());
-            passwordEditText.setText(loggedUser.getPassword());
-        }
-
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loggedUser.setEmail(emailEditText.getText().toString().toLowerCase());
-                loggedUser.setPassword(passwordEditText.getText().toString());
-                Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
-                query.addListenerForSingleValueEvent(eventValueListener);
-                System.out.println("WOW");
-            }
-        });
-    }
-
     ValueEventListener eventValueListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -110,5 +74,40 @@ public class LoginFragment extends Fragment {
 
         }
     };
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_login, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        emailEditText = view.findViewById(R.id.email);
+        passwordEditText = view.findViewById(R.id.password);
+        loginButton = view.findViewById(R.id.loginButton);
+        loadingProgressBar = view.findViewById(R.id.loading);
+
+        if (!(loggedUser.getEmail().equals(getString(R.string.guest)))) {
+            emailEditText.setText(loggedUser.getEmail());
+            passwordEditText.setText(loggedUser.getPassword());
+        }
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadingProgressBar.setVisibility(View.VISIBLE);
+                loggedUser.setEmail(emailEditText.getText().toString().toLowerCase());
+                loggedUser.setPassword(passwordEditText.getText().toString());
+                Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
+                query.addListenerForSingleValueEvent(eventValueListener);
+                System.out.println("WOW");
+            }
+        });
+    }
 
 }
