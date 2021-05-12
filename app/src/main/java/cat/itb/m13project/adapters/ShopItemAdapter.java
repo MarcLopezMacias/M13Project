@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.pojo.Item;
+import cat.itb.m13project.pojo.CartItem;
 
 public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopItemViewHolder> implements View.OnClickListener {
 

@@ -233,6 +233,7 @@
     <string name="edit_profile">EDIT PROFILE</string>
     <string name="delete_account">Delete Account</string>
     <string name="update_products">Update Products</string>
+    <string name="buy">BUY</string>
 
 
 </resources>

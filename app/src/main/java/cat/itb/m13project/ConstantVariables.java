@@ -6,5 +6,8 @@ public class ConstantVariables {
     public static final String PROFILE = "Profile";
     public static final String CART = "Cart";
 
+    public static final double IVA = 0.21;
+    public static final String CURRENCY = "EUR";
+
 
 }

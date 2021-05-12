@@ -32,21 +32,7 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         dbRef = db.getReference("Usuario");
 
-        if (savedInstanceState == null) {
-            loggedUser = new Usuario();
-            loggedUser.setName(getString(R.string.guest));
-            loggedUser.setEmail(getString(R.string.guest));
-        }
-
         userList = new ArrayList<>();
-
-//        try {
-//            System.out.println("TRYING");
-//            ProviderWebServices1.providerLogin();
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-
     }
 
     @Override

@@ -3,6 +3,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.2"
@@ -13,9 +14,15 @@ buildscript {
 }
 
 allprojects {
+
     repositories {
+        maven {
+            // Used for downloading dependency com.github.lkorth:device-automator
+            url "https://jitpack.io"
+        }
         google()
         jcenter()
+        mavenCentral()
     }
 }
 

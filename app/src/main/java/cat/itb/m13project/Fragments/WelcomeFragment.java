@@ -13,6 +13,10 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.button.MaterialButton;
 
 import cat.itb.m13project.R;
+import cat.itb.m13project.pojo.Cart;
+import cat.itb.m13project.pojo.Usuario;
+
+import static cat.itb.m13project.MainActivity.loggedUser;
 
 public class WelcomeFragment extends Fragment {
 
@@ -20,6 +24,8 @@ public class WelcomeFragment extends Fragment {
     MaterialButton loginButton;
     MaterialButton registerButton;
     MaterialButton forgotPasswordButton;
+
+    public static Cart cart;
 
     public WelcomeFragment() {
         // Required empty public constructor
@@ -37,9 +43,17 @@ public class WelcomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_welcome, container, false);
         titleTextView = v.findViewById(R.id.title);
 
+        cart = new Cart();
+
         loginButton = v.findViewById(R.id.loginButton);
         registerButton = v.findViewById(R.id.registerButton);
         forgotPasswordButton = v.findViewById(R.id.forgotPasswordButton);
+
+        if (savedInstanceState == null) {
+            loggedUser = new Usuario();
+            loggedUser.setName(getString(R.string.guest));
+            loggedUser.setEmail(getString(R.string.guest));
+        }
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

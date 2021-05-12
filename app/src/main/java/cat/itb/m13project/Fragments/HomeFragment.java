@@ -25,6 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import cat.itb.m13project.R;
 import cat.itb.m13project.adapters.ShopItemAdapter;
+import cat.itb.m13project.pojo.Cart;
 
 import static cat.itb.m13project.ConstantVariables.CART;
 import static cat.itb.m13project.ConstantVariables.PROFILE;

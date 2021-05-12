@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import cat.itb.m13project.pojo.Item;
+import cat.itb.m13project.pojo.CartItem;
 
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder> implements View.OnClickListener {
