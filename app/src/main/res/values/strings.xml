@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">ISI COMPUTER</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!-- Strings related to login -->
+    <string name="providerWebPage">https://desyman.com/</string>
+    <string name="providerEmail">marc.lopezma.7e3@itb.cat</string>
+    <string name="providerPassword">123456789</string>
+    <string name="downloadURL">https://desyman.com/</string>
+
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="sign_in">Sign In</string>
@@ -18,6 +20,7 @@
     <string name="invalid_password">Passwords do not match</string>
     <string name="invalid_email">Not a valid e-mail address</string>
     <string name="account_exists">This account already exists</string>
+    <string name="account_doesnt_exist">This account does not exist</string>
     <string name="blank"></string>
     <string name="termsMessage">You must accept the terms and conditions</string>
     <string name="guest">Guest</string>
@@ -41,7 +44,9 @@
     <string name="w_e_l_c_o_m_e">W E L C O M E !</string>
     <string name="selected_date_is">Selected Date is :</string>
     <string name="select_date">Select Date</string>
-    <string name="welcome_back">Welcome Back!</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="hintHelp">This will be shown if you forget your Password</string>
+
 
 
     <string name="accesorios">Accesorios</string>
@@ -226,6 +231,8 @@
     <string name="unit_price">Unit Price</string>
     <string name="amount">Amount</string>
     <string name="edit_profile">EDIT PROFILE</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="update_products">Update Products</string>
 
 
 </resources>

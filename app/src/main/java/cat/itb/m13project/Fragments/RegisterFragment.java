@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -39,7 +40,9 @@ public class RegisterFragment extends Fragment {
     TextInputLayout password;
     TextInputLayout repeatedPassword;
     TextInputLayout address;
-    Button registerButton;
+    TextInputLayout hint;
+    MaterialButton registerButton;
+    MaterialButton loginButton;
     ProgressBar loadingProgressBar;
     MaterialCheckBox termsCheckBox;
     TextView termsTextView;
@@ -61,13 +64,27 @@ public class RegisterFragment extends Fragment {
         password = view.findViewById(R.id.passwordTextView);
         repeatedPassword = view.findViewById(R.id.repeatPasswordTextView);
         address = view.findViewById(R.id.addressTextView);
+        hint = view.findViewById(R.id.hintTextView);
 
+        loginButton = view.findViewById(R.id.loginButton);
         registerButton = view.findViewById(R.id.registerButton);
         loadingProgressBar = view.findViewById(R.id.loading);
 
         termsCheckBox = view.findViewById(R.id.termsCheckBox);
         termsTextView = view.findViewById(R.id.termsMessage);
         termsTextView.setVisibility(View.INVISIBLE);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment newFragment = new LoginFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, newFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +93,12 @@ public class RegisterFragment extends Fragment {
                 String email = RegisterFragment.this.email.getEditText().getText().toString();
                 String password = RegisterFragment.this.password.getEditText().getText().toString();
                 String address = RegisterFragment.this.address.getEditText().getText().toString();
+                String hint = RegisterFragment.this.hint.getEditText().getText().toString();
                 loggedUser.setName(name);
                 loggedUser.setEmail(email);
                 loggedUser.setPassword(password);
                 loggedUser.setAddress(address);
+                loggedUser.setForgottenPasswordHint(hint);
                 Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -116,7 +135,6 @@ public class RegisterFragment extends Fragment {
                             fragmentTransaction.commit();
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
@@ -125,9 +143,14 @@ public class RegisterFragment extends Fragment {
         });
 
 
-        if (!loggedUser.getEmail().equals(getString(R.string.guest))) {
+        if (!loggedUser.getEmail().equals(getString(R.string.guest)) && !(loggedUser.getName().equals(getString(R.string.guest)))) {
+            name.getEditText().setText(loggedUser.getName());
             email.getEditText().setText(loggedUser.getEmail());
             password.getEditText().setText(loggedUser.getPassword());
+            repeatedPassword.getEditText().setText(loggedUser.getPassword());
+            address.getEditText().setText(loggedUser.getAddress());
+            hint.getEditText().setText(loggedUser.getForgottenPasswordHint());
+            termsTextView.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -172,6 +195,12 @@ public class RegisterFragment extends Fragment {
             address.getEditText().setHintTextColor(Color.RED);
             address.getEditText().setText(R.string.blank);
             address.setHint(R.string.invalid_address);
+            return false;
+        }
+        if (u.getForgottenPasswordHint().length() == 0 || u.getForgottenPasswordHint().isEmpty()) {
+            hint.getEditText().setHintTextColor(Color.RED);
+            hint.setHint(getString(R.string.hintHelp));
+            hint.getEditText().setText(R.string.blank);
             return false;
         }
         if (!termsCheckBox.isChecked()) {
