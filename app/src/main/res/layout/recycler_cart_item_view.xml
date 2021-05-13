@@ -15,67 +15,67 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/cart_item_image_view"
+        android:id="@+id/carrito_item_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/topSeparator"
-        android:contentDescription="@string/cart_product_image_view"
+        android:contentDescription="@string/carrito_product_image_view"
         app:layout_constraintBottom_toTopOf="@+id/bottomSeparator"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
 
     <TextView
-        android:id="@+id/cart_item_name_text_view"
+        android:id="@+id/carrito_item_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:hint="@string/name"
-        app:layout_constraintStart_toEndOf="@+id/cart_item_image_view"
+        app:layout_constraintStart_toEndOf="@+id/carrito_item_image_view"
         app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
 
     <TextView
-        android:id="@+id/cart_item_brand_text_view"
+        android:id="@+id/carrito_item_brand_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_toEndOf="@+id/cart_item_image_view"
-        android:layout_toRightOf="@+id/cart_item_image_view"
+        android:layout_toEndOf="@+id/carrito_item_image_view"
+        android:layout_toRightOf="@+id/carrito_item_image_view"
         android:hint="@string/brand"
         app:layout_constraintBottom_toTopOf="@+id/bottomSeparator"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cart_item_name_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/carrito_item_name_text_view"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/cart_item_invidual_price_text_view"
+        android:id="@+id/carrito_item_invidual_price_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_toEndOf="@+id/cart_item_image_view"
-        android:layout_toRightOf="@+id/cart_item_image_view"
+        android:layout_toEndOf="@+id/carrito_item_image_view"
+        android:layout_toRightOf="@+id/carrito_item_image_view"
         android:hint="@string/unit_price"
         app:layout_constraintBottom_toTopOf="@+id/bottomSeparator"
-        app:layout_constraintEnd_toStartOf="@+id/cart_item_amount_text_view"
+        app:layout_constraintEnd_toStartOf="@+id/carrito_item_amount_text_view"
         app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
 
     <TextView
-        android:id="@+id/cart_item_amount_text_view"
+        android:id="@+id/carrito_item_amount_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_toEndOf="@+id/cart_item_image_view"
-        android:layout_toRightOf="@+id/cart_item_image_view"
+        android:layout_toEndOf="@+id/carrito_item_image_view"
+        android:layout_toRightOf="@+id/carrito_item_image_view"
         android:hint="@string/amount"
         app:layout_constraintBottom_toTopOf="@+id/bottomSeparator"
-        app:layout_constraintEnd_toStartOf="@+id/cart_item_total_price_text_view"
+        app:layout_constraintEnd_toStartOf="@+id/carrito_item_total_price_text_view"
         app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
 
     <TextView
-        android:id="@+id/cart_item_total_price_text_view"
+        android:id="@+id/carrito_item_total_price_text_view"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
         android:layout_alignParentEnd="true"
@@ -91,7 +91,7 @@
         android:id="@+id/bottomSeparator"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:layout_below="@id/cart_item_brand_text_view"
+        android:layout_below="@id/carrito_item_brand_text_view"
         android:background="@drawable/rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="-96dp" />

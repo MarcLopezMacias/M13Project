@@ -8,11 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cat.itb.m13project.data.base.ProviderWebServices1;
 import cat.itb.m13project.pojo.Usuario;
 
 public class MainActivity extends AppCompatActivity {

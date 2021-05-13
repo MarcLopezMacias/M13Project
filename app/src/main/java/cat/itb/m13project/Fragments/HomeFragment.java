@@ -3,7 +3,7 @@ package cat.itb.m13project.Fragments;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
+import android.view.MenuProducto;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -24,8 +24,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.adapters.ShopItemAdapter;
-import cat.itb.m13project.pojo.Cart;
+import cat.itb.m13project.adapters.CarritoProductoAdapter;
 
 import static cat.itb.m13project.ConstantVariables.CART;
 import static cat.itb.m13project.ConstantVariables.PROFILE;
@@ -35,7 +34,7 @@ public class HomeFragment extends Fragment {
     NavigationView navigationView;
 
     RecyclerView recyclerView;
-    ShopItemAdapter adapter;
+    CarritoProductoAdapter adapter;
 
     DrawerLayout drawerLayout;
 
@@ -69,14 +68,14 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        toolbar.setOnMenuProductoClickListener(new Toolbar.OnMenuProductoClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                System.out.println(item.toString());
+            public boolean onMenuProductoClick(MenuProducto producto) {
+                System.out.println(producto.toString());
                 Fragment newFragment;
                 FragmentManager fragmentManager;
                 FragmentTransaction fragmentTransaction;
-                switch (item.toString()) {
+                switch (producto.toString()) {
                     case PROFILE:
                         newFragment = new ProfileFragment();
                         fragmentManager = getFragmentManager();
@@ -86,7 +85,7 @@ public class HomeFragment extends Fragment {
                         fragmentTransaction.commit();
                         break;
                     case CART:
-                        newFragment = new CartFragment();
+                        newFragment = new CarritoFragment();
                         fragmentManager = getFragmentManager();
                         fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.fragment, newFragment);
@@ -108,9 +107,9 @@ public class HomeFragment extends Fragment {
 
         // NAVIGATION VIEW
         navigationView = v.findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.setNavigationProductoSelectedListener(new NavigationView.OnNavigationProductoSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationProductoSelected(@NonNull MenuProducto producto) {
                 Toast.makeText(getContext(), "WTF", Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -118,7 +117,7 @@ public class HomeFragment extends Fragment {
 
         // RECYCLER
         recyclerView = v.findViewById(R.id.main_recycler_view);
-        adapter = new ShopItemAdapter();
+        adapter = new CarritoProductoAdapter();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);

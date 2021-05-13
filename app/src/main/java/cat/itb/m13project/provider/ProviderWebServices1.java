@@ -1,4 +1,4 @@
-package cat.itb.m13project.data.base;
+package cat.itb.m13project.provider;
 
 import androidx.fragment.app.Fragment;
 

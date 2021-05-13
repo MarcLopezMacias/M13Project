@@ -14,9 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.button.MaterialButton;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.data.base.ProviderWebServices2;
-
-import static cat.itb.m13project.MainActivity.loggedUser;
+import cat.itb.m13project.provider.ProviderWebServices2;
 
 public class ProfileFragment extends Fragment {
 

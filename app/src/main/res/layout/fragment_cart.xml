@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".Fragments.CartFragment">
+    tools:context=".Fragments.CarritoFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -20,13 +20,13 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="64dp"
         android:layout_marginRight="64dp"
-        android:text="@string/cart"
+        android:text="@string/carrito"
         app:layout_constraintEnd_toStartOf="@+id/buyButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cartRecyclerView"
+        android:id="@+id/carritoRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

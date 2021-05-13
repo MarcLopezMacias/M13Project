@@ -13,7 +13,6 @@ import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.paypal.android.sdk.payments.ShippingAddress;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -26,12 +25,14 @@ import org.json.JSONException;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.HashSet;
 import java.util.Set;
 
 import cat.itb.m13project.R;
 
-import static cat.itb.m13project.Fragments.WelcomeFragment.cart;
+import static cat.itb.m13project.ConstantVariables.CURRENCY;
+import static cat.itb.m13project.Fragments.WelcomeFragment.carrito;
 import static cat.itb.m13project.MainActivity.loggedUser;
 
 /**
@@ -109,9 +110,9 @@ public class PayPalAPI extends Activity {
     }
 
     private PayPalPayment getThingToBuy(String paymentIntent) {
-        return new PayPalPayment(BigDecimal.valueOf(cart.getCart().get(0).getPrice()),
-                cart.getCart().get(0).getCurrency(),
-                cart.getCart().get(0).getName(),
+        return new PayPalPayment(BigDecimal.valueOf(carrito.getCarrito().get(0).getPrecioFinalProveedor()),
+                CURRENCY,
+                carrito.getCarrito().get(0).getDescripcion(),
                 paymentIntent);
     }
 
@@ -120,7 +121,7 @@ public class PayPalAPI extends Activity {
      */
     private PayPalPayment getStuffToBuy(String paymentIntent) {
         //--- include an item list, payment amount details
-        PayPalItem[] items = cart.getItems();
+        PayPalItem[] items = carrito.getItems();
 
         BigDecimal subtotal = PayPalItem.getItemTotal(items);
         BigDecimal shipping = new BigDecimal("7.21");

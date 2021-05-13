@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/shopping_cart"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"
-        android:title="@string/cart"
+        android:id="@+id/shopping_carrito"
+        android:icon="@drawable/ic_baseline_shopping_carrito_24"
+        android:title="@string/carrito"
         app:showAsAction="always" />
 
     <item

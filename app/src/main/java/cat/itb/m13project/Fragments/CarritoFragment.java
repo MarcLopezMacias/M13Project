@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import cat.itb.m13project.R;
 
-public class CartFragment extends Fragment {
+public class CarritoFragment extends Fragment {
 
     RecyclerView recyclerView;
-//    CartItemAdapter adapter;
+//    CarritoProductoAdapter adapter;
 
-    public CartFragment() {
+    public CarritoFragment() {
         // Required empty public constructor
     }
 
@@ -28,9 +28,9 @@ public class CartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_cart, container, false);
+        View v = inflater.inflate(R.layout.fragment_carrito, container, false);
 
-        recyclerView = v.findViewById(R.id.cartRecyclerView);
+        recyclerView = v.findViewById(R.id.carritoRecyclerView);
 
         return v;
     }

@@ -1,4 +1,4 @@
-package cat.itb.m13project.data.base;
+package cat.itb.m13project.provider;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,8 +15,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import cat.itb.m13project.R;
 
 public class ProviderWebServices2 extends Activity {
 

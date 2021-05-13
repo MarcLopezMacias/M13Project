@@ -223,8 +223,8 @@
     <string name="outlet">Outlet</string>
     <string name="destacados">Destacados</string>
     <string name="isi_computer_logo_image_button">ISI COMPUTER LOGO IMAGE BUTTON</string>
-    <string name="cart">Cart</string>
-    <string name="cart_product_image_view">CART PRODUCT IMAGE VIEW</string>
+    <string name="carrito">Cart</string>
+    <string name="carrito_product_image_view">CART PRODUCT IMAGE VIEW</string>
     <string name="shop_item_image_view">SHOP ITEM IMAGE VIEW</string>
     <string name="address">Address</string>
     <string name="brand">Brand</string>
