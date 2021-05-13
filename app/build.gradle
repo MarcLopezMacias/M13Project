@@ -2,6 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+
+    packagingOptions {
+        // pickFirst "META-INF/DEPENDENCIES"
+        exclude "META-INF/DEPENDENCIES"
+    }
+
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 

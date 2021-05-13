@@ -3,7 +3,7 @@ package cat.itb.m13project.Fragments;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuProducto;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -24,7 +24,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.adapters.CarritoProductoAdapter;
+import cat.itb.m13project.adapters.CartItemAdapter;
 
 import static cat.itb.m13project.ConstantVariables.CART;
 import static cat.itb.m13project.ConstantVariables.PROFILE;
@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment {
     NavigationView navigationView;
 
     RecyclerView recyclerView;
-    CarritoProductoAdapter adapter;
+    CartItemAdapter adapter;
 
     DrawerLayout drawerLayout;
 
@@ -68,9 +68,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        toolbar.setOnMenuProductoClickListener(new Toolbar.OnMenuProductoClickListener() {
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
-            public boolean onMenuProductoClick(MenuProducto producto) {
+            public boolean onMenuItemClick(MenuItem producto) {
                 System.out.println(producto.toString());
                 Fragment newFragment;
                 FragmentManager fragmentManager;
@@ -107,9 +107,9 @@ public class HomeFragment extends Fragment {
 
         // NAVIGATION VIEW
         navigationView = v.findViewById(R.id.navigation_view);
-        navigationView.setNavigationProductoSelectedListener(new NavigationView.OnNavigationProductoSelectedListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationProductoSelected(@NonNull MenuProducto producto) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem producto) {
                 Toast.makeText(getContext(), "WTF", Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -117,7 +117,7 @@ public class HomeFragment extends Fragment {
 
         // RECYCLER
         recyclerView = v.findViewById(R.id.main_recycler_view);
-        adapter = new CarritoProductoAdapter();
+        adapter = new CartItemAdapter();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);

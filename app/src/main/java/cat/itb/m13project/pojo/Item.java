@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-public class Producto implements Serializable {
+public class Item implements Serializable {
 
     int num;
     String codigo;
@@ -30,10 +30,10 @@ public class Producto implements Serializable {
     double precioConCanon;
     Date fechaGeneracionTarifa;
 
-    public Producto() {
+    public Item() {
     }
 
-    public Producto(int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, int grupo, int idFamilia, String familia, String marca, double precio, double peso, int largo, int ancho, int alto, String caracteristicas, Date fechaAlta, List<Foto> fotos, double canon, double precioConCanon, Date fechaGeneracionTarifa) {
+    public Item(int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, int grupo, int idFamilia, String familia, String marca, double precio, double peso, int largo, int ancho, int alto, String caracteristicas, Date fechaAlta, List<Foto> fotos, double canon, double precioConCanon, Date fechaGeneracionTarifa) {
         this.num = num;
         this.codigo = codigo;
         this.ean = ean;

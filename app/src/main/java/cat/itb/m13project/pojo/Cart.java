@@ -8,22 +8,22 @@ import java.util.List;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
 import static cat.itb.m13project.ConstantVariables.DEFAULT_AMOUNT;
 
-public class Carrito {
+public class Cart {
 
-    List<Producto> carrito;
+    List<Item> carrito;
 
-    public Carrito(List<Producto> carrito) {
+    public Cart(List<Item> carrito) {
         this.carrito = carrito;
     }
 
-    public Carrito() {
+    public Cart() {
     }
 
-    public List<Producto> getCarrito() {
+    public List<Item> getCarrito() {
         return carrito;
     }
 
-    public void setCarrito(List<Producto> carrito) {
+    public void setCarrito(List<Item> carrito) {
         this.carrito = carrito;
     }
 

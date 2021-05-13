@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.button.MaterialButton;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.pojo.Carrito;
+import cat.itb.m13project.pojo.Cart;
 import cat.itb.m13project.pojo.Usuario;
 
 import static cat.itb.m13project.MainActivity.loggedUser;
@@ -25,7 +25,7 @@ public class WelcomeFragment extends Fragment {
     MaterialButton registerButton;
     MaterialButton forgotPasswordButton;
 
-    public static Carrito carrito;
+    public static Cart carrito;
 
     public WelcomeFragment() {
         // Required empty public constructor
@@ -43,7 +43,7 @@ public class WelcomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_welcome, container, false);
         titleTextView = v.findViewById(R.id.title);
 
-        carrito = new Carrito();
+        carrito = new Cart();
 
         loginButton = v.findViewById(R.id.loginButton);
         registerButton = v.findViewById(R.id.registerButton);

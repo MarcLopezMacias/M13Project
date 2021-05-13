@@ -28,7 +28,7 @@ public class CarritoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_carrito, container, false);
+        View v = inflater.inflate(R.layout.fragment_cart, container, false);
 
         recyclerView = v.findViewById(R.id.carritoRecyclerView);
 
