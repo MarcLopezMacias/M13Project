@@ -1,39 +1,100 @@
 package cat.itb.m13project.pojo;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
+@Root(name = "producto")
 public class Item implements Serializable {
 
+    String id;
+
+    @Element(name = "num")
     int num;
+
+    @Element(name = "codigo")
     String codigo;
+
+    @Element(name = "ean")
     String ean;
+
+    @Element(name = "pn")
     String pn;
+
+    @Element(name = "stock")
     int stock;
+
+    @Element(name = "stockMAD")
     int stockMad;
+
+    @Element(name = "descripcion")
     String descripcion;
+
+    @Element(name = "id_bloque")
     int idBloque;
+
+    @Element(name = "bloque")
+    String bloque;
+
+    @Element(name = "id_grupo")
+    int idGrupo;
+
+    @Element(name = "grupo")
     int grupo;
+
+    @Element(name = "id_familia")
     int idFamilia;
+
+    @Element(name = "familia")
     String familia;
+
+    @Element(name = "marca")
     String marca;
+
+    @Element(name = "precio")
     double precio;
+
+    @Element(name = "peso")
     double peso;
+
+    @Element(name = "largo")
     int largo;
+
+    @Element(name = "ancho")
     int ancho;
+
+    @Element(name = "alto")
     int alto;
+
+    @Element(name = "caracteristicas")
     String caracteristicas;
+
+    @Element(name = "fecha_alta")
     Date fechaAlta;
+
+    @Element(name = "fotos")
     List<Foto> fotos;
+
+    @Element(name = "canon")
     double canon;
+
+    @Element(name = "preciocanon")
     double precioConCanon;
+
+    @Element(name = "fecha_generacion_tarifa")
     Date fechaGeneracionTarifa;
+
 
     public Item() {
     }
 
-    public Item(int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, int grupo, int idFamilia, String familia, String marca, double precio, double peso, int largo, int ancho, int alto, String caracteristicas, Date fechaAlta, List<Foto> fotos, double canon, double precioConCanon, Date fechaGeneracionTarifa) {
+    public Item(String id, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, int grupo, int idFamilia, String familia, String marca, double precio, double peso, int largo, int ancho, int alto, String caracteristicas, Date fechaAlta, List<Foto> fotos, double canon, double precioConCanon, Date fechaGeneracionTarifa) {
+        this.id = id;
         this.num = num;
         this.codigo = codigo;
         this.ean = ean;
@@ -57,6 +118,14 @@ public class Item implements Serializable {
         this.canon = canon;
         this.precioConCanon = precioConCanon;
         this.fechaGeneracionTarifa = fechaGeneracionTarifa;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getNum() {
@@ -242,7 +311,7 @@ public class Item implements Serializable {
     public void setFechaGeneracionTarifa(Date fechaGeneracionTarifa) {
         this.fechaGeneracionTarifa = fechaGeneracionTarifa;
     }
-    
+
     public double getPrecioFinalProveedor() {
         if (this.getCanon() != 0) {
             return this.getPrecioConCanon();

@@ -27,6 +27,7 @@
     <string name="fillForm">Please, fill the form</string>
     <string name="hint">Password Recovery Hint</string>
 
+    <string name="process_terminated">Job\'s Done</string>
 
     <string name="open">OPEN</string>
     <string name="close">CLOSE</string>

@@ -10,12 +10,16 @@ public class ConstantVariables {
     public static final String CURRENCY = "EUR";
     public static final int DEFAULT_AMOUNT = 1;
 
-    public static final String XML_URL = "https://app.desyman.com/web/tarifas/xml/?q=WVdOMGFXOXVQWFJoY21sbVlYTW1ZejB4TURrMU5RPT0";
-    public static final String CSV_URL = "https://app.desyman.com/web/tarifas/csv/?q=WVdOMGFXOXVQWFJoY21sbVlYTW1ZejB4TURrMU5RPT0";
-    public static final String CSV_20_URL = "https://app.desyman.com/web/tarifas/csv20/?q=WVdOMGFXOXVQWFJoY21sbVlYTW1ZejB4TURrMU5RPT0";
-    public static final String CSV_05_URL = "https://app.desyman.com/web/tarifas/csvreducido/?q=WVdOMGFXOXVQWFJoY21sbVlYTW1ZejB4TURrMU5RPT0";
-    public static final String EXCEL_URL = "https://app.desyman.com/web/tarifas/excel/?q=WVdOMGFXOXVQWFJoY21sbVlYTW1ZejB4TURrMU5RPT0";
+    public static final String ROOT_URL = "https://app.desyman.com/web/tarifas/";
+    public static final String FINAL_URL = "?q=WVdOMGFXOXVQWFJoY21sbVlYTW1ZejB4TURrMU5RPT0";
+
+    public static final String XML_URL = "xml/";
+    public static final String CSV_URL = "csv/";
+    public static final String CSV_20_URL = "csv20/";
+    public static final String CSV_05_URL = "csvreducido/";
+    public static final String EXCEL_URL = "excel/";
 
 
+    public static final String STOCK_FILE_NAME = "stock.xml";
 
 }
