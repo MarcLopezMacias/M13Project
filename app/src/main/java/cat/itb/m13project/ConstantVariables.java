@@ -1,5 +1,12 @@
 package cat.itb.m13project;
 
+import android.os.Environment;
+
+import com.blankj.utilcode.util.PathUtils;
+
+import java.io.File;
+import java.util.DoubleSummaryStatistics;
+
 public class ConstantVariables {
 
     public static final int USER_PASSWORD_LENGTH = 7;
@@ -19,7 +26,12 @@ public class ConstantVariables {
     public static final String CSV_05_URL = "csvreducido/";
     public static final String EXCEL_URL = "excel/";
 
-
     public static final String STOCK_FILE_NAME = "stock.xml";
+    public static final File ROOT_DOWNLOAD = Environment.getExternalStorageDirectory();
+
+    public static final String UPDATING_STOCK = "Updating Stock";
+
+    public static final String PROVIDER_STOCK_URL = ROOT_URL + XML_URL + FINAL_URL;
+    public static final String LOCAL_FILE_PATH = PathUtils.getExternalAppDownloadPath().concat("/").concat(STOCK_FILE_NAME);
 
 }

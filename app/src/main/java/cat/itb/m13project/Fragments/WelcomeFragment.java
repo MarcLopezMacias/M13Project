@@ -1,10 +1,17 @@
 package cat.itb.m13project.Fragments;
 
+import android.app.DownloadManager;
+import android.content.Context;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -12,10 +19,24 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Cart;
 import cat.itb.m13project.pojo.Usuario;
+import cat.itb.m13project.provider.DownloadFileFromURL;
 
+import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
+import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
+import static cat.itb.m13project.ConstantVariables.ROOT_DOWNLOAD;
+import static cat.itb.m13project.ConstantVariables.STOCK_FILE_NAME;
+import static cat.itb.m13project.ConstantVariables.UPDATING_STOCK;
 import static cat.itb.m13project.MainActivity.loggedUser;
 
 public class WelcomeFragment extends Fragment {
@@ -24,6 +45,8 @@ public class WelcomeFragment extends Fragment {
     MaterialButton loginButton;
     MaterialButton registerButton;
     MaterialButton forgotPasswordButton;
+
+    MaterialButton extraButton;
 
     public static Cart carrito;
 
@@ -48,6 +71,14 @@ public class WelcomeFragment extends Fragment {
         loginButton = v.findViewById(R.id.loginButton);
         registerButton = v.findViewById(R.id.registerButton);
         forgotPasswordButton = v.findViewById(R.id.forgotPasswordButton);
+
+        extraButton = v.findViewById(R.id.epicMaterialButton);
+        extraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         if (savedInstanceState == null) {
             loggedUser = new Usuario();

@@ -67,5 +67,5 @@ dependencies {
         exclude module: 'xpp3'
     }
 
-
+    implementation 'com.blankj:utilcodex:1.29.0'
 }

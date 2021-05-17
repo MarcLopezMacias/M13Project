@@ -1,6 +1,8 @@
 package cat.itb.m13project.provider;
 
 import android.os.Environment;
+import android.os.StrictMode;
+import android.util.Log;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,14 +17,21 @@ import org.apache.http.protocol.HTTP;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import cat.itb.m13project.pojo.Item;
 
+import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
+import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
 import static cat.itb.m13project.ConstantVariables.ROOT_URL;
 import static cat.itb.m13project.ConstantVariables.STOCK_FILE_NAME;
 import static cat.itb.m13project.ConstantVariables.XML_URL;
@@ -37,74 +46,40 @@ public class ProviderWebServices3 {
 //
 //    }
 
-    private static void defaultModule() {
-        try {
-            // GO TO LOGIN PAGE
-            HttpClient client = new DefaultHttpClient();
-            HttpPost post = new HttpPost(ROOT_URL);
-            HttpResponse response = null;
-            List<NameValuePair> postFields = new ArrayList<NameValuePair>(2);
-
-            // SET LOGIN DATA
-            postFields.add(new BasicNameValuePair("username", "myusername"));
-            postFields.add(new BasicNameValuePair("password", "mypassword"));
-            post.setEntity(new UrlEncodedFormEntity(postFields, HTTP.UTF_8));
-
-            // EXECUTE
-            response = client.execute(post);
-
-            // GO GET THAT FILE
-            HttpGet get = new HttpGet(XML_URL);
-            response = client.execute(get);
-
-            HttpEntity entity = response.getEntity();
-            InputStream in = entity.getContent();
-
-            // Save the file to SD
-            File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            path.mkdirs();
-            File file = new File(path, STOCK_FILE_NAME);
-            FileOutputStream fos = new FileOutputStream(file);
-
-            byte[] buffer = new byte[1024];
-            int len1 = 0;
-            while ((len1 = in.read(buffer)) > 0) {
-                fos.write(buffer, 0, len1);
-            }
-
-            fos.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static boolean customMethod() {
-        String source = Environment.DIRECTORY_DOWNLOADS + "/" + STOCK_FILE_NAME;
-        return downlaodFile(XML_URL) && updateDatabase(source) && deleteFile(source);
+        return downlaodFile()
+//                && updateDatabase(source)
+//                && deleteFile(source)
+                ;
     }
 
-    private static boolean downlaodFile(String url) {
+    private static boolean downlaodFile() {
         boolean isOk;
         try {
-            HttpClient client = new DefaultHttpClient();
-            HttpResponse response;
-            HttpGet get = new HttpGet(url);
-            response = client.execute(get);
-            HttpEntity entity = response.getEntity();
-            InputStream in = entity.getContent();
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
 
-            // Save the file to SD
-            File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            isOk = path.mkdirs();
-            File file = new File(path, STOCK_FILE_NAME);
-            FileOutputStream fos = new FileOutputStream(file);
+            System.out.println(PROVIDER_STOCK_URL);
+            System.out.println(LOCAL_FILE_PATH);
 
-            byte[] buffer = new byte[1024];
-            int len1 = 0;
-            while ((len1 = in.read(buffer)) > 0) {
-                fos.write(buffer, 0, len1);
+            URL url = new URL(PROVIDER_STOCK_URL);
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+
+            Log.v("Start Query", "Start Query");
+            conn.connect();
+            Log.v("End Query", "End Query");
+            //read the result from the server
+            BufferedReader rdr  = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder sbr = new StringBuilder();
+            String line;
+            while ((line = rdr.readLine()) != null) {
+                sbr.append(line).append('\n');
             }
-            fos.close();
+            isOk = true;
+            Log.v(sbr.toString(), "Log Stream");
         } catch (Exception e) {
             isOk = false;
             e.printStackTrace();

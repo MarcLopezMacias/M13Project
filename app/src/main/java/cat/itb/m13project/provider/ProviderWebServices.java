@@ -1,93 +1,49 @@
 package cat.itb.m13project.provider;
 
+import android.app.DownloadManager;
+import android.content.Context;
+import android.net.Uri;
+import android.os.Environment;
+import android.os.StrictMode;
+
 import androidx.fragment.app.Fragment;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
+import cat.itb.m13project.R;
+
+import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
+import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
+import static cat.itb.m13project.ConstantVariables.STOCK_FILE_NAME;
+import static cat.itb.m13project.ConstantVariables.UPDATING_STOCK;
 
 
-public class ProviderWebServices1 extends Fragment {
+public class ProviderWebServices extends Fragment {
 
-    static String email = "marc.lopezma.7e3@itb.cat", password = "123456789";
-    static URL url;
-
-    static {
-        try {
-            url = new URL("https://desyman.com/");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+    public boolean customMethod() {
+        downloadFile();
+        return true
+//                 updateDatabase(source)
+//                && deleteFile(source)
+                ;
     }
 
-    public ProviderWebServices1() throws MalformedURLException {
-    }
+    public void downloadFile() {
+        boolean isOk;
+        System.out.println(PROVIDER_STOCK_URL);
+        System.out.println(LOCAL_FILE_PATH);
 
-    // Create GetText Metod
-    public static void providerLogin()  throws UnsupportedEncodingException
-    {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
-        // Create data variable for sent values to server
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(PROVIDER_STOCK_URL));
+        request.setDescription(UPDATING_STOCK);
+        request.setTitle(getString(R.string.app_name));
 
-        String data = URLEncoder.encode("email", "UTF-8") + "="
-                + URLEncoder.encode(email, "UTF-8");
+        request.allowScanningByMediaScanner();
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, STOCK_FILE_NAME);
 
-        data += "&" + URLEncoder.encode("pass", "UTF-8")
-                + "=" + URLEncoder.encode(password, "UTF-8");
-
-        String text = "";
-        BufferedReader reader=null;
-
-        // Send data
-        try
-        {
-
-            // Send POST data request
-
-            URLConnection conn = url.openConnection();
-            conn.setDoOutput(true);
-            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-            wr.write( data );
-            wr.flush();
-
-            // Get the server response
-
-            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-
-            // Read Server Response
-            while((line = reader.readLine()) != null)
-            {
-                // Append server response in string
-                sb.append(line + "\n");
-            }
-
-
-            text = sb.toString();
-        }
-        catch(Exception ex)
-        {
-
-        }
-        finally
-        {
-            try
-            {
-
-                reader.close();
-            }
-
-            catch(Exception ex) {}
-        }
-
-        System.out.println("RESULT: " + text);
-
+        DownloadManager manager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+        manager.enqueue(request);
     }
 
 }

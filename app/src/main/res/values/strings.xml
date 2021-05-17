@@ -49,7 +49,6 @@
     <string name="hintHelp">This will be shown if you forget your Password</string>
 
 
-
     <string name="accesorios">Accesorios</string>
     <string name="almacenamiento_externo">Almacenamiento Externo</string>
     <string name="cables_y_adaptadores">Cables y Adaptadores</string>
@@ -235,6 +234,8 @@
     <string name="delete_account">Delete Account</string>
     <string name="update_products">Update Products</string>
     <string name="buy">BUY</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
