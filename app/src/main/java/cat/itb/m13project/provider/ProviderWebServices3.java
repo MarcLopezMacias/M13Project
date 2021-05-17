@@ -29,13 +29,13 @@ import static cat.itb.m13project.ConstantVariables.XML_URL;
 
 public class ProviderWebServices3 {
 
-    public static void main(String[] args) {
-
-        //defaultModule();
-
-        customMethod();
-
-    }
+//    public static void main(String[] args) {
+//
+//        //defaultModule();
+//
+//        customMethod();
+//
+//    }
 
     private static void defaultModule() {
         try {
