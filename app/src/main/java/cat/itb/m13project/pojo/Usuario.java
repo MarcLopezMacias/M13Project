@@ -2,6 +2,7 @@ package cat.itb.m13project.pojo;
 
 import java.io.Serializable;
 
+
 public class Usuario implements Serializable {
 
     String id;

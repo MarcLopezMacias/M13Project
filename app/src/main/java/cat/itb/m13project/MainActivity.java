@@ -5,6 +5,7 @@ import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
         dbRef = db.getReference("Usuario");
 
         userList = new ArrayList<>();
+
+        System.out.println("RUNNING CUSTOM METHOD");
+//        ProviderWebServices3.customMethod();
+        System.out.println("DONE CUSTOM METHOD");
     }
 
     @Override

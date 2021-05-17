@@ -34,35 +34,6 @@
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:352992263034:android:3b5edaa864695a40f2f4c3",
-        "android_client_info": {
-          "package_name": "com.isicomputer.store"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "352992263034-fthfhkk26gihs5h86rgpc2u7gt7umau2.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB_t5zRWM0NPGBWM9_3eWywzj88zlGZCMA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "352992263034-fthfhkk26gihs5h86rgpc2u7gt7umau2.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"
