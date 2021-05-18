@@ -1,9 +1,10 @@
 package cat.itb.m13project.pojo;
 
-import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Element;
 
-@Root(name = "foto")
-public class Foto {
+import java.io.Serializable;
+
+public class Foto implements Serializable {
 
 //    @Root(name = "breakfast_menu")
 //    public class BrakfastMenu {
@@ -22,20 +23,21 @@ public class Foto {
 //        }
 //    }
 
-    String link;
+    @Element(name = "foto")
+    String foto;
 
     public Foto() {
     }
 
-    public Foto(String link) {
-        this.link = link;
+    public Foto(String foto) {
+        this.foto = foto;
     }
 
-    public String getLink() {
-        return link;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

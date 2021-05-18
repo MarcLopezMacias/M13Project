@@ -39,10 +39,7 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, INTERNET) != PackageManager.PERMISSION_GRANTED) {
-
             ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_STORAGE, 69);
-            ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_STORAGE, 6969);
-            ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_STORAGE, 696969);
         }
 
         db = FirebaseDatabase.getInstance();
@@ -75,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Storage Permissions
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static final int REQUEST_EXTERNAL_STORAGE = 69;
+
     private static String[] PERMISSIONS_STORAGE = {
             READ_EXTERNAL_STORAGE,
             WRITE_EXTERNAL_STORAGE,
             INTERNET,
             MANAGE_EXTERNAL_STORAGE
-
     };
 
     /**

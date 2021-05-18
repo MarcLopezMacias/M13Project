@@ -1,14 +1,16 @@
 package cat.itb.m13project.pojo;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Path;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-@Root(name = "producto")
-public class Item implements Serializable {
+@Root(name = "producto", strict = false)
+public class Producto implements Serializable {
 
     String id;
 
@@ -43,7 +45,7 @@ public class Item implements Serializable {
     int idGrupo;
 
     @Element(name = "grupo")
-    int grupo;
+    String grupo;
 
     @Element(name = "id_familia")
     int idFamilia;
@@ -75,7 +77,7 @@ public class Item implements Serializable {
     @Element(name = "fecha_alta")
     Date fechaAlta;
 
-    @Element(name = "fotos")
+    @ElementList(inline = true, required = false)
     List<Foto> fotos;
 
     @Element(name = "canon")
@@ -88,10 +90,10 @@ public class Item implements Serializable {
     Date fechaGeneracionTarifa;
 
 
-    public Item() {
+    public Producto() {
     }
 
-    public Item(String id, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, int grupo, int idFamilia, String familia, String marca, double precio, double peso, int largo, int ancho, int alto, String caracteristicas, Date fechaAlta, List<Foto> fotos, double canon, double precioConCanon, Date fechaGeneracionTarifa) {
+    public Producto(String id, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String grupo, int idFamilia, String familia, String marca, double precio, double peso, int largo, int ancho, int alto, String caracteristicas, Date fechaAlta, List<Foto> fotos, double canon, double precioConCanon, Date fechaGeneracionTarifa) {
         this.id = id;
         this.num = num;
         this.codigo = codigo;
@@ -190,11 +192,11 @@ public class Item implements Serializable {
         this.idBloque = idBloque;
     }
 
-    public int getGrupo() {
+    public String getGrupo() {
         return grupo;
     }
 
-    public void setGrupo(int grupo) {
+    public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
 
@@ -316,5 +318,37 @@ public class Item implements Serializable {
         } else {
             return this.getPrecio();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id='" + id + '\'' +
+                ", num=" + num +
+                ", codigo='" + codigo + '\'' +
+                ", ean='" + ean + '\'' +
+                ", pn='" + pn + '\'' +
+                ", stock=" + stock +
+                ", stockMad=" + stockMad +
+                ", descripcion='" + descripcion + '\'' +
+                ", idBloque=" + idBloque +
+                ", bloque='" + bloque + '\'' +
+                ", idGrupo=" + idGrupo +
+                ", grupo=" + grupo +
+                ", idFamilia=" + idFamilia +
+                ", familia='" + familia + '\'' +
+                ", marca='" + marca + '\'' +
+                ", precio=" + precio +
+                ", peso=" + peso +
+                ", largo=" + largo +
+                ", ancho=" + ancho +
+                ", alto=" + alto +
+                ", caracteristicas='" + caracteristicas + '\'' +
+                ", fechaAlta=" + fechaAlta +
+                ", fotos=" + fotos +
+                ", canon=" + canon +
+                ", precioConCanon=" + precioConCanon +
+                ", fechaGeneracionTarifa=" + fechaGeneracionTarifa +
+                '}';
     }
 }

@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import cat.itb.m13project.pojo.Item;
+import cat.itb.m13project.pojo.Producto;
 
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.CartItemViewHolder> implements View.OnClickListener {
@@ -39,7 +39,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.CartItemViewHo
 
         }
 
-        public void bind(final Item producto) {
+        public void bind(final Producto producto) {
         }
     }
 }

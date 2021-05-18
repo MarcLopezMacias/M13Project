@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.button.MaterialButton;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.provider.ProviderWebServices2;
 
 public class ProfileFragment extends Fragment {
 
@@ -41,26 +40,7 @@ public class ProfileFragment extends Fragment {
         updateProfile = v.findViewById(R.id.editProfileButton);
         updateProducts = v.findViewById(R.id.updateStock);
 
-        updateProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment newFragment = new RegisterFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, newFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
-
-        updateProducts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ProviderWebServices2.class);
-                startActivity(i);
-            }
-        });
-
+        // updateProfile.setOnClickListener(updateStockListener);
         return v;
     }
 }

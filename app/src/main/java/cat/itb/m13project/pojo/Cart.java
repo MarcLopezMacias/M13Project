@@ -10,20 +10,20 @@ import static cat.itb.m13project.ConstantVariables.DEFAULT_AMOUNT;
 
 public class Cart {
 
-    List<Item> carrito;
+    List<Producto> carrito;
 
-    public Cart(List<Item> carrito) {
+    public Cart(List<Producto> carrito) {
         this.carrito = carrito;
     }
 
     public Cart() {
     }
 
-    public List<Item> getCarrito() {
+    public List<Producto> getCarrito() {
         return carrito;
     }
 
-    public void setCarrito(List<Item> carrito) {
+    public void setCarrito(List<Producto> carrito) {
         this.carrito = carrito;
     }
 

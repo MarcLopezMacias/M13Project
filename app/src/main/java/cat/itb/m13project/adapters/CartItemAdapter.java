@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.pojo.Item;
+import cat.itb.m13project.pojo.Producto;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ShopItemViewHolder> implements View.OnClickListener {
 
@@ -54,7 +54,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ShopIt
             productoImageView = productoView.findViewById(R.id.carrito_item_image_view);
         }
 
-        public void bind(final Item producto) {
+        public void bind(final Producto producto) {
             productoNameTextView.setText(producto.getDescripcion());
             productoPriceTextView.setText(String.valueOf(producto.getPrecioFinalProveedor()));
         }
