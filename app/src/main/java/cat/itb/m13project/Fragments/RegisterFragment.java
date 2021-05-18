@@ -47,6 +47,107 @@ public class RegisterFragment extends Fragment {
     TextView termsTextView;
 
     String stringName, stringEmail, stringPassword, stringAddress, stringHint;
+    View.OnClickListener registerListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            stringName = RegisterFragment.this.name.getEditText().getText().toString();
+            stringEmail = RegisterFragment.this.email.getEditText().getText().toString();
+            stringPassword = RegisterFragment.this.password.getEditText().getText().toString();
+            stringAddress = RegisterFragment.this.address.getEditText().getText().toString();
+            stringHint = RegisterFragment.this.hint.getEditText().getText().toString();
+
+            loggedUser.setName(stringName);
+            loggedUser.setEmail(stringEmail);
+            loggedUser.setPassword(stringPassword);
+            loggedUser.setAddress(stringAddress);
+
+            loggedUser.setForgottenPasswordHint(stringHint);
+            Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    boolean exists = false;
+                    userList.clear();
+                    if (snapshot.exists()) {
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            Usuario user = ds.getValue(Usuario.class);
+                            userList.add(user);
+                            exists = true;
+                        }
+                    }
+                    if (!exists) {
+                        if (isValidData(loggedUser)) {
+                            String key = dbRef.push().getKey();
+                            loggedUser.setId(key);
+                            dbRef.child(key).setValue(loggedUser);
+                            loadingProgressBar.setVisibility(View.VISIBLE);
+                            Fragment newFragment = new HomeFragment();
+                            FragmentManager fragmentManager = getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.fragment, newFragment);
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "Account already exists.", Toast.LENGTH_SHORT).show();
+                        Fragment newFragment = new LoginFragment();
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment, newFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
+    };
+    View.OnClickListener updateListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            stringName = RegisterFragment.this.name.getEditText().getText().toString();
+            stringPassword = RegisterFragment.this.password.getEditText().getText().toString();
+            stringAddress = RegisterFragment.this.address.getEditText().getText().toString();
+            stringHint = RegisterFragment.this.hint.getEditText().getText().toString();
+
+            loggedUser.setName(stringName);
+            loggedUser.setPassword(stringPassword);
+            loggedUser.setAddress(stringAddress);
+            loggedUser.setForgottenPasswordHint(stringHint);
+
+            Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    userList.clear();
+                    if (snapshot.exists()) {
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            Usuario user = ds.getValue(Usuario.class);
+                            userList.add(user);
+                        }
+                    }
+                    if (isValidData(loggedUser)) {
+                        loggedUser.setId(userList.get(0).getId());
+                        dbRef.child(loggedUser.getId()).setValue(loggedUser);
+                        loadingProgressBar.setVisibility(View.VISIBLE);
+                        Fragment newFragment = new ProfileFragment();
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment, newFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
+    };
 
     @Nullable
     @Override
@@ -170,107 +271,4 @@ public class RegisterFragment extends Fragment {
         }
         return true;
     }
-
-    View.OnClickListener registerListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            stringName = RegisterFragment.this.name.getEditText().getText().toString();
-            stringEmail = RegisterFragment.this.email.getEditText().getText().toString();
-            stringPassword = RegisterFragment.this.password.getEditText().getText().toString();
-            stringAddress = RegisterFragment.this.address.getEditText().getText().toString();
-            stringHint = RegisterFragment.this.hint.getEditText().getText().toString();
-
-            loggedUser.setName(stringName);
-            loggedUser.setEmail(stringEmail);
-            loggedUser.setPassword(stringPassword);
-            loggedUser.setAddress(stringAddress);
-
-            loggedUser.setForgottenPasswordHint(stringHint);
-            Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    boolean exists = false;
-                    userList.clear();
-                    if (snapshot.exists()) {
-                        for (DataSnapshot ds : snapshot.getChildren()) {
-                            Usuario user = ds.getValue(Usuario.class);
-                            userList.add(user);
-                            exists = true;
-                        }
-                    }
-                    if (!exists) {
-                        if (isValidData(loggedUser)) {
-                            String key = dbRef.push().getKey();
-                            loggedUser.setId(key);
-                            dbRef.child(key).setValue(loggedUser);
-                            loadingProgressBar.setVisibility(View.VISIBLE);
-                            Fragment newFragment = new HomeFragment();
-                            FragmentManager fragmentManager = getFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.fragment, newFragment);
-                            fragmentTransaction.addToBackStack(null);
-                            fragmentTransaction.commit();
-                        }
-                    } else {
-                        Toast.makeText(getContext(), "Account already exists.", Toast.LENGTH_SHORT).show();
-                        Fragment newFragment = new LoginFragment();
-                        FragmentManager fragmentManager = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment, newFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-        }
-    };
-
-    View.OnClickListener updateListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            stringName = RegisterFragment.this.name.getEditText().getText().toString();
-            stringPassword = RegisterFragment.this.password.getEditText().getText().toString();
-            stringAddress = RegisterFragment.this.address.getEditText().getText().toString();
-            stringHint = RegisterFragment.this.hint.getEditText().getText().toString();
-
-            loggedUser.setName(stringName);
-            loggedUser.setPassword(stringPassword);
-            loggedUser.setAddress(stringAddress);
-            loggedUser.setForgottenPasswordHint(stringHint);
-
-            Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    userList.clear();
-                    if (snapshot.exists()) {
-                        for (DataSnapshot ds : snapshot.getChildren()) {
-                            Usuario user = ds.getValue(Usuario.class);
-                            userList.add(user);
-                        }
-                    }
-                    if (isValidData(loggedUser)) {
-                        loggedUser.setId(userList.get(0).getId());
-                        dbRef.child(loggedUser.getId()).setValue(loggedUser);
-                        loadingProgressBar.setVisibility(View.VISIBLE);
-                        Fragment newFragment = new ProfileFragment();
-                        FragmentManager fragmentManager = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment, newFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-        }
-    };
 }

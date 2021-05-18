@@ -4,9 +4,6 @@ import android.os.Environment;
 
 import com.blankj.utilcode.util.PathUtils;
 
-import java.io.File;
-import java.util.DoubleSummaryStatistics;
-
 import static com.blankj.utilcode.util.StringUtils.getString;
 
 public class ConstantVariables {
@@ -29,14 +26,13 @@ public class ConstantVariables {
     public static final String EXCEL_URL = "excel/";
 
     public static final String STOCK_FILE_NAME = "stock.xml";
-    public static final String LUL = PathUtils.getExternalDownloadsPath();
-    public static final File ROOT_DOWNLOAD = Environment.getExternalStorageDirectory();
+    public static final String ROOT_DOWNLOAD = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
+    public static final String LOCAL_FILE_PATH = ROOT_DOWNLOAD + "/" + STOCK_FILE_NAME;
 
     public static final String UPDATING_STOCK = "Updating Stock";
 
     public static final String PROVIDER_STOCK_URL = ROOT_URL + XML_URL + FINAL_URL;
     public static final String APP_NAME = getString(R.string.app_name);
-    public static final String LOCAL_FILE_PATH = Environment.DIRECTORY_DOWNLOADS + "/" + STOCK_FILE_NAME;
 
 
 }

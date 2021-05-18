@@ -39,6 +39,7 @@ public class ProviderWebServices extends Fragment {
         request.setTitle(getString(R.string.app_name));
 
         request.allowScanningByMediaScanner();
+        request.setShowRunningNotification(true);
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, STOCK_FILE_NAME);
 

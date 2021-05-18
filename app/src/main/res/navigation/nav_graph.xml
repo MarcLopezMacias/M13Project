@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/stockFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -21,7 +21,14 @@
         android:id="@+id/homeFragment"
         android:name="cat.itb.m13project.Fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_carritoFragment"
+            app:destination="@id/carritoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment2"
+            app:destination="@id/profileFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="cat.itb.m13project.Fragments.WelcomeFragment"
@@ -45,4 +52,27 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/carritoFragment"
+        android:name="cat.itb.m13project.Fragments.CarritoFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_carritoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="cat.itb.m13project.Fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment2_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stockFragment"
+        android:name="cat.itb.m13project.Fragments.StockFragment"
+        android:label="fragment_stock"
+        tools:layout="@layout/fragment_stock" />
 </navigation>

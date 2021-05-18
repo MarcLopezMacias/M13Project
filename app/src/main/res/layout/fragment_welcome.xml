@@ -92,26 +92,5 @@
         android:layout_height="wrap_content"
         app:barrierDirection="top" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/downloadButton"
-        style="@style/OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/download"
-        app:layout_constraintBottom_toTopOf="@+id/updateButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerButton" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/updateButton"
-        style="@style/OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/update"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

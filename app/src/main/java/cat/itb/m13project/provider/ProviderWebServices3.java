@@ -1,40 +1,21 @@
 package cat.itb.m13project.provider;
 
-import android.os.Environment;
 import android.os.StrictMode;
 import android.util.Log;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import cat.itb.m13project.pojo.Item;
 
 import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
 import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
-import static cat.itb.m13project.ConstantVariables.ROOT_URL;
-import static cat.itb.m13project.ConstantVariables.STOCK_FILE_NAME;
-import static cat.itb.m13project.ConstantVariables.XML_URL;
 
 public class ProviderWebServices3 {
 
@@ -63,7 +44,7 @@ public class ProviderWebServices3 {
             System.out.println(LOCAL_FILE_PATH);
 
             URL url = new URL(PROVIDER_STOCK_URL);
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
@@ -72,7 +53,7 @@ public class ProviderWebServices3 {
             conn.connect();
             Log.v("End Query", "End Query");
             //read the result from the server
-            BufferedReader rdr  = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            BufferedReader rdr = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder sbr = new StringBuilder();
             String line;
             while ((line = rdr.readLine()) != null) {

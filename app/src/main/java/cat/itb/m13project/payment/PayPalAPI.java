@@ -1,5 +1,13 @@
 package cat.itb.m13project.payment;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
 import com.paypal.android.sdk.payments.PayPalAuthorization;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
@@ -13,19 +21,10 @@ import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.paypal.android.sdk.payments.ShippingAddress;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
 import org.json.JSONException;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.Currency;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,12 +35,11 @@ import static cat.itb.m13project.Fragments.WelcomeFragment.carrito;
 import static cat.itb.m13project.MainActivity.loggedUser;
 
 /**
- *
  * THIS FILE IS OVERWRITTEN BY `androidSDK/src/<general|partner>sampleAppJava.
  * ANY UPDATES TO THIS FILE WILL BE REMOVED IN RELEASES.
- *
+ * <p>
  * Basic sample using the SDK to make a payment or consent to future payments.
- *
+ * <p>
  * For sample mobile backend interactions, see
  * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
  */
@@ -49,10 +47,10 @@ public class PayPalAPI extends Activity {
     private static final String TAG = "paymentExample";
     /**
      * - Set to PayPalConfiguration.ENVIRONMENT_PRODUCTION to move real money.
-     *
+     * <p>
      * - Set to PayPalConfiguration.ENVIRONMENT_SANDBOX to use your test credentials
      * from https://developer.paypal.com
-     *
+     * <p>
      * - Set to PayPalConfiguration.ENVIRONMENT_NO_NETWORK to kick the tires
      * without communicating to PayPal's servers.
      */
@@ -180,7 +178,7 @@ public class PayPalAPI extends Activity {
          * attributes you select for this app in the PayPal developer portal and the scopes required here.
          */
         Set<String> scopes = new HashSet<String>(
-                Arrays.asList(PayPalOAuthScopes.PAYPAL_SCOPE_EMAIL, PayPalOAuthScopes.PAYPAL_SCOPE_ADDRESS) );
+                Arrays.asList(PayPalOAuthScopes.PAYPAL_SCOPE_EMAIL, PayPalOAuthScopes.PAYPAL_SCOPE_ADDRESS));
         return new PayPalOAuthScopes(scopes);
     }
 

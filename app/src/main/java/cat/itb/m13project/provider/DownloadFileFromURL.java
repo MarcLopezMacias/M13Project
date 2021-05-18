@@ -7,15 +7,11 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.StrictMode;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
-import com.blankj.utilcode.util.FileUtils;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,9 +27,9 @@ import static cat.itb.m13project.ConstantVariables.UPDATING_STOCK;
 
 public class DownloadFileFromURL extends AsyncTask<String, Integer, String> {
 
+    int id = 123;
     private NotificationManager mNotifyManager;
     private NotificationCompat.Builder build;
-    int id = 123;
     private Context context;
 
     public DownloadFileFromURL(Context context) {
@@ -102,7 +98,7 @@ public class DownloadFileFromURL extends AsyncTask<String, Integer, String> {
             int bufferLength = 0; //used to store a temporary size of the buffer
 
             //now, read through the input buffer and write the contents to the file
-            while ( (bufferLength = inputStream.read(buffer)) > 0 ) {
+            while ((bufferLength = inputStream.read(buffer)) > 0) {
                 //add the data in the buffer to the file in the file output stream (the file on the sd card
                 fileOutput.write(buffer, 0, bufferLength);
                 //add up the size so we know how much is downloaded

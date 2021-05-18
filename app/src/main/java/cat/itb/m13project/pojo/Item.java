@@ -1,12 +1,10 @@
 package cat.itb.m13project.pojo;
 
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 @Root(name = "producto")

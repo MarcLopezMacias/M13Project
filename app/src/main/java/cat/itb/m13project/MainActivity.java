@@ -1,6 +1,7 @@
 package cat.itb.m13project;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,12 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.itb.m13project.pojo.Usuario;
-import cat.itb.m13project.provider.DownloadFileFromURL;
-import cat.itb.m13project.provider.ProviderWebServices3;
 
-import static android.Manifest.permission.INTERNET;
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.Manifest.permission.*;
 import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
 import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
 
@@ -39,12 +36,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTheme(R.style.AppTheme);
 
-        if (ContextCompat.checkSelfPermission(MainActivity.this, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MainActivity.this, new String[] { WRITE_EXTERNAL_STORAGE }, 69);
-        } else if (ContextCompat.checkSelfPermission(MainActivity.this, READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MainActivity.this, new String[] { WRITE_EXTERNAL_STORAGE }, 6969);
-        } else if (ContextCompat.checkSelfPermission(MainActivity.this, INTERNET) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MainActivity.this, new String[] { WRITE_EXTERNAL_STORAGE }, 696969);
+        if (ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, INTERNET) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_STORAGE, 69);
+            ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_STORAGE, 6969);
+            ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_STORAGE, 696969);
         }
 
         db = FirebaseDatabase.getInstance();
@@ -74,6 +72,37 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            READ_EXTERNAL_STORAGE,
+            WRITE_EXTERNAL_STORAGE,
+            INTERNET,
+            MANAGE_EXTERNAL_STORAGE
+
+    };
+
+    /**
+     * Checks if the app has permission to write to device storage
+     *
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 
 //     CHANGE FRAGMENT

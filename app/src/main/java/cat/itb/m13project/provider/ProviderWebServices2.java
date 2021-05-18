@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-
 import androidx.annotation.Nullable;
 
 import java.io.DataOutputStream;
@@ -31,7 +30,8 @@ public class ProviderWebServices2 extends Activity {
         //And after succcessful login you can send the second request:
         String downloadResult = POST_req("https://desyman.com/", "", 10000);
         System.out.println("LOGIN: " + loginResult);
-        System.out.println("RESULT: " + downloadResult);;
+        System.out.println("RESULT: " + downloadResult);
+        ;
     }
 
     //Methods for sending requests and saving cookie:
@@ -134,14 +134,14 @@ public class ProviderWebServices2 extends Activity {
 
         return (new String(buf));
     }
+
     public void get_cookie(HttpURLConnection conn) {
         SharedPreferences sh_pref_cookie = getSharedPreferences("cookies", Context.MODE_PRIVATE);
         String cook_new;
         String COOKIES_HEADER;
         if (conn.getHeaderField("Set-Cookie") != null) {
             COOKIES_HEADER = "Set-Cookie";
-        }
-        else {
+        } else {
             COOKIES_HEADER = "Cookie";
         }
         cook_new = conn.getHeaderField(COOKIES_HEADER);
@@ -151,6 +151,7 @@ public class ProviderWebServices2 extends Activity {
             editor.commit();
         }
     }
+
     public void set_cookie(HttpURLConnection conn) {
         SharedPreferences sh_pref_cookie = getSharedPreferences("cookies", Context.MODE_PRIVATE);
         String COOKIES_HEADER = "Cookie";

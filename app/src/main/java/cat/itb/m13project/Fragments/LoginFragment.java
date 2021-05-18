@@ -35,6 +35,71 @@ public class LoginFragment extends Fragment {
     MaterialButton loginButton;
     ProgressBar loadingProgressBar;
     MaterialButton forgottenPasswordButton;
+    ValueEventListener loginListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            userList.clear();
+            if (snapshot.exists()) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Usuario user = ds.getValue(Usuario.class);
+                    userList.add(user);
+                }
+            }
+            if (userList.size() == 1) {
+                if (userList.get(0).getEmail().toLowerCase().equals(loggedUser.getEmail()) && userList.get(0).getPassword().equals(loggedUser.getPassword())) {
+                    loggedUser = userList.get(0);
+                    Fragment newFragment = new HomeFragment();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment, newFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                } else {
+                    loadingProgressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getContext(), "User/Password is not correct", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                loadingProgressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(getContext(), "You must register first", Toast.LENGTH_SHORT).show();
+                Fragment newFragment = new RegisterFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, newFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
+    ValueEventListener forgotListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            userList.clear();
+            if (snapshot.exists()) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Usuario user = ds.getValue(Usuario.class);
+                    userList.add(user);
+                }
+            }
+            if (userList.size() == 1) {
+                if (userList.get(0).getEmail().toLowerCase().equals(loggedUser.getEmail())) {
+                    Toast.makeText(getContext(), userList.get(0).getForgottenPasswordHint(), Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                loadingProgressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(getContext(), getString(R.string.account_doesnt_exist), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
 
     @Nullable
     @Override
@@ -85,72 +150,5 @@ public class LoginFragment extends Fragment {
         });
 
     }
-
-    ValueEventListener loginListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            userList.clear();
-            if (snapshot.exists()) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Usuario user = ds.getValue(Usuario.class);
-                    userList.add(user);
-                }
-            }
-            if (userList.size() == 1) {
-                if (userList.get(0).getEmail().toLowerCase().equals(loggedUser.getEmail()) && userList.get(0).getPassword().equals(loggedUser.getPassword())) {
-                    loggedUser = userList.get(0);
-                    Fragment newFragment = new HomeFragment();
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment, newFragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
-                } else {
-                    loadingProgressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getContext(), "User/Password is not correct", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                loadingProgressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), "You must register first", Toast.LENGTH_SHORT).show();
-                Fragment newFragment = new RegisterFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, newFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    };
-
-    ValueEventListener forgotListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            userList.clear();
-            if (snapshot.exists()) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Usuario user = ds.getValue(Usuario.class);
-                    userList.add(user);
-                }
-            }
-            if (userList.size() == 1) {
-                if (userList.get(0).getEmail().toLowerCase().equals(loggedUser.getEmail())) {
-                    Toast.makeText(getContext(), userList.get(0).getForgottenPasswordHint(), Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                loadingProgressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), getString(R.string.account_doesnt_exist), Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    };
 
 }
