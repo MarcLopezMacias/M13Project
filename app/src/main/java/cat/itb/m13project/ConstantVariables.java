@@ -7,6 +7,8 @@ import com.blankj.utilcode.util.PathUtils;
 import java.io.File;
 import java.util.DoubleSummaryStatistics;
 
+import static com.blankj.utilcode.util.StringUtils.getString;
+
 public class ConstantVariables {
 
     public static final int USER_PASSWORD_LENGTH = 7;
@@ -33,5 +35,7 @@ public class ConstantVariables {
 
     public static final String PROVIDER_STOCK_URL = ROOT_URL + XML_URL + FINAL_URL;
     public static final String LOCAL_FILE_PATH = PathUtils.getExternalAppDownloadPath().concat("/").concat(STOCK_FILE_NAME);
+
+    public static final String APP_NAME = getString(R.string.app_name);
 
 }

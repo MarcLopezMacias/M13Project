@@ -30,11 +30,10 @@ import java.net.URL;
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Cart;
 import cat.itb.m13project.pojo.Usuario;
-import cat.itb.m13project.provider.DownloadFileFromURL;
 
+import static cat.itb.m13project.ConstantVariables.APP_NAME;
 import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
 import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
-import static cat.itb.m13project.ConstantVariables.ROOT_DOWNLOAD;
 import static cat.itb.m13project.ConstantVariables.STOCK_FILE_NAME;
 import static cat.itb.m13project.ConstantVariables.UPDATING_STOCK;
 import static cat.itb.m13project.MainActivity.loggedUser;
@@ -73,12 +72,7 @@ public class WelcomeFragment extends Fragment {
         forgotPasswordButton = v.findViewById(R.id.forgotPasswordButton);
 
         extraButton = v.findViewById(R.id.epicMaterialButton);
-        extraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        extraButton.setOnClickListener(updaterListener);
 
         if (savedInstanceState == null) {
             loggedUser = new Usuario();
@@ -112,4 +106,32 @@ public class WelcomeFragment extends Fragment {
         });
         return v;
     }
+
+    View.OnClickListener updaterListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // DOWNLOAD FILE
+            Toast.makeText(getContext(), UPDATING_STOCK, Toast.LENGTH_SHORT).show();
+            System.out.println(PROVIDER_STOCK_URL);
+            System.out.println(LOCAL_FILE_PATH);
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(PROVIDER_STOCK_URL));
+            request.setDescription(UPDATING_STOCK);
+            request.setTitle(APP_NAME);
+
+            request.allowScanningByMediaScanner();
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, STOCK_FILE_NAME);
+
+            DownloadManager manager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+            manager.enqueue(request);
+
+            // UPDATE DATABASE
+            File f = new File(LOCAL_FILE_PATH);
+
+        }
+    };
 }
