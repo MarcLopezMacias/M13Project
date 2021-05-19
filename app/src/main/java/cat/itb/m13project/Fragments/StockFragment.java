@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.text.TextPaint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,10 +112,11 @@ public class StockFragment extends Fragment {
                         Serializer ser = new Persister();
                         productos = ser.read(Productos.class, f);
                         for (int i = 0; i < productos.getProductos().size(); i++) {
+                            Toast.makeText(getContext(), productos.getProductos().size(), Toast.LENGTH_SHORT).show();
                             Producto producto = productos.getProductos().get(i);
                             String key = dbProductoRef.push().getKey();
                             producto.setKey(key);
-                            Query query = dbProductoRef.orderByChild("ean").equalTo(producto.getEan());
+                            Query query = dbProductoRef.orderByChild("codigo").equalTo(producto.getCodigo());
                             query.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -177,13 +181,14 @@ public class StockFragment extends Fragment {
                 Toast.makeText(getContext(), "FILE EXISTS; " + f.exists() + " at " + f.getAbsolutePath(), Toast.LENGTH_SHORT).show();
             }
         });
+
         showStockButton = v.findViewById(R.id.showStockButton);
         showStockButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Query query = dbProductoRef;
                 List<Producto> productosList = new ArrayList<>();
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                Query query = dbProductoRef;
+                query.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
