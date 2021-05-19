@@ -4,7 +4,6 @@ import android.icu.text.SimpleDateFormat;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Path;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
@@ -14,7 +13,7 @@ import java.util.Locale;
 @Root(name = "producto", strict = false)
 public class Producto implements Serializable {
 
-    String id;
+    String key;
 
     @Element(name = "num", required = false)
     int num;
@@ -95,8 +94,8 @@ public class Producto implements Serializable {
     public Producto() {
     }
 
-    public Producto(String id, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String grupo, int idFamilia, String familia, String marca, double precio, double peso, double largo, double ancho, double alto, String caracteristicas, String fechaAlta, List<Foto> fotos, double canon, double precioConCanon, String fechaGeneracionTarifa) {
-        this.id = id;
+    public Producto(String key, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String grupo, int idFamilia, String familia, String marca, double precio, double peso, double largo, double ancho, double alto, String caracteristicas, String fechaAlta, List<Foto> fotos, double canon, double precioConCanon, String fechaGeneracionTarifa) {
+        this.key = key;
         this.num = num;
         this.codigo = codigo;
         this.ean = ean;
@@ -122,12 +121,12 @@ public class Producto implements Serializable {
         this.fechaGeneracionTarifa = fechaGeneracionTarifa;
     }
 
-    public String getId() {
-        return id;
+    public String getKey() {
+        return key;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public int getNum() {
@@ -325,7 +324,7 @@ public class Producto implements Serializable {
     @Override
     public String toString() {
         return "Producto{" +
-                "id='" + id + '\'' +
+                "id='" + key + '\'' +
                 ", num=" + num +
                 ", codigo='" + codigo + '\'' +
                 ", ean='" + ean + '\'' +

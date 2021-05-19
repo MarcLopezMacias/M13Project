@@ -241,6 +241,7 @@
     <string name="download">DOWNLOAD</string>
     <string name="update">UPDATE</string>
     <string name="exists">EXISTS</string>
+    <string name="show_stock">Show STOCK!</string>
 
 
 </resources>

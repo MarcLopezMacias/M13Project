@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Usuario;
 
-import static cat.itb.m13project.MainActivity.dbRef;
+import static cat.itb.m13project.MainActivity.dbUserRef;
 import static cat.itb.m13project.MainActivity.loggedUser;
 import static cat.itb.m13project.MainActivity.userList;
 
@@ -77,9 +77,9 @@ public class RegisterFragment extends Fragment {
                     }
                     if (!exists) {
                         if (isValidData(loggedUser)) {
-                            String key = dbRef.push().getKey();
+                            String key = dbUserRef.push().getKey();
                             loggedUser.setId(key);
-                            dbRef.child(key).setValue(loggedUser);
+                            dbUserRef.child(key).setValue(loggedUser);
                             loadingProgressBar.setVisibility(View.VISIBLE);
                             Fragment newFragment = new HomeFragment();
                             FragmentManager fragmentManager = getFragmentManager();
@@ -131,7 +131,7 @@ public class RegisterFragment extends Fragment {
                     }
                     if (isValidData(loggedUser)) {
                         loggedUser.setId(userList.get(0).getId());
-                        dbRef.child(loggedUser.getId()).setValue(loggedUser);
+                        dbUserRef.child(loggedUser.getId()).setValue(loggedUser);
                         loadingProgressBar.setVisibility(View.VISIBLE);
                         Fragment newFragment = new ProfileFragment();
                         FragmentManager fragmentManager = getFragmentManager();

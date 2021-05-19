@@ -25,7 +25,10 @@ import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
 public class MainActivity extends AppCompatActivity {
 
     public static FirebaseDatabase db;
-    public static DatabaseReference dbRef;
+    public static DatabaseReference dbUserRef;
+    public static DatabaseReference dbStockRef;
+    public static DatabaseReference dbProductoRef;
+
 
     public static Usuario loggedUser;
     public static List<Usuario> userList;
@@ -43,7 +46,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         db = FirebaseDatabase.getInstance();
-        dbRef = db.getReference("Usuario");
+        dbUserRef = db.getReference("Usuario");
+        dbStockRef = db.getReference("Productos");
+        dbProductoRef = db.getReference("Productos/Producto");
+
 
         userList = new ArrayList<>();
 
