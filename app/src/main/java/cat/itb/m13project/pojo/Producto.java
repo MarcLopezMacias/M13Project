@@ -1,32 +1,34 @@
 package cat.itb.m13project.pojo;
 
+import android.icu.text.SimpleDateFormat;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Path;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Root(name = "producto", strict = false)
 public class Producto implements Serializable {
 
     String id;
 
-    @Element(name = "num")
+    @Element(name = "num", required = false)
     int num;
 
     @Element(name = "codigo")
     String codigo;
 
-    @Element(name = "ean")
+    @Element(name = "ean", required = false)
     String ean;
 
-    @Element(name = "pn")
+    @Element(name = "pn", required = false)
     String pn;
 
-    @Element(name = "stock")
+    @Element(name = "stock", required = false)
     int stock;
 
     @Element(name = "stockMAD")
@@ -35,16 +37,16 @@ public class Producto implements Serializable {
     @Element(name = "descripcion")
     String descripcion;
 
-    @Element(name = "id_bloque")
+    @Element(name = "id_bloque", required = false)
     int idBloque;
 
-    @Element(name = "bloque")
+    @Element(name = "bloque", required = false)
     String bloque;
 
     @Element(name = "id_grupo")
     int idGrupo;
 
-    @Element(name = "grupo")
+    @Element(name = "grupo", required = false)
     String grupo;
 
     @Element(name = "id_familia")
@@ -53,7 +55,7 @@ public class Producto implements Serializable {
     @Element(name = "familia")
     String familia;
 
-    @Element(name = "marca")
+    @Element(name = "marca", required = false)
     String marca;
 
     @Element(name = "precio")
@@ -63,19 +65,19 @@ public class Producto implements Serializable {
     double peso;
 
     @Element(name = "largo")
-    int largo;
+    double largo;
 
     @Element(name = "ancho")
-    int ancho;
+    double ancho;
 
     @Element(name = "alto")
-    int alto;
+    double alto;
 
-    @Element(name = "caracteristicas")
+    @Element(name = "caracteristicas", required = false)
     String caracteristicas;
 
     @Element(name = "fecha_alta")
-    Date fechaAlta;
+    String fechaAlta;
 
     @ElementList(inline = true, required = false)
     List<Foto> fotos;
@@ -83,17 +85,17 @@ public class Producto implements Serializable {
     @Element(name = "canon")
     double canon;
 
-    @Element(name = "preciocanon")
+    @Element(name = "precioconcanon")
     double precioConCanon;
 
     @Element(name = "fecha_generacion_tarifa")
-    Date fechaGeneracionTarifa;
+    String fechaGeneracionTarifa;
 
 
     public Producto() {
     }
 
-    public Producto(String id, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String grupo, int idFamilia, String familia, String marca, double precio, double peso, int largo, int ancho, int alto, String caracteristicas, Date fechaAlta, List<Foto> fotos, double canon, double precioConCanon, Date fechaGeneracionTarifa) {
+    public Producto(String id, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String grupo, int idFamilia, String familia, String marca, double precio, double peso, double largo, double ancho, double alto, String caracteristicas, String fechaAlta, List<Foto> fotos, double canon, double precioConCanon, String fechaGeneracionTarifa) {
         this.id = id;
         this.num = num;
         this.codigo = codigo;
@@ -240,27 +242,27 @@ public class Producto implements Serializable {
         this.peso = peso;
     }
 
-    public int getLargo() {
+    public double getLargo() {
         return largo;
     }
 
-    public void setLargo(int largo) {
+    public void setLargo(double largo) {
         this.largo = largo;
     }
 
-    public int getAncho() {
+    public double getAncho() {
         return ancho;
     }
 
-    public void setAncho(int ancho) {
+    public void setAncho(double ancho) {
         this.ancho = ancho;
     }
 
-    public int getAlto() {
+    public double getAlto() {
         return alto;
     }
 
-    public void setAlto(int alto) {
+    public void setAlto(double alto) {
         this.alto = alto;
     }
 
@@ -272,11 +274,11 @@ public class Producto implements Serializable {
         this.caracteristicas = caracteristicas;
     }
 
-    public Date getFechaAlta() {
+    public String getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(String fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -304,11 +306,11 @@ public class Producto implements Serializable {
         this.precioConCanon = precioConCanon;
     }
 
-    public Date getFechaGeneracionTarifa() {
+    public String getFechaGeneracionTarifa() {
         return fechaGeneracionTarifa;
     }
 
-    public void setFechaGeneracionTarifa(Date fechaGeneracionTarifa) {
+    public void setFechaGeneracionTarifa(String fechaGeneracionTarifa) {
         this.fechaGeneracionTarifa = fechaGeneracionTarifa;
     }
 
@@ -351,4 +353,6 @@ public class Producto implements Serializable {
                 ", fechaGeneracionTarifa=" + fechaGeneracionTarifa +
                 '}';
     }
+
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.US);
 }
