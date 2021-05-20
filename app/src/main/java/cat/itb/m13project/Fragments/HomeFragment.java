@@ -22,24 +22,38 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.adapters.CartItemAdapter;
+import cat.itb.m13project.adapters.ShopItemAdapter;
+import cat.itb.m13project.pojo.Producto;
 
 import static cat.itb.m13project.ConstantVariables.CART;
 import static cat.itb.m13project.ConstantVariables.PROFILE;
+import static cat.itb.m13project.ConstantVariables.SHOW_ME_DEFAULT_AMOUNT;
+import static cat.itb.m13project.MainActivity.dbProductoRef;
 
 public class HomeFragment extends Fragment {
 
     NavigationView navigationView;
 
     RecyclerView recyclerView;
-    CartItemAdapter adapter;
+    ShopItemAdapter adapter;
 
     DrawerLayout drawerLayout;
 
     ActionBarDrawerToggle drawerToggle;
 
+    List<Producto> homeProductos;
+    Query filter;
+
+    int showMeX = SHOW_ME_DEFAULT_AMOUNT;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -55,6 +69,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+
+        filter = dbProductoRef.orderByChild("fecha_alta").endAt(showMeX);
 
         setHasOptionsMenu(true);
 
@@ -117,13 +133,58 @@ public class HomeFragment extends Fragment {
 
         // RECYCLER
         recyclerView = v.findViewById(R.id.main_recycler_view);
-        adapter = new CartItemAdapter();
+        adapter = new ShopItemAdapter();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle b = new Bundle();
+                Producto p = homeProductos.get(recyclerView.getChildAdapterPosition(v));
+                b.putSerializable("currentProduct", p);
+
+                Fragment newFragment;
+                FragmentManager fragmentManager;
+                FragmentTransaction fragmentTransaction;
+
+                newFragment = new ShopItemFragment();
+                newFragment.setArguments(b);
+                fragmentManager = getFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, newFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         recyclerView.setAdapter(adapter);
 
+        homeProductos = new ArrayList<>();
+        cargarDatos();
+
         return v;
+    }
+
+    private void cargarDatos() {
+        filter.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Producto producto = dataSnapshot.getValue(Producto.class);
+                    if (!homeProductos.contains(producto)) {
+                        homeProductos.add(producto);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+                System.out.println(homeProductos);
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }

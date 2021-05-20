@@ -1,6 +1,7 @@
 package cat.itb.m13project.pojo;
 
 import android.icu.text.SimpleDateFormat;
+import android.net.Uri;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
@@ -17,6 +18,7 @@ public class Producto implements Serializable {
 
     @Element(name = "num", required = false)
     int num;
+
 
     @Element(name = "codigo")
     String codigo;
@@ -79,7 +81,7 @@ public class Producto implements Serializable {
     String fechaAlta;
 
     @ElementList(inline = true, required = false)
-    List<Foto> fotos;
+    List<Uri> fotos;
 
     @Element(name = "canon")
     double canon;
@@ -90,11 +92,12 @@ public class Producto implements Serializable {
     @Element(name = "fecha_generacion_tarifa")
     String fechaGeneracionTarifa;
 
+    double precioFinal;
 
     public Producto() {
     }
 
-    public Producto(String key, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String grupo, int idFamilia, String familia, String marca, double precio, double peso, double largo, double ancho, double alto, String caracteristicas, String fechaAlta, List<Foto> fotos, double canon, double precioConCanon, String fechaGeneracionTarifa) {
+    public Producto(String key, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String grupo, int idFamilia, String familia, String marca, double precio, double peso, double largo, double ancho, double alto, String caracteristicas, String fechaAlta, List<Uri> fotos, double canon, double precioConCanon, String fechaGeneracionTarifa) {
         this.key = key;
         this.num = num;
         this.codigo = codigo;
@@ -119,6 +122,36 @@ public class Producto implements Serializable {
         this.canon = canon;
         this.precioConCanon = precioConCanon;
         this.fechaGeneracionTarifa = fechaGeneracionTarifa;
+    }
+
+    public Producto(String key, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String bloque, int idGrupo, String grupo, int idFamilia, String familia, String marca, double precio, double peso, double largo, double ancho, double alto, String caracteristicas, String fechaAlta, List<Uri> fotos, double canon, double precioConCanon, String fechaGeneracionTarifa, double precioFinal) {
+        this.key = key;
+        this.num = num;
+        this.codigo = codigo;
+        this.ean = ean;
+        this.pn = pn;
+        this.stock = stock;
+        this.stockMad = stockMad;
+        this.descripcion = descripcion;
+        this.idBloque = idBloque;
+        this.bloque = bloque;
+        this.idGrupo = idGrupo;
+        this.grupo = grupo;
+        this.idFamilia = idFamilia;
+        this.familia = familia;
+        this.marca = marca;
+        this.precio = precio;
+        this.peso = peso;
+        this.largo = largo;
+        this.ancho = ancho;
+        this.alto = alto;
+        this.caracteristicas = caracteristicas;
+        this.fechaAlta = fechaAlta;
+        this.fotos = fotos;
+        this.canon = canon;
+        this.precioConCanon = precioConCanon;
+        this.fechaGeneracionTarifa = fechaGeneracionTarifa;
+        this.precioFinal = precioFinal;
     }
 
     public String getKey() {
@@ -281,11 +314,11 @@ public class Producto implements Serializable {
         this.fechaAlta = fechaAlta;
     }
 
-    public List<Foto> getFotos() {
+    public List<Uri> getFotos() {
         return fotos;
     }
 
-    public void setFotos(List<Foto> fotos) {
+    public void setFotos(List<Uri> fotos) {
         this.fotos = fotos;
     }
 
@@ -321,6 +354,10 @@ public class Producto implements Serializable {
         }
     }
 
+    public void setPrecioFinalProveedor(double precioFinalProveedor) {
+        this.precioFinal = precioFinalProveedor;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
@@ -353,5 +390,19 @@ public class Producto implements Serializable {
                 '}';
     }
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.US);
+    public String getBloque() {
+        return bloque;
+    }
+
+    public void setBloque(String bloque) {
+        this.bloque = bloque;
+    }
+
+    public int getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(int idGrupo) {
+        this.idGrupo = idGrupo;
+    }
 }

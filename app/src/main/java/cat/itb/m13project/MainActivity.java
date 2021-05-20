@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static FirebaseDatabase db;
     public static DatabaseReference dbUserRef;
-    public static DatabaseReference dbStockRef;
     public static DatabaseReference dbProductoRef;
 
 
@@ -47,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         db = FirebaseDatabase.getInstance();
         dbUserRef = db.getReference("Usuario");
-        dbStockRef = db.getReference("Productos");
-        dbProductoRef = db.getReference("Productos/Producto");
+        dbProductoRef = db.getReference("Producto");
 
 
         userList = new ArrayList<>();

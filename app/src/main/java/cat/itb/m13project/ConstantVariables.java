@@ -16,6 +16,9 @@ public class ConstantVariables {
     public static final String CURRENCY = "EUR";
     public static final int DEFAULT_AMOUNT = 1;
 
+    public static final int SHOW_ME_DEFAULT_AMOUNT = 50;
+
+
     public static final String ROOT_URL = "https://app.desyman.com/web/tarifas/";
     public static final String FINAL_URL = "?q=WVdOMGFXOXVQWFJoY21sbVlYTW1ZejB4TURrMU5RPT0";
 

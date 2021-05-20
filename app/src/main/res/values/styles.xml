@@ -12,10 +12,17 @@
 
     </style>
 
-    <!-- TEXT AND LAYOUT STYLES ACCORDING TO INTERFACE ELEMENT -->
+    <!-- TEXT OR LAYOUT STYLES, ACCORDING TO INTERFACE ELEMENT -->
 
     <style name="normalSizeText" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="smallerText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textColorHint">@color/colorPrimary</item>
         <item name="fontFamily">@font/montserrat_bold</item>
@@ -62,10 +69,26 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="productName" parent="normalSizeText">
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="productDescription" parent="normalSizeText">
+        <item name="android:textStyle">normal</item>
+    </style>
+
     <!-- CUSTOM BUTTONS -->
 
     <style name="TextButton" parent="TextAppearance.AppCompat.Widget.Button.Colored">
         <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/backgroundColor</item>
+        <item name="android:background">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="smallerTextButton" parent="TextAppearance.AppCompat.Widget.Button.Colored">
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/backgroundColor</item>
         <item name="android:background">@color/colorPrimary</item>
 
