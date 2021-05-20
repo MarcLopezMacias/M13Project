@@ -50,10 +50,8 @@ public class HomeFragment extends Fragment {
 
     ActionBarDrawerToggle drawerToggle;
 
-    List<Producto> homeProductos;
+    public static List<Producto> homeProductos;
     Query filter;
-
-    int showMeX = SHOW_ME_DEFAULT_AMOUNT;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -70,7 +68,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        filter = dbProductoRef.orderByChild("fecha_alta").endAt(showMeX);
+        filter = dbProductoRef.orderByChild("codigo");
 
         setHasOptionsMenu(true);
 
@@ -176,9 +174,7 @@ public class HomeFragment extends Fragment {
                     }
                     adapter.notifyDataSetChanged();
                 }
-                System.out.println(homeProductos);
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

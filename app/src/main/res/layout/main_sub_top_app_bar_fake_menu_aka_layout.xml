@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:text="@string/ofertas"
         app:icon="@drawable/ic_baseline_local_offer_24"
+        app:iconTint="@color/colorPrimary"
         app:layout_constraintEnd_toStartOf="@+id/outletButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
@@ -28,6 +29,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/outletButton"
         style="@style/BottomAppBarButton"
+        app:iconTint="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/outlet"
@@ -44,6 +46,7 @@
         android:text="@string/destacados"
         app:icon="@drawable/ic_baseline_new_releases_24"
         app:layout_constraintEnd_toEndOf="parent"
+        app:iconTint="@color/colorPrimary"
         app:layout_constraintStart_toEndOf="@+id/outletButton"
         app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
 
