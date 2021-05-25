@@ -9,8 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
+
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ShopItemViewHolder> implements View.OnClickListener {
 

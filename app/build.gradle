@@ -68,4 +68,6 @@ dependencies {
     }
 
     implementation 'com.blankj:utilcodex:1.29.0'
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }

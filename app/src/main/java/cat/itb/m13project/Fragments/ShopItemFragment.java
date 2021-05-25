@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import cat.itb.m13project.R;
 
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
+
 
 public class ShopItemFragment extends Fragment {
 
@@ -28,7 +30,7 @@ public class ShopItemFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_shop_item, container, false);
 
-
+        CONTEXT = getContext();
 
         return v;
     }

@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import cat.itb.m13project.R;
 
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
+
 public class CarritoFragment extends Fragment {
 
     RecyclerView recyclerView;
@@ -29,6 +31,8 @@ public class CarritoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_cart, container, false);
+
+        CONTEXT = getContext();
 
         recyclerView = v.findViewById(R.id.carritoRecyclerView);
 

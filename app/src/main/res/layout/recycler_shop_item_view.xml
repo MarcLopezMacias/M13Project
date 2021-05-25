@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/backgroundColor">
 
@@ -8,17 +8,21 @@
         android:id="@+id/shop_item_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:contentDescription="@string/shop_item_image_view" />
+        android:contentDescription="@string/shop_item_image_view"
+        android:src="@color/white"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/shop_item_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/normalSizeText"
+        style="@style/smallerText"
         android:hint="@string/product_name"
-        android:layout_below="@+id/shop_item_image_view"
-        android:layout_centerHorizontal="true" />
+        android:layout_toEndOf="@id/shop_item_image_view"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/shop_item_price_text_view"
@@ -26,8 +30,9 @@
         style="@style/smallerText"
         android:hint="@string/unit_price"
         android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/shop_item_image_view"
         android:layout_below="@id/shop_item_name_text_view"
-        android:layout_centerHorizontal="true" />
+        />
 
 
 </RelativeLayout>

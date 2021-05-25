@@ -15,6 +15,9 @@ import com.google.android.material.button.MaterialButton;
 
 import cat.itb.m13project.R;
 
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
+import static cat.itb.m13project.Fragments.StockFragment.updateListener;
+
 public class ProfileFragment extends Fragment {
 
     TextView usernameTextView;
@@ -36,11 +39,14 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        CONTEXT = getContext();
+
         usernameTextView = v.findViewById(R.id.usernameTextView);
         updateProfile = v.findViewById(R.id.editProfileButton);
         updateProducts = v.findViewById(R.id.updateStock);
 
         // updateProfile.setOnClickListener(updateStockListener);
+        updateProducts.setOnClickListener(updateListener);
         return v;
     }
 }

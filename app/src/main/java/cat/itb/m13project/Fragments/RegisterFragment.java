@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Usuario;
 
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.MainActivity.dbUserRef;
 import static cat.itb.m13project.MainActivity.loggedUser;
 import static cat.itb.m13project.MainActivity.userList;
@@ -160,6 +161,8 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        CONTEXT = getContext();
 
         name = view.findViewById(R.id.nameTextView);
         email = view.findViewById(R.id.emailTextView);

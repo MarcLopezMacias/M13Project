@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Usuario;
 
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.MainActivity.loggedUser;
 import static cat.itb.m13project.MainActivity.userList;
 
@@ -112,6 +113,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        CONTEXT = getContext();
 
         emailEditText = view.findViewById(R.id.email);
         passwordEditText = view.findViewById(R.id.password);

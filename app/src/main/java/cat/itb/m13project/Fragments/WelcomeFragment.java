@@ -16,6 +16,7 @@ import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Cart;
 import cat.itb.m13project.pojo.Usuario;
 
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.MainActivity.loggedUser;
 
 public class WelcomeFragment extends Fragment {
@@ -40,6 +41,9 @@ public class WelcomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_welcome, container, false);
+
+        CONTEXT = getContext();
+
         titleTextView = v.findViewById(R.id.title);
 
         carrito = new Cart();

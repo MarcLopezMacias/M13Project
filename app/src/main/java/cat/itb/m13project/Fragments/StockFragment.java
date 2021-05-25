@@ -2,33 +2,22 @@ package cat.itb.m13project.Fragments;
 
 import android.app.DownloadManager;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.Environment;
 import android.os.StrictMode;
-import android.text.TextPaint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
@@ -43,6 +32,8 @@ import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
 import cat.itb.m13project.pojo.Productos;
 
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
+import static cat.itb.m13project.ConstantVariables.ERROR;
 import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
 import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
 import static cat.itb.m13project.ConstantVariables.STOCK_FILE_NAME;
@@ -51,15 +42,14 @@ import static cat.itb.m13project.MainActivity.dbProductoRef;
 
 public class StockFragment extends Fragment {
 
-    MaterialButton downloadButton;
     MaterialButton updateButton;
     MaterialButton existsButton;
     MaterialButton showStockButton;
 
     public static Productos productos = null;
-    List<Producto> productosList = new ArrayList<>();
+    static List<Producto> productosList = new ArrayList<>();
 
-    ProgressBar loadingProgressBar;
+    static ProgressBar loadingProgressBar;
 
     public StockFragment() {
         // Required empty public constructor
@@ -76,8 +66,8 @@ public class StockFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_stock, container, false);
 
-        downloadButton = v.findViewById(R.id.downloadButton);
-        downloadButton.setOnClickListener(downloadListener);
+        CONTEXT = getContext();
+
         updateButton = v.findViewById(R.id.updateButton);
         updateButton.setOnClickListener(updateListener);
         existsButton = v.findViewById(R.id.existsButton);
@@ -119,13 +109,12 @@ public class StockFragment extends Fragment {
         loadingProgressBar.setVisibility(View.INVISIBLE);
     };
 
-    View.OnClickListener updateListener = v -> {
-        loadingProgressBar.setVisibility(View.VISIBLE);
+    public static View.OnClickListener updateListener = v -> {
         // UPDATE DATABASE
-        Toast.makeText(getContext(), "UPDATING DATABASE", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CONTEXT, "UPDATING DATABASE", Toast.LENGTH_SHORT).show();
         File f = new File(LOCAL_FILE_PATH);
         if (f.exists()) {
-            Toast.makeText(getContext(), "EXISTS at: " + f.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(CONTEXT, "EXISTS at: " + f.getAbsolutePath(), Toast.LENGTH_SHORT).show();
             try {
                 Serializer ser = new Persister();
                 productos = ser.read(Productos.class, f);
@@ -142,30 +131,40 @@ public class StockFragment extends Fragment {
                                 for (DataSnapshot ds : snapshot.getChildren()) {
                                     Producto producto1 = ds.getValue(Producto.class);
                                     producto.setKey(producto1.getKey());
-                                    if (!(producto1.getStock() == producto.getStock())) {
-                                        dbProductoRef.child(producto.getKey()).setValue(producto);
+                                    if (!isValidProduct(producto1)) {
+                                        dbProductoRef.child(producto.getKey()).removeValue();
+                                        System.out.println("PRODUCT NOT VALID");
+                                    } else {
+                                        System.out.println("PRODUCT VALID");
+                                        if (!(producto1.getStock() == producto.getStock())) {
+                                            dbProductoRef.child(producto.getKey()).setValue(producto);
+                                        }
                                     }
                                 }
                             } else {
-                                String key = dbProductoRef.push().getKey();
-                                producto.setKey(key);
-                                dbProductoRef.child(key).setValue(producto);
+                                if (isValidProduct(producto)) {
+                                    String key = dbProductoRef.push().getKey();
+                                    producto.setKey(key);
+                                    System.out.println("SNAPSHOT DOESNT EXIST: PRODUCT VALID");
+                                    dbProductoRef.child(key).setValue(producto);
+                                } else {
+                                    System.out.println("SNAPSHOT DOESNT EXIST: PRODUCT NOT VALID");
+                                }
                             }
-                            Toast.makeText(getContext(), getString(R.string.process_terminated), Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
                         }
-                    });                            }
+                    });
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
-            Toast.makeText(getContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
-            Toast.makeText(getContext(), Environment.DIRECTORY_DOWNLOADS + "/" + STOCK_FILE_NAME, Toast.LENGTH_SHORT).show();
+            Toast.makeText(CONTEXT, ERROR, Toast.LENGTH_SHORT).show();
+            Toast.makeText(CONTEXT, Environment.DIRECTORY_DOWNLOADS + "/" + STOCK_FILE_NAME, Toast.LENGTH_SHORT).show();
         }
-        loadingProgressBar.setVisibility(View.INVISIBLE);
     };
 
     View.OnClickListener showStockListener = v -> {
@@ -196,4 +195,17 @@ public class StockFragment extends Fragment {
         Toast.makeText(getContext(), "FILE EXISTS; " + f.exists() + " at " + f.getAbsolutePath(), Toast.LENGTH_SHORT).show();
         loadingProgressBar.setVisibility(View.INVISIBLE);
     };
+
+    public static boolean isValidProduct(Producto producto) {
+        return producto.getCodigo() != null &&
+                !producto.getCodigo().isEmpty()
+                && producto.getBloque() != null
+                && !producto.getBloque().isEmpty()
+                && producto.getStock() != 0
+                && producto.getDescripcion() != null
+                && !producto.getDescripcion().isEmpty()
+                // && producto.getFotos() != null
+                ;
+
+    }
 }
