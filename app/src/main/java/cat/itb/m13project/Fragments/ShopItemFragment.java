@@ -1,16 +1,14 @@
 package cat.itb.m13project.Fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -30,24 +28,46 @@ import static cat.itb.m13project.Fragments.HomeFragment.cartProducts;
 
 public class ShopItemFragment extends Fragment {
 
+    static MaterialTextView productPriceTextView;
+    static MaterialTextView quantityTextView;
     private static Producto p;
-
     private static int quantity = 1;
-
+    private static View.OnClickListener subtractListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (quantity <= 1) {
+                Toast.makeText(CONTEXT, ERROR, Toast.LENGTH_SHORT).show();
+                quantity = 1;
+            } else {
+                quantity--;
+            }
+            setValues();
+        }
+    };
+    private static View.OnClickListener addListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            quantity++;
+            setValues();
+        }
+    };
     MaterialTextView productNameTextView;
     ImageView productImageView;
     MaterialTextView moreSpecsTextTextView;
     SwitchMaterial showMoreSpecsSwitch;
     MaterialTextView moreSpecsTextView;
     MaterialButton addToCartButton;
-    static MaterialTextView productPriceTextView;
-
     MaterialButton subtractButton;
-    static MaterialTextView quantityTextView;
     MaterialButton addButton;
 
     public ShopItemFragment() {
         // Required empty public constructor
+    }
+
+    private static void setValues() {
+        quantityTextView.setText(String.valueOf(quantity));
+        double precio = quantity * p.getPrecioFinalProveedor();
+        productPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", precio).concat(" ").concat(CURRENCY));
     }
 
     @Override
@@ -111,32 +131,5 @@ public class ShopItemFragment extends Fragment {
         setValues();
 
         return v;
-    }
-
-    private static View.OnClickListener subtractListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (quantity <= 1) {
-                Toast.makeText(CONTEXT, ERROR, Toast.LENGTH_SHORT).show();
-                quantity = 1;
-            } else {
-                quantity--;
-            }
-            setValues();
-        }
-    };
-
-    private static View.OnClickListener addListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            quantity++;
-            setValues();
-        }
-    };
-
-    private static void setValues() {
-        quantityTextView.setText(String.valueOf(quantity));
-        double precio = quantity * p.getPrecioFinalProveedor();
-        productPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", precio).concat(" ").concat(CURRENCY));
     }
 }

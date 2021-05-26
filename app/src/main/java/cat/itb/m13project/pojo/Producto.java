@@ -1,6 +1,5 @@
 package cat.itb.m13project.pojo;
 
-import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 
 import org.simpleframework.xml.Element;
@@ -9,7 +8,6 @@ import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Locale;
 
 @Root(name = "producto", strict = false)
 public class Producto implements Serializable {

@@ -29,11 +29,11 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/outletButton"
         style="@style/BottomAppBarButton"
-        app:iconTint="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/outlet"
         app:icon="@drawable/ic_baseline_calendar_today_24"
+        app:iconTint="@color/colorPrimary"
         app:layout_constraintEnd_toStartOf="@+id/destacadosButton"
         app:layout_constraintStart_toEndOf="@+id/offersButton"
         app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
@@ -45,8 +45,8 @@
         android:layout_height="wrap_content"
         android:text="@string/destacados"
         app:icon="@drawable/ic_baseline_new_releases_24"
-        app:layout_constraintEnd_toEndOf="parent"
         app:iconTint="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/outletButton"
         app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
 

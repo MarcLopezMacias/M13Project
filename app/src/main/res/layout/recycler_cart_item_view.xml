@@ -41,24 +41,23 @@
 
     <TextView
         android:id="@+id/carrito_item_total_price_text_view"
+        style="@style/smallerText"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
-        style="@style/smallerText"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomSeparator"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topSeparator"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
 
     <View
         android:id="@+id/bottomSeparator"
+        style="@style/smallerText"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@drawable/rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/smallerText"
         tools:layout_editor_absoluteX="-96dp" />
 
 

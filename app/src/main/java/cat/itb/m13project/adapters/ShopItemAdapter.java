@@ -19,8 +19,6 @@ import cat.itb.m13project.pojo.Producto;
 
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
-import static cat.itb.m13project.ConstantVariables.DEFAULT_AMOUNT;
-import static cat.itb.m13project.ConstantVariables.MY_DEFAULT_AMOUNT;
 import static cat.itb.m13project.Fragments.HomeFragment.homeProductos;
 
 
@@ -81,20 +79,20 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
         }
 
         public void bind(final Producto producto) {
-            if (producto!= null ) {
+            if (producto != null) {
                 if (!(producto.getDescripcion() == null)
-                         && !(producto.getCaracteristicas() == null)
-                         && !(producto.getPrecioFinalProveedor() <= 0)
+                        && !(producto.getCaracteristicas() == null)
+                        && !(producto.getPrecioFinalProveedor() <= 0)
                         && !(producto.getDescripcion().isEmpty())
                         && !String.valueOf(producto.getPrecioFinalProveedor()).isEmpty()
                 ) {
-                     productNameTextView.setText(producto.getDescripcion());
+                    productNameTextView.setText(producto.getDescripcion());
                     System.out.println(producto.getFotos());
-                     if(producto.getFotos() != null) {
-                         Picasso.with(CONTEXT)
-                                 .load(String.valueOf(producto.getFotos().get(0)))
-                                 .resize(69, 69).into(productImageView);
-                     }
+                    if (producto.getFotos() != null) {
+                        Picasso.with(CONTEXT)
+                                .load(String.valueOf(producto.getFotos().get(0)))
+                                .resize(69, 69).into(productImageView);
+                    }
                     productPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", producto.getPrecioFinalProveedor()).concat(" ").concat(CURRENCY));
                 }
             }

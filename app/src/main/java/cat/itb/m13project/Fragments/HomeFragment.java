@@ -80,18 +80,13 @@ import static cat.itb.m13project.MainActivity.dbProductoRef;
 
 public class HomeFragment extends Fragment {
 
-    NavigationView navigationView;
-
-    RecyclerView recyclerView;
-    ShopItemAdapter adapter;
-
-    DrawerLayout drawerLayout;
-
-    ActionBarDrawerToggle drawerToggle;
-
     public static List<Producto> homeProductos = new ArrayList<>();
     public static List<Producto> cartProducts = new ArrayList<>();
-
+    NavigationView navigationView;
+    RecyclerView recyclerView;
+    ShopItemAdapter adapter;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle drawerToggle;
     Query filter;
 
     public HomeFragment() {
@@ -436,6 +431,7 @@ public class HomeFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

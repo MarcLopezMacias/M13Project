@@ -20,30 +20,39 @@ import java.util.Locale;
 
 import cat.itb.m13project.R;
 import cat.itb.m13project.adapters.CartItemAdapter;
-import cat.itb.m13project.payment.PayPalAPI;
 import cat.itb.m13project.pojo.Producto;
 
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
 import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
 import static cat.itb.m13project.Fragments.HomeFragment.cartProducts;
 
-import static cat.itb.m13project.ConstantVariables.CONTEXT;
-
 public class CarritoFragment extends Fragment {
 
+    private static View.OnClickListener buyListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
     RecyclerView recyclerView;
     CartItemAdapter adapter;
-
     MaterialButton buyButton;
-
     MaterialTextView infoTextView;
-
     double totalValue = 0;
+
 
     public CarritoFragment() {
         // Required empty public constructor
     }
 
+    private static double getTotalCost(List<Producto> productos) {
+        double cost = 0;
+        for (Producto p : productos) {
+            cost += p.getPrecioFinalProveedor();
+        }
+        return cost;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,26 +104,10 @@ public class CarritoFragment extends Fragment {
 
         infoTextView = v.findViewById(R.id.cartInfoTextView);
         double totalValue = getTotalCost(cartProducts);
-        infoTextView.setText(String.valueOf(cartProducts.size()).concat(" products. " + String.format(Locale.ENGLISH, "%.2f",totalValue).concat(" ").concat(CURRENCY)));
+        infoTextView.setText(String.valueOf(cartProducts.size()).concat(" products. " + String.format(Locale.ENGLISH, "%.2f", totalValue).concat(" ").concat(CURRENCY)));
 
         buyButton.setOnClickListener(buyListener);
 
         return v;
     }
-
-
-    private static double getTotalCost(List<Producto> productos) {
-        double cost = 0;
-        for (Producto p : productos) {
-            cost += p.getPrecioFinalProveedor();
-        }
-        return cost;
-    }
-
-    private static View.OnClickListener buyListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            
-        }
-    };
 }

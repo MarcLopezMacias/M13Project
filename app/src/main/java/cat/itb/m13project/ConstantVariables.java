@@ -3,47 +3,31 @@ package cat.itb.m13project;
 import android.content.Context;
 import android.os.Environment;
 
-import com.blankj.utilcode.util.PathUtils;
-
 import static com.blankj.utilcode.util.StringUtils.getString;
 
 public class ConstantVariables {
 
-    public static Context CONTEXT;
-    public static Context ACTIVITY;
-
-
     public static final int USER_PASSWORD_LENGTH = 7;
     public static final String PROFILE = "Profile";
     public static final String CART = "Cart";
-
     public static final double IVA = 0.21;
     public static final String CURRENCY = "EUR";
     public static final int DEFAULT_AMOUNT = 1;
-
     public static final int MY_DEFAULT_AMOUNT = 69;
-
-
     public static final String ROOT_URL = "https://app.desyman.com/web/tarifas/";
     public static final String FINAL_URL = "?q=WVdOMGFXOXVQWFJoY21sbVlYTW1ZejB4TURrMU5RPT0";
-
     public static final String XML_URL = "xml/";
     public static final String CSV_URL = "csv/";
     public static final String CSV_20_URL = "csv20/";
     public static final String CSV_05_URL = "csvreducido/";
     public static final String EXCEL_URL = "excel/";
-
     public static final String STOCK_FILE_NAME = "stock.xml";
     public static final String ROOT_DOWNLOAD = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
     public static final String LOCAL_FILE_PATH = ROOT_DOWNLOAD + "/" + STOCK_FILE_NAME;
-
     public static final String UPDATING_STOCK = "Updating Stock";
-
     public static final String PROVIDER_STOCK_URL = ROOT_URL + XML_URL + FINAL_URL;
     public static final String APP_NAME = getString(R.string.app_name);
-
     public static final String ERROR = getString(R.string.error);
-    
     // CATEGORIES
     public static final String ACCESORIOS = getString(R.string.accesorios).toUpperCase();
     public static final String CAPTURADORAS = getString(R.string.capturadoras).toUpperCase();
@@ -81,17 +65,15 @@ public class ConstantVariables {
     public static final String TECLADOS = "TECLADOS";
     public static final String TELEFONIA_Y_MOVILIDAD = getString(R.string.telefonia_y_movilidad).toUpperCase();
     public static final String TPV = getString(R.string.tpv).toUpperCase();
-
     // OTHER STUFF
     public static final String DEFAULT = "DEFAULT";
-
     public static final String CODIGO = "codigo";
     public static final String FOTOS = "fotos";
     public static final String FECHA_ALTA = "fecha_alta";
-
     public static final String BLOQUE = "bloque";
-
     public static final String CURRENT_PRODUCT = "currentProduct";
+    public static Context CONTEXT;
+    public static Context ACTIVITY;
 
 
 }

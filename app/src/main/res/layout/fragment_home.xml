@@ -78,8 +78,7 @@
 
                 android:backgroundTint="@color/colorPrimary"
                 android:src="@drawable/ic_baseline_sort_24"
-                android:tint="@color/backgroundColor"
-                />
+                android:tint="@color/backgroundColor" />
 
         </RelativeLayout>
 

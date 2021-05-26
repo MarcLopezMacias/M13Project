@@ -9,19 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.textview.MaterialTextView;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
 import java.util.Locale;
 
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
 
-import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
 import static cat.itb.m13project.Fragments.HomeFragment.cartProducts;
-import static cat.itb.m13project.Fragments.HomeFragment.homeProductos;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ShopItemViewHolder> implements View.OnClickListener {
 
@@ -31,6 +25,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ShopIt
     public void setOnClickListener(View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
+
     public void setOnLongClickListener(View.OnLongClickListener onLongClickListener) {
         this.onLongClickListener = onLongClickListener;
     }
@@ -69,6 +64,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ShopIt
         TextView productoNameTextView;
         TextView productoPriceTextView;
         ImageView productoImageView;
+
         public ShopItemViewHolder(@NonNull View productoView) {
             super(productoView);
             productoNameTextView = productoView.findViewById(R.id.carrito_item_name_text_view);

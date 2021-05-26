@@ -21,7 +21,7 @@
         android:id="@+id/homeFragment"
         android:name="cat.itb.m13project.Fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_carritoFragment"
             app:destination="@id/carritoFragment" />
@@ -56,7 +56,7 @@
         android:id="@+id/carritoFragment"
         android:name="cat.itb.m13project.Fragments.CarritoFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
+        tools:layout="@layout/fragment_cart">
         <action
             android:id="@+id/action_carritoFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -65,7 +65,7 @@
         android:id="@+id/profileFragment2"
         android:name="cat.itb.m13project.Fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment2_to_homeFragment"
             app:destination="@id/homeFragment" />
