@@ -5,6 +5,7 @@
     android:background="@color/backgroundColor">
 
     <ImageView
+        android:layout_margin="8dp"
         android:id="@+id/shop_item_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,27 +13,51 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/shop_item_image_view"
-        android:src="@color/white"
+        android:src="@drawable/cio_paypal_logo"
         />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/shop_item_name_text_view"
+        style="@style/smallerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/smallerText"
-        android:hint="@string/product_name"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_toStartOf="@+id/shop_item_price_text_view"
         android:layout_toEndOf="@id/shop_item_image_view"
-        />
+        android:hint="@string/product_name" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/shop_item_price_text_view"
         android:layout_width="wrap_content"
         style="@style/smallerText"
+        android:layout_marginTop="4dp"
         android:hint="@string/unit_price"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/shop_item_image_view"
-        android:layout_below="@id/shop_item_name_text_view"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
         />
+
+    <View
+        android:id="@+id/topSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/rectangle"
+        android:layout_alignParentTop="true"
+        />
+
+    <View
+        android:id="@+id/bottomSeparator"
+        android:layout_width="match_parent"
+
+        android:layout_height="5dp"
+        android:background="@drawable/rectangle"
+        android:layout_alignParentBottom="true"
+        />
+
+
 
 
 </RelativeLayout>

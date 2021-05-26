@@ -101,6 +101,13 @@
 
     </style>
 
+    <style name="smolTextButton" parent="TextAppearance.AppCompat.Widget.Button.Colored">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">@color/backgroundColor</item>
+        <item name="android:background">@color/colorPrimary</item>
+
+    </style>
+
     <style name="OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorPrimary</item>

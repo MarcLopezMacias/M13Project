@@ -20,6 +20,7 @@ import java.util.List;
 import cat.itb.m13project.pojo.Usuario;
 
 import static android.Manifest.permission.*;
+import static cat.itb.m13project.ConstantVariables.ACTIVITY;
 import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
 import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
 
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.checkSelfPermission(this, INTERNET) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_STORAGE, 69);
         }
+
+        ACTIVITY = this;
 
         db = FirebaseDatabase.getInstance();
         dbUserRef = db.getReference("Usuario");

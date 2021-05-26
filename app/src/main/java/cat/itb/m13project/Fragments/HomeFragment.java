@@ -1,6 +1,5 @@
 package cat.itb.m13project.Fragments;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,22 +31,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.itb.m13project.R;
-import cat.itb.m13project.adapters.CartItemAdapter;
 import cat.itb.m13project.adapters.ShopItemAdapter;
 import cat.itb.m13project.pojo.Producto;
 
 import static cat.itb.m13project.ConstantVariables.ACCESORIOS;
 import static cat.itb.m13project.ConstantVariables.ALMACENAMIENTO_EXTERNO;
 import static cat.itb.m13project.ConstantVariables.APPLE;
+import static cat.itb.m13project.ConstantVariables.BLOQUE;
 import static cat.itb.m13project.ConstantVariables.CABLES_Y_ADAPTADORES;
 import static cat.itb.m13project.ConstantVariables.CAMARAS;
 import static cat.itb.m13project.ConstantVariables.CAPTURADORAS;
 import static cat.itb.m13project.ConstantVariables.CARGADORES;
 import static cat.itb.m13project.ConstantVariables.CART;
+import static cat.itb.m13project.ConstantVariables.CODIGO;
 import static cat.itb.m13project.ConstantVariables.COMPONENTES;
 import static cat.itb.m13project.ConstantVariables.CONSUMIBLES;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
-import static cat.itb.m13project.ConstantVariables.DEFAULT;
+import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
 import static cat.itb.m13project.ConstantVariables.DOMOTICA;
 import static cat.itb.m13project.ConstantVariables.ELECTRODOMESTICOS_PAE;
 import static cat.itb.m13project.ConstantVariables.ERGONOMIA;
@@ -76,7 +76,6 @@ import static cat.itb.m13project.ConstantVariables.TABLET_Y_E_BOOK;
 import static cat.itb.m13project.ConstantVariables.TECLADOS;
 import static cat.itb.m13project.ConstantVariables.TELEFONIA_Y_MOVILIDAD;
 import static cat.itb.m13project.ConstantVariables.TPV;
-import static cat.itb.m13project.Fragments.StockFragment.isValidProduct;
 import static cat.itb.m13project.MainActivity.dbProductoRef;
 
 public class HomeFragment extends Fragment {
@@ -91,6 +90,7 @@ public class HomeFragment extends Fragment {
     ActionBarDrawerToggle drawerToggle;
 
     public static List<Producto> homeProductos = new ArrayList<>();
+    public static List<Producto> cartProducts = new ArrayList<>();
 
     Query filter;
 
@@ -111,7 +111,7 @@ public class HomeFragment extends Fragment {
 
         CONTEXT = getContext();
 
-        filter = dbProductoRef.orderByChild("codigo").limitToFirst(5);
+        filter = dbProductoRef.orderByChild(CODIGO).limitToFirst(10);
 
         setHasOptionsMenu(true);
 
@@ -172,7 +172,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Bundle b = new Bundle();
                 Producto p = homeProductos.get(recyclerView.getChildAdapterPosition(v));
-                b.putSerializable("currentProduct", p);
+                b.putSerializable(CURRENT_PRODUCT, p);
 
                 Fragment newFragment;
                 FragmentManager fragmentManager;
@@ -197,216 +197,216 @@ public class HomeFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem producto) {
                 switch (producto.getTitle().toString().toLowerCase()) {
                     case "accesorios":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(ACCESORIOS);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ACCESORIOS);
                         cargarDatos();
                         drawerLayout.close();
                         break;
                     case "capturadoras":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(CAPTURADORAS);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CAPTURADORAS);
                         cargarDatos();
                         drawerLayout.close();
                         break;
                     case "cargadores":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(CARGADORES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CARGADORES);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "ergonomía":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(ERGONOMIA);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ERGONOMIA);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "grabadora externa":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(GRABADORA_EXTERNA);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(GRABADORA_EXTERNA);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "hub usb":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(HUB_USB);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(HUB_USB);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "kvm splitter":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(KVM_SPLITTER);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(KVM_SPLITTER);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "limpieza":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(LIMPIEZA);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(LIMPIEZA);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "pilas, baterías y cargadores":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(PILAS_BATERIAS_Y_CARGADORES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PILAS_BATERIAS_Y_CARGADORES);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "powerbank":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(POWERBANK);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(POWERBANK);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "almacenamiento externo":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(ALMACENAMIENTO_EXTERNO);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ALMACENAMIENTO_EXTERNO);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "apple":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(APPLE);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(APPLE);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "cables y adaptadores":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(CABLES_Y_ADAPTADORES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CABLES_Y_ADAPTADORES);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "cámaras":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(CAMARAS);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CAMARAS);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "componentes":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(COMPONENTES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(COMPONENTES);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "consumibles":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(CONSUMIBLES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CONSUMIBLES);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "domótica":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(DOMOTICA);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(DOMOTICA);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "electrodomésticos pae":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(ELECTRODOMESTICOS_PAE);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ELECTRODOMESTICOS_PAE);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "gaming":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(GAMING);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(GAMING);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "iluminación":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(ILUMINACION);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ILUMINACION);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "impresoras y escáneres":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(IMPRESORAS_Y_ESCANERES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(IMPRESORAS_Y_ESCANERES);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "monitores y televisores":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(MONITORES_Y_TELEVISORES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(MONITORES_Y_TELEVISORES);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "mouse y touchpad":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(MOUSE_Y_TOUCHPAD);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(MOUSE_Y_TOUCHPAD);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "networking":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(NETWORKING);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(NETWORKING);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "ocio y tiempo libre":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(OCIO_Y_TIEMPO_LIBRE);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(OCIO_Y_TIEMPO_LIBRE);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "ordenadores":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(ORDENADORES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ORDENADORES);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "portátiles":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(PORTATILES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PORTATILES);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "protección covid-19":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(PROTECCION_COVID_19);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PROTECCION_COVID_19);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "proyectores y accesorios":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(PROYECTORES_Y_ACCESORIOS);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PROYECTORES_Y_ACCESORIOS);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "sais, regletas y racks":
-                        filter = dbProductoRef.orderByChild("bloque".toLowerCase()).equalTo(SAIS_REGLETAS_Y_RACKS);
+                        filter = dbProductoRef.orderByChild(BLOQUE.toLowerCase()).equalTo(SAIS_REGLETAS_Y_RACKS);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "software":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(SOFTWARE);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(SOFTWARE);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "sonido y multimedia":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(SONIDO_Y_MULTIMEDIA);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(SONIDO_Y_MULTIMEDIA);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "tablet y e-book":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(TABLET_Y_E_BOOK);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TABLET_Y_E_BOOK);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "teclados":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(TECLADOS);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TECLADOS);
                         System.out.println(TECLADOS);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "telefonia y movilidad":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(TELEFONIA_Y_MOVILIDAD);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TELEFONIA_Y_MOVILIDAD);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "tpv":
-                        filter = dbProductoRef.orderByChild("bloque").equalTo(TPV);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TPV);
                         cargarDatos();
                         drawerLayout.close();
 
@@ -423,23 +423,19 @@ public class HomeFragment extends Fragment {
 
     private void cargarDatos() {
         homeProductos.clear();
+        System.out.println(filter.toString());
         filter.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Producto producto = dataSnapshot.getValue(Producto.class);
-                        if (!isValidProduct(producto)) {
-                            dbProductoRef.child(producto.getKey()).removeValue();
-                        } else {
-                            if (!homeProductos.contains(producto)) {
-                                homeProductos.add(producto);
-                            }
-                            adapter.notifyDataSetChanged();
-                        }
-
+                    if (!homeProductos.contains(producto)) {
+                        homeProductos.add(producto);
+                        System.out.println("ADDING PRODUCT TO RECYCLER");
+                    }
+                    adapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

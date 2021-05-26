@@ -245,9 +245,14 @@
     <string name="product_name">Product Name</string>
     <string name="product_image_view_context_description">Product Image View Context Description</string>
     <string name="product_description">Product Description</string>
-    <string name="add_to_cart">Add to Cart</string>
+    <string name="add_to_cart">Add</string>
     <string name="more_specs_text_view">More Specs Text View</string>
     <string name="more_specs">More Specs</string>
+    <string name="less">-</string>
+    <string name="more">+</string>
+    <string name="quantity">1</string>
+    <string name="info">INFO</string>
+    <string name="isi_computer_cart">ISI COMPUTER CART</string>
 
 
 </resources>

@@ -10,6 +10,8 @@ import static com.blankj.utilcode.util.StringUtils.getString;
 public class ConstantVariables {
 
     public static Context CONTEXT;
+    public static Context ACTIVITY;
+
 
     public static final int USER_PASSWORD_LENGTH = 7;
     public static final String PROFILE = "Profile";
@@ -19,7 +21,7 @@ public class ConstantVariables {
     public static final String CURRENCY = "EUR";
     public static final int DEFAULT_AMOUNT = 1;
 
-    public static final int SHOW_ME_DEFAULT_AMOUNT = 50;
+    public static final int MY_DEFAULT_AMOUNT = 69;
 
 
     public static final String ROOT_URL = "https://app.desyman.com/web/tarifas/";
@@ -80,7 +82,16 @@ public class ConstantVariables {
     public static final String TELEFONIA_Y_MOVILIDAD = getString(R.string.telefonia_y_movilidad).toUpperCase();
     public static final String TPV = getString(R.string.tpv).toUpperCase();
 
+    // OTHER STUFF
     public static final String DEFAULT = "DEFAULT";
+
+    public static final String CODIGO = "codigo";
+    public static final String FOTOS = "fotos";
+    public static final String FECHA_ALTA = "fecha_alta";
+
+    public static final String BLOQUE = "bloque";
+
+    public static final String CURRENT_PRODUCT = "currentProduct";
 
 
 }

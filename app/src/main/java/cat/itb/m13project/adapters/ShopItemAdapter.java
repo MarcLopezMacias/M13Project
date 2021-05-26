@@ -12,10 +12,15 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textview.MaterialTextView;
 import com.squareup.picasso.Picasso;
 
+import java.util.Locale;
+
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
 
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
+import static cat.itb.m13project.ConstantVariables.CURRENCY;
+import static cat.itb.m13project.ConstantVariables.DEFAULT_AMOUNT;
+import static cat.itb.m13project.ConstantVariables.MY_DEFAULT_AMOUNT;
 import static cat.itb.m13project.Fragments.HomeFragment.homeProductos;
 
 
@@ -80,12 +85,17 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
                 if (!(producto.getDescripcion() == null)
                          && !(producto.getCaracteristicas() == null)
                          && !(producto.getPrecioFinalProveedor() <= 0)
+                        && !(producto.getDescripcion().isEmpty())
+                        && !String.valueOf(producto.getPrecioFinalProveedor()).isEmpty()
                 ) {
                      productNameTextView.setText(producto.getDescripcion());
-                    Picasso.with(CONTEXT)
-                            .load(producto.getFotos().get(0))
-                            .resize(69,69).into(productImageView);
-                     productPriceTextView.setText(String.valueOf(producto.getPrecioFinalProveedor()));
+                    System.out.println(producto.getFotos());
+                     if(producto.getFotos() != null) {
+                         Picasso.with(CONTEXT)
+                                 .load(String.valueOf(producto.getFotos().get(0)))
+                                 .resize(69, 69).into(productImageView);
+                     }
+                    productPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", producto.getPrecioFinalProveedor()).concat(" ").concat(CURRENCY));
                 }
             }
         }

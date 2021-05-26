@@ -9,40 +9,59 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textview.MaterialTextView;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
+import java.util.Locale;
 
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
 
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
+import static cat.itb.m13project.ConstantVariables.CURRENCY;
+import static cat.itb.m13project.Fragments.HomeFragment.cartProducts;
+import static cat.itb.m13project.Fragments.HomeFragment.homeProductos;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ShopItemViewHolder> implements View.OnClickListener {
 
-    private View.OnClickListener shopProductoListener;
+    private View.OnClickListener onClickListener;
+    private View.OnLongClickListener onLongClickListener;
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+    public void setOnLongClickListener(View.OnLongClickListener onLongClickListener) {
+        this.onLongClickListener = onLongClickListener;
+    }
 
     @Override
     public void onClick(View v) {
-        if (shopProductoListener != null) {
-            shopProductoListener.onClick(v);
+        if (onClickListener != null) {
+            onClickListener.onClick(v);
+        }
+        if (onLongClickListener != null) {
+            onLongClickListener.onLongClick(v);
         }
     }
 
     @NonNull
     @Override
     public ShopItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_shop_item_view, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_cart_item_view, parent, false);
         v.setOnClickListener(this);
         return new ShopItemViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ShopItemViewHolder holder, int position) {
-        //holder.bind();
+        Producto producto = cartProducts.get(position);
+        holder.bind(producto);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return cartProducts.size();
     }
 
     public static class ShopItemViewHolder extends RecyclerView.ViewHolder {
@@ -50,17 +69,17 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ShopIt
         TextView productoNameTextView;
         TextView productoPriceTextView;
         ImageView productoImageView;
-
         public ShopItemViewHolder(@NonNull View productoView) {
             super(productoView);
-            productoNameTextView = productoView.findViewById(R.id.shop_item_name_text_view);
-            productoPriceTextView = productoView.findViewById(R.id.shop_item_price_text_view);
+            productoNameTextView = productoView.findViewById(R.id.carrito_item_name_text_view);
+            productoPriceTextView = productoView.findViewById(R.id.carrito_item_total_price_text_view);
             productoImageView = productoView.findViewById(R.id.carrito_item_image_view);
         }
 
         public void bind(final Producto producto) {
             productoNameTextView.setText(producto.getDescripcion());
-            productoPriceTextView.setText(String.valueOf(producto.getPrecioFinalProveedor()));
+            productoPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", producto.getPrecioFinalProveedor()).concat(" ").concat(CURRENCY));
+
         }
     }
 }

@@ -44,7 +44,7 @@ public class Producto implements Serializable {
     @Element(name = "bloque", required = false)
     String bloque;
 
-    @Element(name = "id_grupo")
+    @Element(name = "id_grupo", required = false)
     int idGrupo;
 
     @Element(name = "grupo", required = false)
@@ -53,7 +53,7 @@ public class Producto implements Serializable {
     @Element(name = "id_familia")
     int idFamilia;
 
-    @Element(name = "familia")
+    @Element(name = "familia", required = false)
     String familia;
 
     @Element(name = "marca", required = false)

@@ -32,8 +32,12 @@ import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
 import cat.itb.m13project.pojo.Productos;
 
+import static cat.itb.m13project.ConstantVariables.ACTIVITY;
+import static cat.itb.m13project.ConstantVariables.CODIGO;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
+import static cat.itb.m13project.ConstantVariables.DEFAULT;
 import static cat.itb.m13project.ConstantVariables.ERROR;
+import static cat.itb.m13project.ConstantVariables.FECHA_ALTA;
 import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
 import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
 import static cat.itb.m13project.ConstantVariables.STOCK_FILE_NAME;
@@ -67,6 +71,7 @@ public class StockFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_stock, container, false);
 
         CONTEXT = getContext();
+        ACTIVITY = getActivity();
 
         updateButton = v.findViewById(R.id.updateButton);
         updateButton.setOnClickListener(updateListener);
@@ -123,7 +128,7 @@ public class StockFragment extends Fragment {
                 for (int i = 0; i < productosList.size(); i++) {
                     System.out.println(i);
                     Producto producto = productosList.get(i);
-                    Query query = dbProductoRef.orderByChild("codigo").equalTo(producto.getCodigo());
+                    Query query = dbProductoRef.orderByChild(CODIGO).equalTo(producto.getCodigo());
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -131,25 +136,18 @@ public class StockFragment extends Fragment {
                                 for (DataSnapshot ds : snapshot.getChildren()) {
                                     Producto producto1 = ds.getValue(Producto.class);
                                     producto.setKey(producto1.getKey());
-                                    if (!isValidProduct(producto1)) {
-                                        dbProductoRef.child(producto.getKey()).removeValue();
-                                        System.out.println("PRODUCT NOT VALID");
-                                    } else {
-                                        System.out.println("PRODUCT VALID");
-                                        if (!(producto1.getStock() == producto.getStock())) {
-                                            dbProductoRef.child(producto.getKey()).setValue(producto);
-                                        }
+                                    makeValidProduct(producto1);
+                                    System.out.println("PRODUCT VALID");
+                                    if (!(producto1.getStock() == producto.getStock())) {
+                                        dbProductoRef.child(producto.getKey()).setValue(producto);
                                     }
+
                                 }
                             } else {
-                                if (isValidProduct(producto)) {
-                                    String key = dbProductoRef.push().getKey();
-                                    producto.setKey(key);
-                                    System.out.println("SNAPSHOT DOESNT EXIST: PRODUCT VALID");
-                                    dbProductoRef.child(key).setValue(producto);
-                                } else {
-                                    System.out.println("SNAPSHOT DOESNT EXIST: PRODUCT NOT VALID");
-                                }
+                                makeValidProduct(producto);
+                                String key = dbProductoRef.push().getKey();
+                                producto.setKey(key);
+                                dbProductoRef.child(key).setValue(producto);
                             }
                         }
 
@@ -162,6 +160,23 @@ public class StockFragment extends Fragment {
                 e.printStackTrace();
             }
         } else {
+            Toast.makeText(CONTEXT, UPDATING_STOCK, Toast.LENGTH_SHORT).show();
+            System.out.println(PROVIDER_STOCK_URL);
+            System.out.println(Environment.DIRECTORY_DOWNLOADS + "/" + STOCK_FILE_NAME);
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(PROVIDER_STOCK_URL));
+            request.setDescription(UPDATING_STOCK);
+            request.setTitle(STOCK_FILE_NAME);
+
+            request.allowScanningByMediaScanner();
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, STOCK_FILE_NAME);
+
+            DownloadManager manager = (DownloadManager) ACTIVITY.getSystemService(Context.DOWNLOAD_SERVICE);
+            manager.enqueue(request);
             Toast.makeText(CONTEXT, ERROR, Toast.LENGTH_SHORT).show();
             Toast.makeText(CONTEXT, Environment.DIRECTORY_DOWNLOADS + "/" + STOCK_FILE_NAME, Toast.LENGTH_SHORT).show();
         }
@@ -169,7 +184,7 @@ public class StockFragment extends Fragment {
 
     View.OnClickListener showStockListener = v -> {
         loadingProgressBar.setVisibility(View.VISIBLE);
-        Query query = dbProductoRef.orderByChild("fecha_alta");
+        Query query = dbProductoRef.orderByChild(FECHA_ALTA);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -196,16 +211,22 @@ public class StockFragment extends Fragment {
         loadingProgressBar.setVisibility(View.INVISIBLE);
     };
 
-    public static boolean isValidProduct(Producto producto) {
-        return producto.getCodigo() != null &&
-                !producto.getCodigo().isEmpty()
-                && producto.getBloque() != null
-                && !producto.getBloque().isEmpty()
-                && producto.getStock() != 0
-                && producto.getDescripcion() != null
-                && !producto.getDescripcion().isEmpty()
-                // && producto.getFotos() != null
-                ;
-
+    private static Producto makeValidProduct(Producto producto) {
+        if (producto.getFotos() == null) {
+            System.out.println("BAD PHOTOS");
+        }
+        if (producto.getCodigo() == null || producto.getCodigo().isEmpty()) {
+            producto.setCodigo(DEFAULT);
+        }
+        if (producto.getBloque() == null || producto.getBloque().isEmpty()) {
+            producto.setBloque(DEFAULT);
+        }
+        if (producto.getDescripcion() == null || producto.getDescripcion().isEmpty()) {
+            producto.setDescripcion(DEFAULT);
+        }
+        if (producto.getStock() == 0) {
+            System.out.println("BAD STOCK");
+        }
+        return producto;
     }
 }
