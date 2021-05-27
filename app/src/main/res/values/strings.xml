@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ISI COMPUTER</string>
+    <string name="channel_description">ISI COMPUTERs Push Notification Channel</string>
+
     <string name="providerWebPage">https://desyman.com/</string>
     <string name="providerEmail">marc.lopezma.7e3@itb.cat</string>
     <string name="providerPassword">123456789</string>
@@ -253,6 +255,8 @@
     <string name="quantity">1</string>
     <string name="info">INFO</string>
     <string name="isi_computer_cart">ISI COMPUTER CART</string>
+    <string name="sort">SORT PRODUCTS</string>
+    <string name="delete_products">DELETE PRODUCTS</string>
 
 
 </resources>

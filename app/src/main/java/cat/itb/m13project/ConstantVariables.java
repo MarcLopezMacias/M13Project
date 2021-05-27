@@ -1,11 +1,17 @@
 package cat.itb.m13project;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 
 import static com.blankj.utilcode.util.StringUtils.getString;
 
 public class ConstantVariables {
+
+    public static final String CLIENT_KEY = "AY4Lii5lOmSPYds58D3P_aueUOQrJi2a5rreDV3VEQWx78qZ1hHGYWo4PmaFQ3OCG7-nzAZe7GOe_jSf";
+    public static final int PAYPAL_REQUEST_CODE = 123;
 
     public static final int USER_PASSWORD_LENGTH = 7;
     public static final String PROFILE = "Profile";
@@ -28,6 +34,8 @@ public class ConstantVariables {
     public static final String PROVIDER_STOCK_URL = ROOT_URL + XML_URL + FINAL_URL;
     public static final String APP_NAME = getString(R.string.app_name);
     public static final String ERROR = getString(R.string.error);
+    public static final String REFRESH_DATABASE = "Don't forget to update the database!";
+
     // CATEGORIES
     public static final String ACCESORIOS = getString(R.string.accesorios).toUpperCase();
     public static final String CAPTURADORAS = getString(R.string.capturadoras).toUpperCase();
@@ -74,6 +82,16 @@ public class ConstantVariables {
     public static final String CURRENT_PRODUCT = "currentProduct";
     public static Context CONTEXT;
     public static Context ACTIVITY;
+
+    public static final String PRECIO_FINAL_PROVEEDOR = "precioFinalProveedor";
+    public static final String STOCK_VALUE = "stock";
+
+    public static final String UPDATE = "UPDATE";
+    public static final String NOT_TODAY = "NOT TODAY";
+    public static final String CHANNEL_ID = "ISI COMPUTER Channel";
+
+    public static final String DELETING_ALL_PRODUCTS = "DELETING ALL PRODUCTS";
+
 
 
 }

@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -42,7 +44,17 @@ public class ProfileFragment extends Fragment {
         updateProfile = v.findViewById(R.id.editProfileButton);
         updateProducts = v.findViewById(R.id.updateStock);
 
-        // updateProfile.setOnClickListener(updateStockListener);
+        updateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment  newFragment = new RegisterFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment, newFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         updateProducts.setOnClickListener(updateListener);
         return v;
     }

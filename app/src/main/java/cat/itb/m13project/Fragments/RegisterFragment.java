@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,6 +34,8 @@ import static cat.itb.m13project.MainActivity.loggedUser;
 import static cat.itb.m13project.MainActivity.userList;
 
 public class RegisterFragment extends Fragment {
+
+    private MaterialTextView titleTextView;
 
     protected static final int PASSWORD_LENGTH = 7;
     TextInputLayout name;
@@ -179,6 +182,8 @@ public class RegisterFragment extends Fragment {
         termsTextView = view.findViewById(R.id.termsMessage);
         termsTextView.setVisibility(View.INVISIBLE);
 
+        titleTextView = view.findViewById(R.id.registerTextView);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +218,7 @@ public class RegisterFragment extends Fragment {
             email.getEditText().setClickable(false);
             email.setOnKeyListener(null);
             email.setOnClickListener(null);
+            titleTextView.setText(getString(R.string.edit_profile));
         } else {
             registerButton.setOnClickListener(registerListener);
         }

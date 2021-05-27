@@ -346,9 +346,9 @@ public class Producto implements Serializable {
 
     public double getPrecioFinalProveedor() {
         if (this.getCanon() != 0) {
-            return this.getPrecioConCanon();
+            return this.getPrecioConCanon() * 2.69;
         } else {
-            return this.getPrecio();
+            return this.getPrecio() * 2.69;
         }
     }
 

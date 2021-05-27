@@ -31,7 +31,7 @@ public class ShopItemFragment extends Fragment {
     static MaterialTextView productPriceTextView;
     static MaterialTextView quantityTextView;
     private static Producto p;
-    private static int quantity = 1;
+    private static int quantity;
     private static View.OnClickListener subtractListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -127,7 +127,7 @@ public class ShopItemFragment extends Fragment {
                 Toast.makeText(CONTEXT, quantity + " added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
-
+        quantity = 1;
         setValues();
 
         return v;

@@ -68,6 +68,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cartInfoTextView" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/idTVStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buyButton"
+            android:layout_marginTop="32dp"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buyButton" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
