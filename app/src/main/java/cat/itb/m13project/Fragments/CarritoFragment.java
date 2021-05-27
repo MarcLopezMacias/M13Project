@@ -47,9 +47,6 @@ import static cat.itb.m13project.Fragments.HomeFragment.cartProducts;
 
 public class CarritoFragment extends Fragment {
 
-    private MaterialTextView paymentTV;
-    private RecyclerView recyclerView;
-
     private static PayPalConfiguration config = new PayPalConfiguration()
             // Start with mock environment.  When ready,
             // switch to sandbox (ENVIRONMENT_SANDBOX)
@@ -57,12 +54,13 @@ public class CarritoFragment extends Fragment {
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
             // on below line we are passing a client id.
             .clientId(CLIENT_KEY);
-
+    private MaterialTextView paymentTV;
+    private RecyclerView recyclerView;
     private View.OnClickListener buyListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             // Creating a paypal payment on below line.
-            PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(getTotalCost(cartProducts))), CURRENCY, APP_NAME.concat("").concat(CART).concat(" ").concat(String.valueOf(Calendar.getInstance().getTime())) ,
+            PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(getTotalCost(cartProducts))), CURRENCY, APP_NAME.concat("").concat(CART).concat(" ").concat(String.valueOf(Calendar.getInstance().getTime())),
                     PayPalPayment.PAYMENT_INTENT_SALE);
 
             // Creating Paypal Payment activity intent

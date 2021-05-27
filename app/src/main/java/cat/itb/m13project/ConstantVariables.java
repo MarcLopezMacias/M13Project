@@ -1,9 +1,6 @@
 package cat.itb.m13project;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
-import android.os.Build;
 import android.os.Environment;
 
 import static com.blankj.utilcode.util.StringUtils.getString;
@@ -80,18 +77,14 @@ public class ConstantVariables {
     public static final String FECHA_ALTA = "fecha_alta";
     public static final String BLOQUE = "bloque";
     public static final String CURRENT_PRODUCT = "currentProduct";
-    public static Context CONTEXT;
-    public static Context ACTIVITY;
-
     public static final String PRECIO_FINAL_PROVEEDOR = "precioFinalProveedor";
     public static final String STOCK_VALUE = "stock";
-
     public static final String UPDATE = "UPDATE";
     public static final String NOT_TODAY = "NOT TODAY";
     public static final String CHANNEL_ID = "ISI COMPUTER Channel";
-
     public static final String DELETING_ALL_PRODUCTS = "DELETING ALL PRODUCTS";
-
+    public static Context CONTEXT;
+    public static Context ACTIVITY;
 
 
 }

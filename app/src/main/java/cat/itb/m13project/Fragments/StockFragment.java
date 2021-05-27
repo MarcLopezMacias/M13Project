@@ -37,7 +37,6 @@ import static cat.itb.m13project.ConstantVariables.CODIGO;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.DEFAULT;
 import static cat.itb.m13project.ConstantVariables.DELETING_ALL_PRODUCTS;
-import static cat.itb.m13project.ConstantVariables.ERROR;
 import static cat.itb.m13project.ConstantVariables.FECHA_ALTA;
 import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
 import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
@@ -47,52 +46,47 @@ import static cat.itb.m13project.MainActivity.dbProductoRef;
 
 public class StockFragment extends Fragment {
 
+    public static Productos productos = null;
+    public static View.OnClickListener existsListener = v -> {
+        File f = new File(LOCAL_FILE_PATH);
+        if (f.exists()) {
+            Toast.makeText(CONTEXT, "FILE EXISTS; at " + f.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(CONTEXT, "FILE DOESNT EXIST", Toast.LENGTH_SHORT).show();
+        }
+    };
     static ProgressBar loadingProgressBar;
+    static List<Producto> productosList = new ArrayList<>();
+    public static View.OnClickListener updateListener = v -> {
+        // UPDATE DATABASE
+        updateDatabase();
+    };
+    public static View.OnClickListener showStockListener = v -> {
+        loadingProgressBar.setVisibility(View.VISIBLE);
+        Query query = dbProductoRef.orderByChild(FECHA_ALTA);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                productosList.clear();
+                if (snapshot.exists()) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        productosList.add(ds.getValue(Producto.class));
+                    }
+                }
+                System.out.println(productosList.size());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+        loadingProgressBar.setVisibility(View.INVISIBLE);
+    };
     MaterialButton updateButton;
     MaterialButton existsButton;
     MaterialButton showStockButton;
     MaterialButton deleteProductsButton;
     MaterialButton downloadButton;
-
-    public static Productos productos = null;
-    static List<Producto> productosList = new ArrayList<>();
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_stock, container, false);
-
-        CONTEXT = getContext();
-        ACTIVITY = getActivity();
-
-        updateButton = v.findViewById(R.id.updateButton);
-        updateButton.setOnClickListener(updateListener);
-        existsButton = v.findViewById(R.id.existsButton);
-        existsButton.setOnClickListener(existsListener);
-        deleteProductsButton = v.findViewById(R.id.deleteProductsButton);
-        deleteProductsButton.setOnClickListener(deleteProductsListener);
-        downloadButton = v.findViewById(R.id.downloadButton);
-        downloadButton.setOnClickListener(downloadListener);
-
-        showStockButton = v.findViewById(R.id.showStockButton);
-        showStockButton.setOnClickListener(showStockListener);
-
-        loadingProgressBar = v.findViewById(R.id.loading);
-
-        return v;
-    }
-
-    public static View.OnClickListener updateListener = v -> {
-        // UPDATE DATABASE
-        updateDatabase();
-    };
-
     View.OnClickListener downloadListener = v -> {
         // DOWNLOAD FILE
         loadingProgressBar.setVisibility(View.VISIBLE);
@@ -121,38 +115,6 @@ public class StockFragment extends Fragment {
         }
         loadingProgressBar.setVisibility(View.INVISIBLE);
     };
-
-    public static View.OnClickListener showStockListener = v -> {
-        loadingProgressBar.setVisibility(View.VISIBLE);
-        Query query = dbProductoRef.orderByChild(FECHA_ALTA);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                productosList.clear();
-                if (snapshot.exists()) {
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        productosList.add(ds.getValue(Producto.class));
-                    }
-                }
-                System.out.println(productosList.size());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-        loadingProgressBar.setVisibility(View.INVISIBLE);
-    };
-
-    public static View.OnClickListener existsListener = v -> {
-        File f = new File(LOCAL_FILE_PATH);
-        if (f.exists()) {
-            Toast.makeText(CONTEXT, "FILE EXISTS; at " + f.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(CONTEXT, "FILE DOESNT EXIST", Toast.LENGTH_SHORT).show();
-        }
-    };
-
     View.OnClickListener deleteProductsListener = v -> {
         Query query = dbProductoRef.orderByChild(CODIGO);
         query.addValueEventListener(new ValueEventListener() {
@@ -260,5 +222,36 @@ public class StockFragment extends Fragment {
             DownloadManager manager = (DownloadManager) ACTIVITY.getSystemService(Context.DOWNLOAD_SERVICE);
             manager.enqueue(request);
         }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_stock, container, false);
+
+        CONTEXT = getContext();
+        ACTIVITY = getActivity();
+
+        updateButton = v.findViewById(R.id.updateButton);
+        updateButton.setOnClickListener(updateListener);
+        existsButton = v.findViewById(R.id.existsButton);
+        existsButton.setOnClickListener(existsListener);
+        deleteProductsButton = v.findViewById(R.id.deleteProductsButton);
+        deleteProductsButton.setOnClickListener(deleteProductsListener);
+        downloadButton = v.findViewById(R.id.downloadButton);
+        downloadButton.setOnClickListener(downloadListener);
+
+        showStockButton = v.findViewById(R.id.showStockButton);
+        showStockButton.setOnClickListener(showStockListener);
+
+        loadingProgressBar = v.findViewById(R.id.loading);
+
+        return v;
     }
 }

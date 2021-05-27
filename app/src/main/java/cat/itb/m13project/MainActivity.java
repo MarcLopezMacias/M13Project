@@ -1,7 +1,5 @@
 package cat.itb.m13project;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,7 +11,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -24,7 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import cat.itb.m13project.pojo.Usuario;
@@ -34,14 +30,11 @@ import static android.Manifest.permission.MANAGE_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static cat.itb.m13project.ConstantVariables.ACTIVITY;
-import static cat.itb.m13project.ConstantVariables.CONTEXT;
-import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
-import static cat.itb.m13project.ConstantVariables.NOT_TODAY;
 import static cat.itb.m13project.ConstantVariables.CHANNEL_ID;
-import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
+import static cat.itb.m13project.ConstantVariables.NOT_TODAY;
 import static cat.itb.m13project.ConstantVariables.REFRESH_DATABASE;
 import static cat.itb.m13project.ConstantVariables.UPDATE;
-import static com.blankj.utilcode.util.StringUtils.getString;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -119,12 +112,12 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, PushActivity.class);
         i.putExtra(UPDATE, true);
-        i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, i, PendingIntent.FLAG_ONE_SHOT);
 
         Intent i2 = new Intent(this, PushActivity.class);
         i2.putExtra(NOT_TODAY, false);
-        i2.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+        i2.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent pendingIntent2 = PendingIntent.getActivity(MainActivity.this, 1, i2, PendingIntent.FLAG_ONE_SHOT);
 
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

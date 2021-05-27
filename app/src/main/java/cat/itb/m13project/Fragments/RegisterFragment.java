@@ -35,8 +35,6 @@ import static cat.itb.m13project.MainActivity.userList;
 
 public class RegisterFragment extends Fragment {
 
-    private MaterialTextView titleTextView;
-
     protected static final int PASSWORD_LENGTH = 7;
     TextInputLayout name;
     TextInputLayout email;
@@ -49,7 +47,6 @@ public class RegisterFragment extends Fragment {
     ProgressBar loadingProgressBar;
     MaterialCheckBox termsCheckBox;
     TextView termsTextView;
-
     String stringName, stringEmail, stringPassword, stringAddress, stringHint;
     View.OnClickListener registerListener = new View.OnClickListener() {
         @Override
@@ -152,6 +149,7 @@ public class RegisterFragment extends Fragment {
             });
         }
     };
+    private MaterialTextView titleTextView;
 
     @Nullable
     @Override

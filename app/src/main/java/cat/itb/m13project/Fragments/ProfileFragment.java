@@ -47,7 +47,7 @@ public class ProfileFragment extends Fragment {
         updateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment  newFragment = new RegisterFragment();
+                Fragment newFragment = new RegisterFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment, newFragment);

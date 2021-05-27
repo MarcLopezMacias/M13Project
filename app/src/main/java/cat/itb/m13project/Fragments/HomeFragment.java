@@ -2,7 +2,6 @@ package cat.itb.m13project.Fragments;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.MutableFloat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +36,52 @@ import cat.itb.m13project.R;
 import cat.itb.m13project.adapters.ShopItemAdapter;
 import cat.itb.m13project.pojo.Producto;
 
-import static cat.itb.m13project.ConstantVariables.*;
+import static cat.itb.m13project.ConstantVariables.ACCESORIOS;
+import static cat.itb.m13project.ConstantVariables.ALMACENAMIENTO_EXTERNO;
+import static cat.itb.m13project.ConstantVariables.APPLE;
+import static cat.itb.m13project.ConstantVariables.BLOQUE;
+import static cat.itb.m13project.ConstantVariables.CABLES_Y_ADAPTADORES;
+import static cat.itb.m13project.ConstantVariables.CAMARAS;
+import static cat.itb.m13project.ConstantVariables.CAPTURADORAS;
+import static cat.itb.m13project.ConstantVariables.CARGADORES;
+import static cat.itb.m13project.ConstantVariables.CART;
+import static cat.itb.m13project.ConstantVariables.CODIGO;
+import static cat.itb.m13project.ConstantVariables.COMPONENTES;
+import static cat.itb.m13project.ConstantVariables.CONSUMIBLES;
+import static cat.itb.m13project.ConstantVariables.CONTEXT;
+import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
+import static cat.itb.m13project.ConstantVariables.DOMOTICA;
+import static cat.itb.m13project.ConstantVariables.ELECTRODOMESTICOS_PAE;
+import static cat.itb.m13project.ConstantVariables.ERGONOMIA;
+import static cat.itb.m13project.ConstantVariables.FECHA_ALTA;
+import static cat.itb.m13project.ConstantVariables.GAMING;
+import static cat.itb.m13project.ConstantVariables.GRABADORA_EXTERNA;
+import static cat.itb.m13project.ConstantVariables.HUB_USB;
+import static cat.itb.m13project.ConstantVariables.ILUMINACION;
+import static cat.itb.m13project.ConstantVariables.IMPRESORAS_Y_ESCANERES;
+import static cat.itb.m13project.ConstantVariables.KVM_SPLITTER;
+import static cat.itb.m13project.ConstantVariables.LIMPIEZA;
+import static cat.itb.m13project.ConstantVariables.MONITORES_Y_TELEVISORES;
+import static cat.itb.m13project.ConstantVariables.MOUSE_Y_TOUCHPAD;
+import static cat.itb.m13project.ConstantVariables.MY_DEFAULT_AMOUNT;
+import static cat.itb.m13project.ConstantVariables.NETWORKING;
+import static cat.itb.m13project.ConstantVariables.OCIO_Y_TIEMPO_LIBRE;
+import static cat.itb.m13project.ConstantVariables.ORDENADORES;
+import static cat.itb.m13project.ConstantVariables.PILAS_BATERIAS_Y_CARGADORES;
+import static cat.itb.m13project.ConstantVariables.PORTATILES;
+import static cat.itb.m13project.ConstantVariables.POWERBANK;
+import static cat.itb.m13project.ConstantVariables.PRECIO_FINAL_PROVEEDOR;
+import static cat.itb.m13project.ConstantVariables.PROFILE;
+import static cat.itb.m13project.ConstantVariables.PROTECCION_COVID_19;
+import static cat.itb.m13project.ConstantVariables.PROYECTORES_Y_ACCESORIOS;
+import static cat.itb.m13project.ConstantVariables.SAIS_REGLETAS_Y_RACKS;
+import static cat.itb.m13project.ConstantVariables.SOFTWARE;
+import static cat.itb.m13project.ConstantVariables.SONIDO_Y_MULTIMEDIA;
+import static cat.itb.m13project.ConstantVariables.STOCK_VALUE;
+import static cat.itb.m13project.ConstantVariables.TABLET_Y_E_BOOK;
+import static cat.itb.m13project.ConstantVariables.TECLADOS;
+import static cat.itb.m13project.ConstantVariables.TELEFONIA_Y_MOVILIDAD;
+import static cat.itb.m13project.ConstantVariables.TPV;
 import static cat.itb.m13project.MainActivity.dbProductoRef;
 
 public class HomeFragment extends Fragment {
@@ -45,11 +89,10 @@ public class HomeFragment extends Fragment {
     public static List<Producto> homeProductos = new ArrayList<>();
     public static List<Producto> cartProducts = new ArrayList<>();
     NavigationView navigationView;
+    Query filter;
     private RecyclerView recyclerView;
     private ShopItemAdapter adapter;
     private DrawerLayout drawerLayout;
-    Query filter;
-
     private ExtendedFloatingActionButton sortButton;
 
     public HomeFragment() {
@@ -69,7 +112,8 @@ public class HomeFragment extends Fragment {
 
         CONTEXT = getContext();
 
-        if (filter == null) filter = dbProductoRef.orderByChild(CODIGO).limitToFirst(MY_DEFAULT_AMOUNT);
+        if (filter == null)
+            filter = dbProductoRef.orderByChild(CODIGO).limitToFirst(MY_DEFAULT_AMOUNT);
 
         setHasOptionsMenu(true);
 

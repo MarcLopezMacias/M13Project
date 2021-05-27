@@ -1,7 +1,5 @@
 package cat.itb.m13project;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
@@ -13,6 +11,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -38,6 +38,14 @@ public class PushActivity extends AppCompatActivity {
     MaterialButton existsButton;
     MaterialButton updateButton;
     MaterialButton showStockButton;
+    BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {
+        public void onReceive(Context ctxt, Intent intent) {
+            long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+            if (id == downloadId) {
+                StockFragment.updateDatabase();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,15 +90,6 @@ public class PushActivity extends AppCompatActivity {
         }
 
     }
-
-    BroadcastReceiver onDownloadComplete =new BroadcastReceiver() {
-        public void onReceive(Context ctxt, Intent intent) {
-            long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-            if (id == downloadId) {
-                StockFragment.updateDatabase();
-            }
-        }
-    };
 
     @Override
     protected void onDestroy() {
