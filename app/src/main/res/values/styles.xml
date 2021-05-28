@@ -146,10 +146,12 @@
         <item name="itemTextAppearance">@style/TextAppearance.Custom.Navigation.Producto</item>
         <item name="itemTextColor">@color/colorPrimary</item>
         <item name="itemBackground">@color/backgroundColor</item>
-        <item name="android:background">@color/white</item>
-        <item name="color">@color/white</item>
+        <item name="android:background">@color/backgroundColor</item>
+        <item name="color">@color/backgroundColor</item>
         <item name="android:textColor">@color/colorPrimary</item>
-        <item name="titleTextColor">@color/white</item>
+        <item name="titleTextColor">@color/colorPrimary</item>
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+
     </style>
 
     <style name="TextAppearance.Custom.Navigation.Producto" parent="normalSizeText">

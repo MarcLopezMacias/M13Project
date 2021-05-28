@@ -62,7 +62,6 @@ public class StockFragment extends Fragment {
         updateDatabase();
     };
     public static View.OnClickListener showStockListener = v -> {
-        loadingProgressBar.setVisibility(View.VISIBLE);
         Query query = dbProductoRef.orderByChild(FECHA_ALTA);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,7 +79,6 @@ public class StockFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-        loadingProgressBar.setVisibility(View.INVISIBLE);
     };
     MaterialButton updateButton;
     MaterialButton existsButton;
@@ -143,7 +141,7 @@ public class StockFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static Producto makeValidProduct(Producto producto) {
+    public static Producto makeValidProduct(Producto producto) {
         if (producto.getFotos() == null) {
             System.out.println("BAD PHOTOS");
         }
@@ -165,7 +163,7 @@ public class StockFragment extends Fragment {
     public static void updateDatabase() {
         Toast.makeText(CONTEXT, "UPDATING DATABASE", Toast.LENGTH_SHORT).show();
         File f = new File(LOCAL_FILE_PATH);
-        if (f.exists()) {
+        if (f.exists() && f.getTotalSpace() >= 1024) {
             Toast.makeText(CONTEXT, "FILE EXISTS at: " + f.getAbsolutePath(), Toast.LENGTH_SHORT).show();
             try {
                 Serializer ser = new Persister();

@@ -237,59 +237,58 @@ public class HomeFragment extends Fragment {
                         cargarDatos();
                         drawerLayout.close();
                         break;
-                    case "capturadoras":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CAPTURADORAS);
-                        cargarDatos();
-                        drawerLayout.close();
-                        break;
-                    case "cargadores":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CARGADORES);
-                        cargarDatos();
-                        drawerLayout.close();
-
-                        break;
-                    case "ergonomía":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ERGONOMIA);
-                        cargarDatos();
-                        drawerLayout.close();
-
-                        break;
-                    case "grabadora externa":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(GRABADORA_EXTERNA);
-                        cargarDatos();
-                        drawerLayout.close();
-
-                        break;
-                    case "hub usb":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(HUB_USB);
-                        cargarDatos();
-                        drawerLayout.close();
-
-                        break;
-                    case "kvm splitter":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(KVM_SPLITTER);
-                        cargarDatos();
-                        drawerLayout.close();
-
-                        break;
-                    case "limpieza":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(LIMPIEZA);
-                        cargarDatos();
-                        drawerLayout.close();
-
-                        break;
-                    case "pilas, baterías y cargadores":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PILAS_BATERIAS_Y_CARGADORES);
-                        cargarDatos();
-                        drawerLayout.close();
-
-                        break;
-                    case "powerbank":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(POWERBANK);
-                        cargarDatos();
-                        drawerLayout.close();
-
-                        break;
+//                    case "capturadoras":
+//                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CAPTURADORAS);
+//                        cargarDatos();
+//                        drawerLayout.close();
+//                        break;
+//                    case "cargadores":
+//                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CARGADORES);
+//                        cargarDatos();
+//                        drawerLayout.close();
+//
+//                        break;
+//                    case "ergonomía":
+//                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ERGONOMIA);
+//                        cargarDatos();
+//                        drawerLayout.close();
+//
+//                        break;
+//                    case "grabadora externa":
+//                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(GRABADORA_EXTERNA);
+//                        cargarDatos();
+//                        drawerLayout.close();
+//
+//                        break;
+//                    case "hub usb":
+//                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(HUB_USB);
+//                        cargarDatos();
+//                        drawerLayout.close();
+//
+//                        break;
+//                    case "kvm splitter":
+//                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(KVM_SPLITTER);
+//                        cargarDatos();
+//                        drawerLayout.close();
+//
+//                        break;
+//                    case "limpieza":
+//                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(LIMPIEZA);
+//                        cargarDatos();
+//                        drawerLayout.close();
+//
+//                        break;
+//                    case "pilas, baterías y cargadores":
+//                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PILAS_BATERIAS_Y_CARGADORES);
+//                        cargarDatos();
+//                        drawerLayout.close();
+//
+//                        break;
+//                    case "powerbank":
+//                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(POWERBANK);
+//                        cargarDatos();
+//                        drawerLayout.close();
+//                        break;
                     case "almacenamiento externo":
                         filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ALMACENAMIENTO_EXTERNO);
                         cargarDatos();
@@ -448,7 +447,10 @@ public class HomeFragment extends Fragment {
 
                         break;
                     default:
-                        Toast.makeText(getContext(), "DEFAULT WTF", Toast.LENGTH_SHORT).show();
+                        filter = dbProductoRef.orderByChild(CODIGO).limitToFirst(MY_DEFAULT_AMOUNT);
+                        cargarDatos();
+                        drawerLayout.close();
+                        break;
                 }
                 return false;
             }

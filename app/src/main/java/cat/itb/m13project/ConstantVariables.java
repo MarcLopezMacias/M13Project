@@ -19,6 +19,7 @@ public class ConstantVariables {
     public static final int MY_DEFAULT_AMOUNT = 69;
     public static final String ROOT_URL = "https://app.desyman.com/web/tarifas/";
     public static final String FINAL_URL = "?q=WVdOMGFXOXVQWFJoY21sbVlYTW1ZejB4TURrMU5RPT0";
+    public static final String REAL_FINAL_URL = "?q=WVdOMGFXOXVQWFJoY21sbVlYTW1ZejB4TURrMU5RPT0";
     public static final String XML_URL = "xml/";
     public static final String CSV_URL = "csv/";
     public static final String CSV_20_URL = "csv20/";

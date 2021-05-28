@@ -2,8 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/home"
+        android:title="@string/home" />
+
+    <item
         android:id="@+id/accesorios"
         android:title="@string/accesorios">
+        <!--
         <menu>
             <item
                 android:id="@+id/capturadoras"
@@ -41,6 +46,7 @@
                 android:id="@+id/powerbank"
                 android:title="@string/powerbank" />
         </menu>
+        -->
     </item>
 
     <item

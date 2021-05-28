@@ -257,6 +257,7 @@
     <string name="isi_computer_cart">ISI COMPUTER CART</string>
     <string name="sort">SORT PRODUCTS</string>
     <string name="delete_products">DELETE PRODUCTS</string>
+    <string name="home">Home</string>
 
 
 </resources>
