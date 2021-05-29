@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,14 +45,16 @@ public class RegisterFragment extends Fragment {
     MaterialButton loginButton;
     ProgressBar loadingProgressBar;
     MaterialCheckBox termsCheckBox;
-    TextView termsTextView;
-    String stringName, stringEmail, stringPassword, stringAddress, stringHint;
+    MaterialTextView termsTextView;
+    String stringName, stringEmail, stringPassword, stringRepeatedPassword, stringAddress, stringHint;
     View.OnClickListener registerListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            System.out.println("REGISTER LISTENER");
             stringName = RegisterFragment.this.name.getEditText().getText().toString();
             stringEmail = RegisterFragment.this.email.getEditText().getText().toString();
             stringPassword = RegisterFragment.this.password.getEditText().getText().toString();
+            stringRepeatedPassword = RegisterFragment.this.repeatedPassword.getEditText().getText().toString();
             stringAddress = RegisterFragment.this.address.getEditText().getText().toString();
             stringHint = RegisterFragment.this.hint.getEditText().getText().toString();
 
@@ -61,8 +62,8 @@ public class RegisterFragment extends Fragment {
             loggedUser.setEmail(stringEmail);
             loggedUser.setPassword(stringPassword);
             loggedUser.setAddress(stringAddress);
-
             loggedUser.setForgottenPasswordHint(stringHint);
+
             Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -77,17 +78,22 @@ public class RegisterFragment extends Fragment {
                         }
                     }
                     if (!exists) {
-                        if (isValidData(loggedUser)) {
-                            String key = dbUserRef.push().getKey();
-                            loggedUser.setId(key);
-                            dbUserRef.child(key).setValue(loggedUser);
-                            loadingProgressBar.setVisibility(View.VISIBLE);
-                            Fragment newFragment = new HomeFragment();
-                            FragmentManager fragmentManager = getFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.fragment, newFragment);
-                            fragmentTransaction.addToBackStack(null);
-                            fragmentTransaction.commit();
+                        if (stringPassword.equals(stringRepeatedPassword)) {
+                            if (isValidData(loggedUser)) {
+                                String key = dbUserRef.push().getKey();
+                                loggedUser.setId(key);
+                                dbUserRef.child(key).setValue(loggedUser);
+                                loadingProgressBar.setVisibility(View.VISIBLE);
+                                Fragment newFragment = new HomeFragment();
+                                FragmentManager fragmentManager = getFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.fragment, newFragment);
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                            }
+                        } else {
+                            repeatedPassword.setHint(getString(R.string.invalid_password));
+                            repeatedPassword.getEditText().setText("");
                         }
                     } else {
                         Toast.makeText(getContext(), "Account already exists.", Toast.LENGTH_SHORT).show();
@@ -109,6 +115,7 @@ public class RegisterFragment extends Fragment {
     View.OnClickListener updateListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            System.out.println("UPDATE LISTENER");
             stringName = RegisterFragment.this.name.getEditText().getText().toString();
             stringPassword = RegisterFragment.this.password.getEditText().getText().toString();
             stringAddress = RegisterFragment.this.address.getEditText().getText().toString();

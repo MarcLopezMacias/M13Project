@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/registerTextView"
             style="@style/biggestText"
             android:layout_width="wrap_content"
@@ -206,7 +206,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hintTextView" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/termsMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
