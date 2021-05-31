@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,7 @@ import static cat.itb.m13project.ConstantVariables.ELECTRODOMESTICOS_PAE;
 import static cat.itb.m13project.ConstantVariables.GAMING;
 import static cat.itb.m13project.ConstantVariables.ILUMINACION;
 import static cat.itb.m13project.ConstantVariables.IMPRESORAS_Y_ESCANERES;
+import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
 import static cat.itb.m13project.ConstantVariables.MONITORES_Y_TELEVISORES;
 import static cat.itb.m13project.ConstantVariables.MOUSE_Y_TOUCHPAD;
 import static cat.itb.m13project.ConstantVariables.MY_DEFAULT_AMOUNT;
@@ -207,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
         filter.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                File f = new File(LOCAL_FILE_PATH);
                 if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Producto producto = dataSnapshot.getValue(Producto.class);
@@ -214,6 +217,8 @@ public class MainActivity extends AppCompatActivity {
                             homeProductos.add(producto);
                         }
                     }
+                } else if (f.exists()) {
+                    StockFragment.updateDatabase();
                 } else {
                     addFakeProducts();
                 }

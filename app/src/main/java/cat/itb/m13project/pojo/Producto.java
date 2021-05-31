@@ -63,13 +63,13 @@ public class Producto implements Serializable {
     @Element(name = "peso")
     double peso;
 
-    @Element(name = "largo")
+    @Element(name = "largo", required = false)
     double largo;
 
-    @Element(name = "ancho")
+    @Element(name = "ancho", required = false)
     double ancho;
 
-    @Element(name = "alto")
+    @Element(name = "alto", required = false)
     double alto;
 
     @Element(name = "caracteristicas", required = false)

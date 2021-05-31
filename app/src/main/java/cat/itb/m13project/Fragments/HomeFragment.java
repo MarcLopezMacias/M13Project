@@ -233,7 +233,7 @@ public class HomeFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem producto) {
                 switch (producto.getTitle().toString().toLowerCase()) {
                     case "accesorios":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ACCESORIOS);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ACCESORIOS).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
                         break;
@@ -290,164 +290,164 @@ public class HomeFragment extends Fragment {
 //                        drawerLayout.close();
 //                        break;
                     case "almacenamiento externo":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ALMACENAMIENTO_EXTERNO);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ALMACENAMIENTO_EXTERNO).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "apple":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(APPLE);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(APPLE).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "cables y adaptadores":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CABLES_Y_ADAPTADORES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CABLES_Y_ADAPTADORES).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "cámaras":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CAMARAS);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CAMARAS).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "componentes":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(COMPONENTES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(COMPONENTES).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "consumibles":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CONSUMIBLES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(CONSUMIBLES).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "domótica":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(DOMOTICA);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(DOMOTICA).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "electrodomésticos pae":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ELECTRODOMESTICOS_PAE);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ELECTRODOMESTICOS_PAE).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "gaming":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(GAMING);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(GAMING).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "iluminación":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ILUMINACION);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ILUMINACION).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "impresoras y escáneres":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(IMPRESORAS_Y_ESCANERES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(IMPRESORAS_Y_ESCANERES).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "monitores y televisores":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(MONITORES_Y_TELEVISORES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(MONITORES_Y_TELEVISORES).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "mouse y touchpad":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(MOUSE_Y_TOUCHPAD);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(MOUSE_Y_TOUCHPAD).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "networking":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(NETWORKING);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(NETWORKING).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "ocio y tiempo libre":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(OCIO_Y_TIEMPO_LIBRE);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(OCIO_Y_TIEMPO_LIBRE).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "ordenadores":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ORDENADORES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(ORDENADORES).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "portátiles":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PORTATILES);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PORTATILES).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "protección covid-19":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PROTECCION_COVID_19);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PROTECCION_COVID_19).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "proyectores y accesorios":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PROYECTORES_Y_ACCESORIOS);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(PROYECTORES_Y_ACCESORIOS).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "sais, regletas y racks":
-                        filter = dbProductoRef.orderByChild(BLOQUE.toLowerCase()).equalTo(SAIS_REGLETAS_Y_RACKS);
+                        filter = dbProductoRef.orderByChild(BLOQUE.toLowerCase()).equalTo(SAIS_REGLETAS_Y_RACKS).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "software":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(SOFTWARE);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(SOFTWARE).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "sonido y multimedia":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(SONIDO_Y_MULTIMEDIA);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(SONIDO_Y_MULTIMEDIA).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "tablet y e-book":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TABLET_Y_E_BOOK);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TABLET_Y_E_BOOK).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "teclados":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TECLADOS);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TECLADOS).limitToFirst(MY_DEFAULT_AMOUNT);
                         System.out.println(TECLADOS);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "telefonia y movilidad":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TELEFONIA_Y_MOVILIDAD);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TELEFONIA_Y_MOVILIDAD).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     case "tpv":
-                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TPV);
+                        filter = dbProductoRef.orderByChild(BLOQUE).equalTo(TPV).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
 
                         break;
                     default:
-                        filter = dbProductoRef.orderByChild(CODIGO).limitToFirst(MY_DEFAULT_AMOUNT);
+                        filter = dbProductoRef.orderByChild(CODIGO).limitToFirst(MY_DEFAULT_AMOUNT).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
                         break;
