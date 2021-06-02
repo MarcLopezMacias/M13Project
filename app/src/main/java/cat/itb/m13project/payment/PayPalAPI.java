@@ -30,9 +30,9 @@ import java.util.Set;
 
 import cat.itb.m13project.R;
 
+import static cat.itb.m13project.ConstantVariables.CARRITO;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
-import static cat.itb.m13project.Fragments.WelcomeFragment.carrito;
-import static cat.itb.m13project.MainActivity.loggedUser;
+import static cat.itb.m13project.ConstantVariables.LOGGED_USER;
 
 /**
  * THIS FILE IS OVERWRITTEN BY `androidSDK/src/<general|partner>sampleAppJava.
@@ -108,9 +108,9 @@ public class PayPalAPI extends Activity {
     }
 
     private PayPalPayment getThingToBuy(String paymentIntent) {
-        return new PayPalPayment(BigDecimal.valueOf(carrito.getCarrito().get(0).getPrecioFinalProveedor()),
+        return new PayPalPayment(BigDecimal.valueOf(CARRITO.getCarrito().get(0).getPrecioFinalProveedor()),
                 CURRENCY,
-                carrito.getCarrito().get(0).getDescripcion(),
+                CARRITO.getCarrito().get(0).getDescripcion(),
                 paymentIntent);
     }
 
@@ -119,7 +119,7 @@ public class PayPalAPI extends Activity {
      */
     private PayPalPayment getStuffToBuy(String paymentIntent) {
         //--- include an item list, payment amount details
-        PayPalItem[] items = carrito.getItems();
+        PayPalItem[] items = CARRITO.getItems();
 
         BigDecimal subtotal = PayPalItem.getItemTotal(items);
         BigDecimal shipping = new BigDecimal("7.21");
@@ -140,7 +140,7 @@ public class PayPalAPI extends Activity {
      */
     private void addAppProvidedShippingAddress(PayPalPayment paypalPayment) {
         ShippingAddress shippingAddress =
-                new ShippingAddress().recipientName(loggedUser.getName()).line1(loggedUser.getAddress())
+                new ShippingAddress().recipientName(LOGGED_USER.getName()).line1(LOGGED_USER.getAddress())
                         .city("Austin").state("TX").postalCode("78729").countryCode("US");
         paypalPayment.providedShippingAddress(shippingAddress);
     }

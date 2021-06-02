@@ -78,7 +78,7 @@ public class Producto implements Serializable {
     @Element(name = "fecha_alta")
     String fechaAlta;
 
-    @ElementList(inline = true, required = false)
+    @ElementList(inline = true)
     List<Uri> fotos;
 
     @Element(name = "canon")

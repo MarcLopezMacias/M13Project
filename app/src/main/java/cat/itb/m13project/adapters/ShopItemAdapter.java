@@ -19,7 +19,7 @@ import cat.itb.m13project.pojo.Producto;
 
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
-import static cat.itb.m13project.Fragments.HomeFragment.homeProductos;
+import static cat.itb.m13project.ConstantVariables.HOME_PRODUCTS;
 
 
 public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopItemViewHolder> implements View.OnClickListener {
@@ -47,13 +47,13 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
 
     @Override
     public void onBindViewHolder(@NonNull ShopItemViewHolder holder, int position) {
-        Producto producto = homeProductos.get(position);
+        Producto producto = HOME_PRODUCTS.get(position);
         holder.bind(producto);
     }
 
     @Override
     public int getItemCount() {
-        return homeProductos.size();
+        return HOME_PRODUCTS.size();
     }
 
     class ShopItemViewHolder extends RecyclerView.ViewHolder {
@@ -79,23 +79,33 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
         }
 
         public void bind(final Producto producto) {
-            if (producto != null) {
-                if (!(producto.getDescripcion() == null)
-                        && !(producto.getCaracteristicas() == null)
-                        && !(producto.getPrecioFinalProveedor() <= 0)
-                        && !(producto.getDescripcion().isEmpty())
-                        && !String.valueOf(producto.getPrecioFinalProveedor()).isEmpty()
-                ) {
-                    productNameTextView.setText(producto.getDescripcion());
-                    System.out.println(producto.getFotos());
-                    if (producto.getFotos() != null) {
-                        Picasso.with(CONTEXT)
-                                .load(String.valueOf(producto.getFotos().get(0)))
-                                .resize(69, 69).into(productImageView);
-                    }
-                    productPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", producto.getPrecioFinalProveedor()).concat(" ").concat(CURRENCY));
-                }
+
+            productNameTextView.setText(producto.getDescripcion());
+            System.out.println("Binding pics: " + producto.getFotos());
+            if (producto.getFotos() != null) {
+                Picasso.with(CONTEXT)
+                        .load(String.valueOf(producto.getFotos().get(0)))
+                        .resize(69, 69).into(productImageView);
             }
+            productPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", producto.getPrecioFinalProveedor()).concat(" ").concat(CURRENCY));
+
+//            if (producto != null) {
+//                if (!(producto.getDescripcion() == null)
+//                        && !(producto.getCaracteristicas() == null)
+//                        && !(producto.getPrecioFinalProveedor() <= 0)
+//                        && !(producto.getDescripcion().isEmpty())
+//                        && !String.valueOf(producto.getPrecioFinalProveedor()).isEmpty()
+//                ) {
+//                    productNameTextView.setText(producto.getDescripcion());
+//                    System.out.println("Binding pics: " + producto.getFotos());
+//                    if (producto.getFotos() != null) {
+//                        Picasso.with(CONTEXT)
+//                                .load(String.valueOf(producto.getFotos().get(0)))
+//                                .resize(69, 69).into(productImageView);
+//                    }
+//                    productPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", producto.getPrecioFinalProveedor()).concat(" ").concat(CURRENCY));
+//                }
+//            }
         }
     }
 }

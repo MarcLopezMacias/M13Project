@@ -1,15 +1,32 @@
 package cat.itb.m13project;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Environment;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cat.itb.m13project.pojo.Cart;
+import cat.itb.m13project.pojo.Producto;
+import cat.itb.m13project.pojo.Usuario;
+
+import static android.Manifest.permission.INTERNET;
+import static android.Manifest.permission.MANAGE_EXTERNAL_STORAGE;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.blankj.utilcode.util.StringUtils.getString;
 
 public class ConstantVariables {
 
+    // NOT TOO CONSTANT
+    public static final int REQUEST_EXTERNAL_STORAGE = 69;
     public static final String CLIENT_KEY = "AY4Lii5lOmSPYds58D3P_aueUOQrJi2a5rreDV3VEQWx78qZ1hHGYWo4PmaFQ3OCG7-nzAZe7GOe_jSf";
     public static final int PAYPAL_REQUEST_CODE = 123;
-
     public static final int USER_PASSWORD_LENGTH = 7;
     public static final String PROFILE = "Profile";
     public static final String CART = "Cart";
@@ -33,7 +50,7 @@ public class ConstantVariables {
     public static final String APP_NAME = getString(R.string.app_name);
     public static final String ERROR = getString(R.string.error);
     public static final String REFRESH_DATABASE = "Don't forget to update the database!";
-
+    public static final String GUEST = getString(R.string.guest);
     // CATEGORIES
     public static final String ACCESORIOS = getString(R.string.accesorios).toUpperCase();
     public static final String CAPTURADORAS = getString(R.string.capturadoras).toUpperCase();
@@ -84,8 +101,23 @@ public class ConstantVariables {
     public static final String NOT_TODAY = "NOT TODAY";
     public static final String CHANNEL_ID = "ISI COMPUTER Channel";
     public static final String DELETING_ALL_PRODUCTS = "DELETING ALL PRODUCTS";
+    public static FirebaseDatabase DB;
+    public static DatabaseReference DB_USER_REF;
+    public static DatabaseReference DB_PRODUCTO_REF;
+    public static List<Usuario> USER_LIST;
+    public static String[] PERMISSIONS_STORAGE = {
+            READ_EXTERNAL_STORAGE,
+            WRITE_EXTERNAL_STORAGE,
+            INTERNET,
+            MANAGE_EXTERNAL_STORAGE
+    };
+    public static Usuario LOGGED_USER;
+    public static Cart CARRITO;
+    public static Query QUERY;
+    public static List<Producto> HOME_PRODUCTS = new ArrayList<>();
+    public static List<Producto> CART_PRODUCTS = new ArrayList<>();
     public static Context CONTEXT;
-    public static Context ACTIVITY;
+    public static Activity ACTIVITY;
 
 
 }

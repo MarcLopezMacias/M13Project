@@ -5,23 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButton;
 
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Cart;
-import cat.itb.m13project.pojo.Usuario;
 
+import static cat.itb.m13project.AddedFunctionalities.checkUser;
+import static cat.itb.m13project.ConstantVariables.CARRITO;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
-import static cat.itb.m13project.MainActivity.loggedUser;
+import static cat.itb.m13project.ConstantVariables.GUEST;
+import static cat.itb.m13project.ConstantVariables.LOGGED_USER;
 
 public class WelcomeFragment extends Fragment {
 
-    public static Cart carrito;
     TextView titleTextView;
     MaterialButton loginButton;
     MaterialButton registerButton;
@@ -46,42 +47,43 @@ public class WelcomeFragment extends Fragment {
 
         titleTextView = v.findViewById(R.id.title);
 
-        carrito = new Cart();
+        CARRITO = new Cart();
 
         loginButton = v.findViewById(R.id.loginButton);
         registerButton = v.findViewById(R.id.registerButton);
         forgotPasswordButton = v.findViewById(R.id.forgotPasswordButton);
 
-        if (savedInstanceState == null) {
-            loggedUser = new Usuario();
-            loggedUser.setName(getString(R.string.guest));
-            loggedUser.setEmail(getString(R.string.guest));
-        }
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment newFragment = new LoginFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, newFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
+                if (LOGGED_USER == null) {
+                    Toast.makeText(CONTEXT, "WAIT A SEC", Toast.LENGTH_SHORT).show();
+                } else if (LOGGED_USER.getEmail().equals(GUEST)) {
+                    Navigation.findNavController(v).navigate(R.id.action_welcomeFragment_to_loginFragment);
+                } else {
+                    System.out.println("CURRENT USER IS: " + LOGGED_USER.getEmail());
+                    Navigation.findNavController(v).navigate(R.id.action_welcomeFragment_to_homeFragment);
+                }
             }
         });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment newFragment = new RegisterFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, newFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                if (LOGGED_USER == null) {
+                    Toast.makeText(CONTEXT, "WAIT A SEC", Toast.LENGTH_SHORT).show();
+                } else if (LOGGED_USER.getEmail().equals(GUEST)) {
+                    Navigation.findNavController(v).navigate(R.id.action_welcomeFragment_to_registerFragment);
+                } else {
+                    System.out.println("CURRENT USER IS: " + LOGGED_USER.getEmail());
+                    Navigation.findNavController(v).navigate(R.id.action_welcomeFragment_to_homeFragment);
+                }
             }
         });
+
+        checkUser();
+        //addProductsWithImages();
+
         return v;
     }
 

@@ -14,8 +14,8 @@ import java.util.Locale;
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
 
+import static cat.itb.m13project.ConstantVariables.CART_PRODUCTS;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
-import static cat.itb.m13project.Fragments.HomeFragment.cartProducts;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ShopItemViewHolder> implements View.OnClickListener {
 
@@ -50,13 +50,13 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ShopIt
 
     @Override
     public void onBindViewHolder(@NonNull ShopItemViewHolder holder, int position) {
-        Producto producto = cartProducts.get(position);
+        Producto producto = CART_PRODUCTS.get(position);
         holder.bind(producto);
     }
 
     @Override
     public int getItemCount() {
-        return cartProducts.size();
+        return CART_PRODUCTS.size();
     }
 
     public static class ShopItemViewHolder extends RecyclerView.ViewHolder {

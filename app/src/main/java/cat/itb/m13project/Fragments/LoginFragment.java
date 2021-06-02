@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
@@ -22,11 +23,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import cat.itb.m13project.R;
+import cat.itb.m13project.SaveSharedPreference;
 import cat.itb.m13project.pojo.Usuario;
 
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
-import static cat.itb.m13project.MainActivity.loggedUser;
-import static cat.itb.m13project.MainActivity.userList;
+import static cat.itb.m13project.ConstantVariables.LOGGED_USER;
+import static cat.itb.m13project.ConstantVariables.USER_LIST;
 
 
 public class LoginFragment extends Fragment {
@@ -36,59 +38,19 @@ public class LoginFragment extends Fragment {
     MaterialButton loginButton;
     ProgressBar loadingProgressBar;
     MaterialButton forgottenPasswordButton;
-    ValueEventListener loginListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            userList.clear();
-            if (snapshot.exists()) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    Usuario user = ds.getValue(Usuario.class);
-                    userList.add(user);
-                }
-            }
-            if (userList.size() == 1) {
-                if (userList.get(0).getEmail().toLowerCase().equals(loggedUser.getEmail()) && userList.get(0).getPassword().equals(loggedUser.getPassword())) {
-                    loggedUser = userList.get(0);
-                    Fragment newFragment = new HomeFragment();
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment, newFragment);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
-                } else {
-                    loadingProgressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getContext(), "User/Password is not correct", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                loadingProgressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), "You must register first", Toast.LENGTH_SHORT).show();
-                Fragment newFragment = new RegisterFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, newFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    };
     ValueEventListener forgotListener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            userList.clear();
+            USER_LIST.clear();
             if (snapshot.exists()) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Usuario user = ds.getValue(Usuario.class);
-                    userList.add(user);
+                    USER_LIST.add(user);
                 }
             }
-            if (userList.size() == 1) {
-                if (userList.get(0).getEmail().toLowerCase().equals(loggedUser.getEmail())) {
-                    Toast.makeText(getContext(), userList.get(0).getForgottenPasswordHint(), Toast.LENGTH_SHORT).show();
+            if (USER_LIST.size() == 1) {
+                if (USER_LIST.get(0).getEmail().toLowerCase().equals(LOGGED_USER.getEmail())) {
+                    Toast.makeText(getContext(), USER_LIST.get(0).getForgottenPasswordHint(), Toast.LENGTH_SHORT).show();
                 }
             } else {
                 loadingProgressBar.setVisibility(View.INVISIBLE);
@@ -122,19 +84,48 @@ public class LoginFragment extends Fragment {
         loadingProgressBar = view.findViewById(R.id.loading);
         forgottenPasswordButton = view.findViewById(R.id.forgotPasswordButton);
 
-        if (!(loggedUser.getEmail().equals(getString(R.string.guest)))) {
-            emailEditText.setText(loggedUser.getEmail());
-            passwordEditText.setText(loggedUser.getPassword());
-        }
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                loggedUser.setEmail(emailEditText.getText().toString().toLowerCase());
-                loggedUser.setPassword(passwordEditText.getText().toString());
-                Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
-                query.addListenerForSingleValueEvent(loginListener);
+                LOGGED_USER.setEmail(emailEditText.getText().toString().toLowerCase());
+                LOGGED_USER.setPassword(passwordEditText.getText().toString());
+                Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(LOGGED_USER.getEmail());
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        USER_LIST.clear();
+                        if (snapshot.exists()) {
+                            for (DataSnapshot ds : snapshot.getChildren()) {
+                                Usuario user = ds.getValue(Usuario.class);
+                                USER_LIST.add(user);
+                            }
+                        }
+                        if (USER_LIST.size() >= 1) {
+                            for (int i = 0; i < USER_LIST.size(); i++) {
+                                if (USER_LIST.get(i).getEmail().toLowerCase().equals(LOGGED_USER.getEmail()) && USER_LIST.get(i).getPassword().equals(LOGGED_USER.getPassword())) {
+                                    LOGGED_USER = USER_LIST.get(i);
+                                    SaveSharedPreference.setUserName(getContext(), LOGGED_USER.getEmail());
+                                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment);
+                                }
+                            }
+                        } else {
+                            loadingProgressBar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getContext(), "You must register first", Toast.LENGTH_SHORT).show();
+                            Fragment newFragment = new RegisterFragment();
+                            FragmentManager fragmentManager = getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.fragment, newFragment);
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
@@ -143,8 +134,8 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 String email = emailEditText.getText().toString();
                 if (!email.isEmpty()) {
-                    loggedUser.setEmail(email);
-                    Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
+                    LOGGED_USER.setEmail(email);
+                    Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(LOGGED_USER.getEmail());
                     query.addListenerForSingleValueEvent(forgotListener);
                 } else {
                     Toast.makeText(getContext(), getString(R.string.invalid_email), Toast.LENGTH_SHORT).show();

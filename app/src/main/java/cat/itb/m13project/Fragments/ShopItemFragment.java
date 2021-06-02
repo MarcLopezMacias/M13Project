@@ -19,11 +19,11 @@ import java.util.Locale;
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
 
+import static cat.itb.m13project.ConstantVariables.CART_PRODUCTS;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
 import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
 import static cat.itb.m13project.ConstantVariables.ERROR;
-import static cat.itb.m13project.Fragments.HomeFragment.cartProducts;
 
 
 public class ShopItemFragment extends Fragment {
@@ -122,7 +122,7 @@ public class ShopItemFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < quantity; i++) {
-                    cartProducts.add(p);
+                    CART_PRODUCTS.add(p);
                 }
                 Toast.makeText(CONTEXT, quantity + " added to Cart", Toast.LENGTH_SHORT).show();
             }

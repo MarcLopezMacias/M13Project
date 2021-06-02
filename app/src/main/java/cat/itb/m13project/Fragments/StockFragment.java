@@ -35,6 +35,7 @@ import cat.itb.m13project.pojo.Productos;
 import static cat.itb.m13project.ConstantVariables.ACTIVITY;
 import static cat.itb.m13project.ConstantVariables.CODIGO;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
+import static cat.itb.m13project.ConstantVariables.DB_PRODUCTO_REF;
 import static cat.itb.m13project.ConstantVariables.DEFAULT;
 import static cat.itb.m13project.ConstantVariables.DELETING_ALL_PRODUCTS;
 import static cat.itb.m13project.ConstantVariables.FECHA_ALTA;
@@ -42,7 +43,6 @@ import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
 import static cat.itb.m13project.ConstantVariables.PROVIDER_STOCK_URL;
 import static cat.itb.m13project.ConstantVariables.STOCK_FILE_NAME;
 import static cat.itb.m13project.ConstantVariables.UPDATING_STOCK;
-import static cat.itb.m13project.MainActivity.dbProductoRef;
 
 public class StockFragment extends Fragment {
 
@@ -62,7 +62,7 @@ public class StockFragment extends Fragment {
         updateDatabase();
     };
     public static View.OnClickListener showStockListener = v -> {
-        Query query = dbProductoRef.orderByChild(FECHA_ALTA);
+        Query query = DB_PRODUCTO_REF.orderByChild(FECHA_ALTA);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -114,14 +114,14 @@ public class StockFragment extends Fragment {
         loadingProgressBar.setVisibility(View.INVISIBLE);
     };
     View.OnClickListener deleteProductsListener = v -> {
-        Query query = dbProductoRef.orderByChild(CODIGO);
+        Query query = DB_PRODUCTO_REF.orderByChild(CODIGO);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
                         Producto producto1 = ds.getValue(Producto.class);
-                        dbProductoRef.child(producto1.getKey()).removeValue();
+                        DB_PRODUCTO_REF.child(producto1.getKey()).removeValue();
 
 
                     }
@@ -143,7 +143,7 @@ public class StockFragment extends Fragment {
 
     public static Producto makeValidProduct(Producto producto) {
         if (producto.getFotos() == null) {
-            System.out.println("BAD PHOTOS");
+            System.out.println("PHOTOS IS NULL");
         }
         if (producto.getCodigo() == null || producto.getCodigo().isEmpty()) {
             producto.setCodigo(DEFAULT);
@@ -172,7 +172,7 @@ public class StockFragment extends Fragment {
                 for (int i = 0; i < productosList.size(); i++) {
                     System.out.println(i);
                     Producto producto = productosList.get(i);
-                    Query query = dbProductoRef.orderByChild(CODIGO).equalTo(producto.getCodigo());
+                    Query query = DB_PRODUCTO_REF.orderByChild(CODIGO).equalTo(producto.getCodigo());
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -183,15 +183,15 @@ public class StockFragment extends Fragment {
                                     makeValidProduct(producto1);
                                     System.out.println("PRODUCT VALID");
                                     if (!(producto1.getStock() == producto.getStock())) {
-                                        dbProductoRef.child(producto.getKey()).setValue(producto);
+                                        DB_PRODUCTO_REF.child(producto.getKey()).setValue(producto);
                                     }
 
                                 }
                             } else {
                                 makeValidProduct(producto);
-                                String key = dbProductoRef.push().getKey();
+                                String key = DB_PRODUCTO_REF.push().getKey();
                                 producto.setKey(key);
-                                dbProductoRef.child(key).setValue(producto);
+                                DB_PRODUCTO_REF.child(key).setValue(producto);
                             }
                         }
 

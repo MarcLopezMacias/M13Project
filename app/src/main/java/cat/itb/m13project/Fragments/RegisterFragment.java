@@ -25,12 +25,13 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import cat.itb.m13project.R;
+import cat.itb.m13project.SaveSharedPreference;
 import cat.itb.m13project.pojo.Usuario;
 
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
-import static cat.itb.m13project.MainActivity.dbUserRef;
-import static cat.itb.m13project.MainActivity.loggedUser;
-import static cat.itb.m13project.MainActivity.userList;
+import static cat.itb.m13project.ConstantVariables.DB_USER_REF;
+import static cat.itb.m13project.ConstantVariables.LOGGED_USER;
+import static cat.itb.m13project.ConstantVariables.USER_LIST;
 
 public class RegisterFragment extends Fragment {
 
@@ -58,31 +59,32 @@ public class RegisterFragment extends Fragment {
             stringAddress = RegisterFragment.this.address.getEditText().getText().toString();
             stringHint = RegisterFragment.this.hint.getEditText().getText().toString();
 
-            loggedUser.setName(stringName);
-            loggedUser.setEmail(stringEmail);
-            loggedUser.setPassword(stringPassword);
-            loggedUser.setAddress(stringAddress);
-            loggedUser.setForgottenPasswordHint(stringHint);
+            LOGGED_USER.setName(stringName);
+            LOGGED_USER.setEmail(stringEmail);
+            LOGGED_USER.setPassword(stringPassword);
+            LOGGED_USER.setAddress(stringAddress);
+            LOGGED_USER.setForgottenPasswordHint(stringHint);
 
-            Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
+            Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(LOGGED_USER.getEmail());
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     boolean exists = false;
-                    userList.clear();
+                    USER_LIST.clear();
                     if (snapshot.exists()) {
                         for (DataSnapshot ds : snapshot.getChildren()) {
                             Usuario user = ds.getValue(Usuario.class);
-                            userList.add(user);
+                            USER_LIST.add(user);
                             exists = true;
                         }
                     }
                     if (!exists) {
                         if (stringPassword.equals(stringRepeatedPassword)) {
-                            if (isValidData(loggedUser)) {
-                                String key = dbUserRef.push().getKey();
-                                loggedUser.setId(key);
-                                dbUserRef.child(key).setValue(loggedUser);
+                            if (isValidData(LOGGED_USER)) {
+                                String key = DB_USER_REF.push().getKey();
+                                LOGGED_USER.setId(key);
+                                DB_USER_REF.child(key).setValue(LOGGED_USER);
+                                SaveSharedPreference.setUserName(getContext(), LOGGED_USER.getEmail());
                                 loadingProgressBar.setVisibility(View.VISIBLE);
                                 Fragment newFragment = new HomeFragment();
                                 FragmentManager fragmentManager = getFragmentManager();
@@ -121,25 +123,25 @@ public class RegisterFragment extends Fragment {
             stringAddress = RegisterFragment.this.address.getEditText().getText().toString();
             stringHint = RegisterFragment.this.hint.getEditText().getText().toString();
 
-            loggedUser.setName(stringName);
-            loggedUser.setPassword(stringPassword);
-            loggedUser.setAddress(stringAddress);
-            loggedUser.setForgottenPasswordHint(stringHint);
+            LOGGED_USER.setName(stringName);
+            LOGGED_USER.setPassword(stringPassword);
+            LOGGED_USER.setAddress(stringAddress);
+            LOGGED_USER.setForgottenPasswordHint(stringHint);
 
-            Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(loggedUser.getEmail());
+            Query query = FirebaseDatabase.getInstance().getReference("Usuario").orderByChild("email").equalTo(LOGGED_USER.getEmail());
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    userList.clear();
+                    USER_LIST.clear();
                     if (snapshot.exists()) {
                         for (DataSnapshot ds : snapshot.getChildren()) {
                             Usuario user = ds.getValue(Usuario.class);
-                            userList.add(user);
+                            USER_LIST.add(user);
                         }
                     }
-                    if (isValidData(loggedUser)) {
-                        loggedUser.setId(userList.get(0).getId());
-                        dbUserRef.child(loggedUser.getId()).setValue(loggedUser);
+                    if (isValidData(LOGGED_USER)) {
+                        LOGGED_USER.setId(USER_LIST.get(0).getId());
+                        DB_USER_REF.child(LOGGED_USER.getId()).setValue(LOGGED_USER);
                         loadingProgressBar.setVisibility(View.VISIBLE);
                         Fragment newFragment = new ProfileFragment();
                         FragmentManager fragmentManager = getFragmentManager();
@@ -202,13 +204,13 @@ public class RegisterFragment extends Fragment {
         });
 
 
-        if (!loggedUser.getEmail().equals(getString(R.string.guest)) && !(loggedUser.getName().equals(getString(R.string.guest)))) {
-            name.getEditText().setText(loggedUser.getName());
-            email.getEditText().setText(loggedUser.getEmail());
-            password.getEditText().setText(loggedUser.getPassword());
-            repeatedPassword.getEditText().setText(loggedUser.getPassword());
-            address.getEditText().setText(loggedUser.getAddress());
-            hint.getEditText().setText(loggedUser.getForgottenPasswordHint());
+        if (!LOGGED_USER.getEmail().equals(getString(R.string.guest)) && !(LOGGED_USER.getName().equals(getString(R.string.guest)))) {
+            name.getEditText().setText(LOGGED_USER.getName());
+            email.getEditText().setText(LOGGED_USER.getEmail());
+            password.getEditText().setText(LOGGED_USER.getPassword());
+            repeatedPassword.getEditText().setText(LOGGED_USER.getPassword());
+            address.getEditText().setText(LOGGED_USER.getAddress());
+            hint.getEditText().setText(LOGGED_USER.getForgottenPasswordHint());
 
             termsCheckBox.setVisibility(View.INVISIBLE);
             termsCheckBox.setChecked(true);

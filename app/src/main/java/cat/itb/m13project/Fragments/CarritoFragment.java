@@ -38,12 +38,12 @@ import cat.itb.m13project.pojo.Producto;
 
 import static cat.itb.m13project.ConstantVariables.APP_NAME;
 import static cat.itb.m13project.ConstantVariables.CART;
+import static cat.itb.m13project.ConstantVariables.CART_PRODUCTS;
 import static cat.itb.m13project.ConstantVariables.CLIENT_KEY;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
 import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
 import static cat.itb.m13project.ConstantVariables.PAYPAL_REQUEST_CODE;
-import static cat.itb.m13project.Fragments.HomeFragment.cartProducts;
 
 public class CarritoFragment extends Fragment {
 
@@ -60,7 +60,7 @@ public class CarritoFragment extends Fragment {
         @Override
         public void onClick(View v) {
             // Creating a paypal payment on below line.
-            PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(getTotalCost(cartProducts))), CURRENCY, APP_NAME.concat("").concat(CART).concat(" ").concat(String.valueOf(Calendar.getInstance().getTime())),
+            PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(getTotalCost(CART_PRODUCTS))), CURRENCY, APP_NAME.concat("").concat(CART).concat(" ").concat(String.valueOf(Calendar.getInstance().getTime())),
                     PayPalPayment.PAYMENT_INTENT_SALE);
 
             // Creating Paypal Payment activity intent
@@ -112,7 +112,7 @@ public class CarritoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Bundle b = new Bundle();
-                Producto p = cartProducts.get(recyclerView.getChildAdapterPosition(v));
+                Producto p = CART_PRODUCTS.get(recyclerView.getChildAdapterPosition(v));
                 b.putSerializable(CURRENT_PRODUCT, p);
 
                 Fragment newFragment;
@@ -131,8 +131,8 @@ public class CarritoFragment extends Fragment {
         adapter.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Producto p = cartProducts.get(recyclerView.getChildAdapterPosition(v));
-                cartProducts.remove(p);
+                Producto p = CART_PRODUCTS.get(recyclerView.getChildAdapterPosition(v));
+                CART_PRODUCTS.remove(p);
                 Toast.makeText(CONTEXT, p + " deleted", Toast.LENGTH_SHORT).show();
                 return true;
             }
@@ -140,8 +140,8 @@ public class CarritoFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         MaterialTextView infoTextView = v.findViewById(R.id.cartInfoTextView);
-        double totalValue = getTotalCost(cartProducts);
-        infoTextView.setText(String.valueOf(cartProducts.size()).concat(" products. " + String.format(Locale.ENGLISH, "%.2f", totalValue).concat(" ").concat(CURRENCY)));
+        double totalValue = getTotalCost(CART_PRODUCTS);
+        infoTextView.setText(String.valueOf(CART_PRODUCTS.size()).concat(" products. " + String.format(Locale.ENGLISH, "%.2f", totalValue).concat(" ").concat(CURRENCY)));
 
         paymentTV = v.findViewById(R.id.idTVStatus);
 
