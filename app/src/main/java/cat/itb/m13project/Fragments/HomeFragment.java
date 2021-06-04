@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -81,6 +82,7 @@ import static cat.itb.m13project.ConstantVariables.TECLADOS;
 import static cat.itb.m13project.ConstantVariables.TELEFONIA_Y_MOVILIDAD;
 import static cat.itb.m13project.ConstantVariables.TPV;
 import static cat.itb.m13project.ConstantVariables.USER_LIST;
+import static com.blankj.utilcode.util.ResourceUtils.getDrawable;
 
 public class HomeFragment extends Fragment {
 
@@ -97,6 +99,31 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    private void cargarDatos() {
+        if (QUERY == null) {
+            QUERY = DB_PRODUCTO_REF.orderByChild(CODIGO).limitToFirst(MY_DEFAULT_AMOUNT);
+            Toast.makeText(CONTEXT, "LOADING PRODUCTS", Toast.LENGTH_SHORT).show();
+        }
+        HOME_PRODUCTS.clear();
+        QUERY.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Producto producto = dataSnapshot.getValue(Producto.class);
+                    if (!HOME_PRODUCTS.contains(producto)) {
+                        HOME_PRODUCTS.add(producto);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -207,6 +234,10 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                linearLayoutManager.getOrientation());
+        dividerItemDecoration.setDrawable(getDrawable(R.drawable.divider));
+        recyclerView.addItemDecoration(dividerItemDecoration);
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -405,7 +436,7 @@ public class HomeFragment extends Fragment {
 
                         break;
                     default:
-                        QUERY = DB_PRODUCTO_REF.orderByChild(CODIGO).limitToFirst(MY_DEFAULT_AMOUNT).limitToFirst(MY_DEFAULT_AMOUNT);
+                        QUERY = DB_PRODUCTO_REF.orderByChild(CODIGO).limitToFirst(MY_DEFAULT_AMOUNT);
                         cargarDatos();
                         drawerLayout.close();
                         break;
@@ -417,31 +448,6 @@ public class HomeFragment extends Fragment {
         checkUser();
 
         return v;
-    }
-
-    private void cargarDatos() {
-        if (QUERY == null) {
-            QUERY = DB_PRODUCTO_REF.orderByChild(CODIGO).limitToFirst(MY_DEFAULT_AMOUNT);
-            Toast.makeText(CONTEXT, "LOADING PRODUCTS", Toast.LENGTH_SHORT).show();
-        }
-        HOME_PRODUCTS.clear();
-        QUERY.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Producto producto = dataSnapshot.getValue(Producto.class);
-                    if (!HOME_PRODUCTS.contains(producto)) {
-                        HOME_PRODUCTS.add(producto);
-                    }
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
 }

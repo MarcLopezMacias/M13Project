@@ -19,12 +19,29 @@ import cat.itb.m13project.pojo.Producto;
 
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
+import static cat.itb.m13project.ConstantVariables.DEFAULT_AMOUNT;
 import static cat.itb.m13project.ConstantVariables.HOME_PRODUCTS;
+import static cat.itb.m13project.ConstantVariables.MY_DEFAULT_AMOUNT;
 
 
 public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopItemViewHolder> implements View.OnClickListener {
 
     private View.OnClickListener listener;
+
+    private static String trim(String toTrim) {
+
+        if (toTrim.length() > MY_DEFAULT_AMOUNT) {
+            for (int i = 0; i < MY_DEFAULT_AMOUNT + DEFAULT_AMOUNT; i++) {
+                if (toTrim.indexOf(" ", i) > MY_DEFAULT_AMOUNT && toTrim.indexOf(" ", i) != toTrim.lastIndexOf(" ")) {
+                    toTrim = toTrim.substring(0, toTrim.indexOf(" ", i));
+                    return toTrim.concat("...");
+                }
+            }
+        } else {
+            return toTrim;
+        }
+        return toTrim;
+    }
 
     public void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
@@ -79,8 +96,7 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
         }
 
         public void bind(final Producto producto) {
-
-            productNameTextView.setText(producto.getDescripcion());
+            productNameTextView.setText(trim(producto.getDescripcion()));
             System.out.println("Binding pics: " + producto.getFotos());
             if (producto.getFotos() != null) {
                 Picasso.with(CONTEXT)
