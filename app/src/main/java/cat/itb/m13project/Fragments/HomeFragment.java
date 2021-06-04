@@ -138,7 +138,9 @@ public class HomeFragment extends Fragment {
             USER_LIST = new ArrayList<>();
         }
 
-        CARRITO = new Cart();
+        if (CARRITO == null) {
+            CARRITO = new Cart();
+        }
 
         //addProductsWithImages();
 
@@ -259,12 +261,6 @@ public class HomeFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(adapter);
-
-        try {
-            wait(20000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         cargarDatos();
 
         // NAVIGATION VIEW

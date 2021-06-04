@@ -25,7 +25,7 @@ public class ConstantVariables {
 
     // NOT TOO CONSTANT
     public static final int REQUEST_EXTERNAL_STORAGE = 69;
-    public static final String CLIENT_KEY = "AY4Lii5lOmSPYds58D3P_aueUOQrJi2a5rreDV3VEQWx78qZ1hHGYWo4PmaFQ3OCG7-nzAZe7GOe_jSf";
+    public static final String CLIENT_KEY = "AUCACjUMbAHh_8sboKLPynyXChsCSQYDUxYev7ixGmsr94ct52fEq7SIin7fvAB4RwmkZ7rII-4XAEjL";
     public static final int PAYPAL_REQUEST_CODE = 123;
     public static final int USER_PASSWORD_LENGTH = 7;
     public static final String PROFILE = "Profile";

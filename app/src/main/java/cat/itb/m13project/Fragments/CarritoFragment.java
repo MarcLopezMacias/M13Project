@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.NavigableMap;
 
 import cat.itb.m13project.R;
 import cat.itb.m13project.adapters.CartItemAdapter;
@@ -43,6 +45,8 @@ import static cat.itb.m13project.ConstantVariables.CLIENT_KEY;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
 import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
+import static cat.itb.m13project.ConstantVariables.GUEST;
+import static cat.itb.m13project.ConstantVariables.LOGGED_USER;
 import static cat.itb.m13project.ConstantVariables.PAYPAL_REQUEST_CODE;
 
 public class CarritoFragment extends Fragment {
@@ -59,22 +63,29 @@ public class CarritoFragment extends Fragment {
     private View.OnClickListener buyListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            // Creating a paypal payment on below line.
-            PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(getTotalCost(CART_PRODUCTS))), CURRENCY, APP_NAME.concat("").concat(CART).concat(" ").concat(String.valueOf(Calendar.getInstance().getTime())),
-                    PayPalPayment.PAYMENT_INTENT_SALE);
+            if (LOGGED_USER.getEmail() == null) {
+                Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_welcomeFragment);
+            } else if(LOGGED_USER.getEmail().equals(GUEST) || LOGGED_USER.getName().equals(GUEST)) {
+                    Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_welcomeFragment);
+            } else {
+                // Creating a paypal payment on below line.
+                PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(getTotalCost(CART_PRODUCTS))), CURRENCY, APP_NAME.concat(" ").concat(CART).concat(" - ").concat(String.valueOf(Calendar.getInstance().getTime())),
+                        PayPalPayment.PAYMENT_INTENT_SALE);
 
-            // Creating Paypal Payment activity intent
-            Intent intent = new Intent(CONTEXT, PaymentActivity.class);
+                // Creating Paypal Payment activity intent
+                Intent intent = new Intent(CONTEXT, PaymentActivity.class);
 
-            //putting the paypal configuration to the intent
-            intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+                //putting the paypal configuration to the intent
+                intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
 
-            // Puting paypal payment to the intent
-            intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+                // Puting paypal payment to the intent
+                intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
 
-            // Starting the intent activity for result
-            // the request code will be used on the method onActivityResult
-            startActivityForResult(intent, PAYPAL_REQUEST_CODE);
+                // Starting the intent activity for result
+                // the request code will be used on the method onActivityResult
+                startActivityForResult(intent, PAYPAL_REQUEST_CODE);
+            }
+
         }
     };
 

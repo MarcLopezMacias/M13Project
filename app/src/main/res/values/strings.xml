@@ -258,6 +258,8 @@
     <string name="sort">SORT PRODUCTS</string>
     <string name="delete_products">DELETE PRODUCTS</string>
     <string name="home">Home</string>
+    <string name="you_re_not">You\'re not</string>
+    <string name="logged_in">logged in</string>
 
 
 </resources>

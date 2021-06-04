@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_shopItemFragment"
             app:destination="@id/shopItemFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -72,6 +75,12 @@
         <action
             android:id="@+id/action_carritoFragment_to_payPalAPI"
             app:destination="@id/payPalAPI" />
+        <action
+            android:id="@+id/action_carritoFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_carritoFragment_to_welcomeFragment2"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"

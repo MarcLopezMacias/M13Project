@@ -30,6 +30,7 @@ import java.util.Set;
 
 import cat.itb.m13project.R;
 
+import static cat.itb.m13project.ConstantVariables.APP_NAME;
 import static cat.itb.m13project.ConstantVariables.CARRITO;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
 import static cat.itb.m13project.ConstantVariables.LOGGED_USER;
@@ -54,7 +55,7 @@ public class PayPalAPI extends Activity {
      * - Set to PayPalConfiguration.ENVIRONMENT_NO_NETWORK to kick the tires
      * without communicating to PayPal's servers.
      */
-    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
+    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
 
     // note that these credentials will differ between live & sandbox environments.
     private static final String CONFIG_CLIENT_ID = "credentials from developer.paypal.com";
@@ -67,7 +68,7 @@ public class PayPalAPI extends Activity {
             .environment(CONFIG_ENVIRONMENT)
             .clientId(CONFIG_CLIENT_ID)
             // The following are only used in PayPalFuturePaymentActivity.
-            .merchantName("Example Merchant")
+            .merchantName(APP_NAME)
             .merchantPrivacyPolicyUri(Uri.parse("https://www.example.com/privacy"))
             .merchantUserAgreementUri(Uri.parse("https://www.example.com/legal"));
 
