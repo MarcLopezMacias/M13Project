@@ -140,6 +140,8 @@ public class AddedFunctionalities {
     }
 
     public static void showPics() {
+        System.out.println("READIN PICS");
+        int goodCounter = 0, badCounter = 0;
         try {
             File f = new File(LOCAL_FILE_PATH);
             List<Producto> productosList = new ArrayList<>();
@@ -148,10 +150,13 @@ public class AddedFunctionalities {
             productosList = productos.getProductos();
             for (int i = 0; i < productosList.size(); i++) {
                 Producto producto = productosList.get(i);
-                if (producto.getFotos() != null && producto.getFotos().getFotos().get(0) != null) {
-                        System.out.println(producto.getFotos().toString());
+                if (producto.getFotos() != null) {
+                    goodCounter++;
+                } else {
+                    badCounter++;
                 }
             }
+            System.out.println("GOOD = " + goodCounter + ". BAD = " + badCounter);
         } catch (Exception e) {
             e.printStackTrace();
         }

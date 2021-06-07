@@ -1,5 +1,6 @@
 package cat.itb.m13project.pojo;
 
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -12,9 +13,8 @@ public class Producto implements Serializable {
 
     String key;
 
-    @Element(name = "num", required = false)
+    @Attribute(name="num")
     int num;
-
 
     @Element(name = "codigo")
     String codigo;
@@ -316,6 +316,14 @@ public class Producto implements Serializable {
 
     public void setFotos(Fotos fotos) {
         this.fotos = fotos;
+    }
+
+    public double getPrecioFinal() {
+        return precioFinal;
+    }
+
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
     }
 
     public double getCanon() {

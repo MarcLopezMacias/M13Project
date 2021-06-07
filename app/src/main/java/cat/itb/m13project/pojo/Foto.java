@@ -1,12 +1,14 @@
 package cat.itb.m13project.pojo;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 
-@Element(name = "foto")
+@Root(name = "foto", strict = false)
 public class Foto implements Serializable {
 
+    @Element(name = "foto")
     String foto;
 
     public Foto() {

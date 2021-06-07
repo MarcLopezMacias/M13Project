@@ -1,13 +1,16 @@
 package cat.itb.m13project.pojo;
 
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Root(name = "fotos", strict = false)
 public class Fotos implements Serializable {
 
-    @ElementList(name = "fotos", inline = true, required = false)
+    @ElementList(name = "fotos", entry = "foto", inline = true)
     private List<Foto> fotos;
 
     public Fotos() {
