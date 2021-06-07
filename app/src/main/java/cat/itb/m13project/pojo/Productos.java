@@ -9,7 +9,7 @@ import java.util.List;
 @Root(name = "productos")
 public class Productos implements Serializable {
 
-    @ElementList(name = "productos", inline = true, required = false)
+    @ElementList(name = "productos", inline = true)
     private List<Producto> productos;
 
     public Productos() {

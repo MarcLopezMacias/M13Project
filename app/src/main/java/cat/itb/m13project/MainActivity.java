@@ -75,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private static void readPhotos() {
+        File f = new File(LOCAL_FILE_PATH);
+        if (f.exists()) {
+            AddedFunctionalities.showPics();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
 
         withGreatPowerComesGreatResponsibility();
+        readPhotos();
     }
 
     @Override

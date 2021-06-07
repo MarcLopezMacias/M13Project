@@ -4,26 +4,9 @@ import org.simpleframework.xml.Element;
 
 import java.io.Serializable;
 
+@Element(name = "foto")
 public class Foto implements Serializable {
 
-//    @Root(name = "breakfast_menu")
-//    public class BrakfastMenu {
-//        @ElementList(inline = true)
-//        protected List<Item.Food> food;
-//
-//        public List<Item.Food> getConfigurations() {
-//            if (food == null) {
-//                food = new ArrayList<Item.Food>();
-//            }
-//            return this.food;
-//        }
-//
-//        public void setConfigurations(List<Item.Food> configuration) {
-//            this.food = configuration;
-//        }
-//    }
-
-    @Element(name = "foto")
     String foto;
 
     public Foto() {
@@ -39,5 +22,10 @@ public class Foto implements Serializable {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    @Override
+    public String toString() {
+        return foto;
     }
 }

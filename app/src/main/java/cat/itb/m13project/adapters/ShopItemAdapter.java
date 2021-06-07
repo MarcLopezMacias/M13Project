@@ -1,5 +1,6 @@
 package cat.itb.m13project.adapters;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
+import cat.itb.m13project.AddedFunctionalities;
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
 
@@ -97,11 +99,9 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
 
         public void bind(final Producto producto) {
             productNameTextView.setText(trim(producto.getDescripcion()));
-            System.out.println("Binding pics: " + producto.getFotos());
             if (producto.getFotos() != null) {
-                Picasso.with(CONTEXT)
-                        .load(String.valueOf(producto.getFotos().get(0)))
-                        .resize(69, 69).into(productImageView);
+                System.out.println("Binding pics: " + producto.getFotos().getFotos().get(0));
+                Picasso.with(CONTEXT).load(String.valueOf(producto.getFotos().getFotos().get(0)));
             }
             productPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", producto.getPrecioFinalProveedor()).concat(" ").concat(CURRENCY));
 

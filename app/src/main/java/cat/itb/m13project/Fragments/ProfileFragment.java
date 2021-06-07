@@ -9,20 +9,26 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textview.MaterialTextView;
 
 import cat.itb.m13project.R;
 
+import static android.view.View.VISIBLE;
+import static android.view.View.inflate;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
+import static cat.itb.m13project.ConstantVariables.LOGGED_USER;
 import static cat.itb.m13project.Fragments.StockFragment.updateListener;
 
 public class ProfileFragment extends Fragment {
 
-    TextView usernameTextView;
+    MaterialTextView usernameTextView;
 
     MaterialButton updateProfile;
     MaterialButton updateProducts;
+    MaterialButton developerButton;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -43,19 +49,38 @@ public class ProfileFragment extends Fragment {
         usernameTextView = v.findViewById(R.id.usernameTextView);
         updateProfile = v.findViewById(R.id.editProfileButton);
         updateProducts = v.findViewById(R.id.updateStock);
+        developerButton = v.findViewById(R.id.developerButton);
 
         updateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment newFragment = new RegisterFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, newFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                Navigation.findNavController(v).navigate(R.id.action_profileFragment2_to_registerFragment2);
             }
         });
         updateProducts.setOnClickListener(updateListener);
+
+        if (checkAdmin()) {
+            developerButton.setVisibility(VISIBLE);
+            developerButton.setFocusable(true);
+            developerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(v).navigate(R.id.action_profileFragment2_to_stockFragment);
+                }
+            });
+        } else {
+            developerButton.setVisibility(View.INVISIBLE);
+            developerButton.setFocusable(false);
+        }
+
+
         return v;
+    }
+
+    private static boolean checkAdmin() {
+        if (LOGGED_USER != null) {
+            return LOGGED_USER.getEmail().equals("e@e.e");
+        }
+        return false;
     }
 }

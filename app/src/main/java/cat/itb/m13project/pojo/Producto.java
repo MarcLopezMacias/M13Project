@@ -1,7 +1,5 @@
 package cat.itb.m13project.pojo;
 
-import android.net.Uri;
-
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -78,8 +76,8 @@ public class Producto implements Serializable {
     @Element(name = "fecha_alta")
     String fechaAlta;
 
-    @ElementList(inline = true)
-    List<Uri> fotos;
+    @Element(name = "fotos")
+    Fotos fotos;
 
     @Element(name = "canon")
     double canon;
@@ -95,7 +93,7 @@ public class Producto implements Serializable {
     public Producto() {
     }
 
-    public Producto(String key, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String grupo, int idFamilia, String familia, String marca, double precio, double peso, double largo, double ancho, double alto, String caracteristicas, String fechaAlta, List<Uri> fotos, double canon, double precioConCanon, String fechaGeneracionTarifa) {
+    public Producto(String key, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String grupo, int idFamilia, String familia, String marca, double precio, double peso, double largo, double ancho, double alto, String caracteristicas, String fechaAlta, Fotos fotos, double canon, double precioConCanon, String fechaGeneracionTarifa) {
         this.key = key;
         this.num = num;
         this.codigo = codigo;
@@ -122,7 +120,7 @@ public class Producto implements Serializable {
         this.fechaGeneracionTarifa = fechaGeneracionTarifa;
     }
 
-    public Producto(String key, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String bloque, int idGrupo, String grupo, int idFamilia, String familia, String marca, double precio, double peso, double largo, double ancho, double alto, String caracteristicas, String fechaAlta, List<Uri> fotos, double canon, double precioConCanon, String fechaGeneracionTarifa, double precioFinal) {
+    public Producto(String key, int num, String codigo, String ean, String pn, int stock, int stockMad, String descripcion, int idBloque, String bloque, int idGrupo, String grupo, int idFamilia, String familia, String marca, double precio, double peso, double largo, double ancho, double alto, String caracteristicas, String fechaAlta, Fotos fotos, double canon, double precioConCanon, String fechaGeneracionTarifa, double precioFinal) {
         this.key = key;
         this.num = num;
         this.codigo = codigo;
@@ -312,11 +310,11 @@ public class Producto implements Serializable {
         this.fechaAlta = fechaAlta;
     }
 
-    public List<Uri> getFotos() {
+    public Fotos getFotos() {
         return fotos;
     }
 
-    public void setFotos(List<Uri> fotos) {
+    public void setFotos(Fotos fotos) {
         this.fotos = fotos;
     }
 

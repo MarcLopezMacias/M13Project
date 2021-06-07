@@ -112,12 +112,7 @@ public class LoginFragment extends Fragment {
                         } else {
                             loadingProgressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(getContext(), "You must register first", Toast.LENGTH_SHORT).show();
-                            Fragment newFragment = new RegisterFragment();
-                            FragmentManager fragmentManager = getFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.fragment, newFragment);
-                            fragmentTransaction.addToBackStack(null);
-                            fragmentTransaction.commit();
+                            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerFragment);
                         }
                     }
 

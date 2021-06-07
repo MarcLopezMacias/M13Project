@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.NavigableMap;
 
 import cat.itb.m13project.R;
 import cat.itb.m13project.adapters.ShopItemAdapter;
@@ -159,25 +161,12 @@ public class HomeFragment extends Fragment {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem producto) {
-                Fragment newFragment;
-                FragmentManager fragmentManager;
-                FragmentTransaction fragmentTransaction;
                 switch (producto.toString()) {
                     case PROFILE:
-                        newFragment = new ProfileFragment();
-                        fragmentManager = getFragmentManager();
-                        fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment, newFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
+                        Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_profileFragment2);
                         break;
                     case CART:
-                        newFragment = new CarritoFragment();
-                        fragmentManager = getFragmentManager();
-                        fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment, newFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
+                        Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_carritoFragment);
                         break;
                 }
                 return false;
@@ -247,17 +236,7 @@ public class HomeFragment extends Fragment {
                 Producto p = HOME_PRODUCTS.get(recyclerView.getChildAdapterPosition(v));
                 b.putSerializable(CURRENT_PRODUCT, p);
 
-                Fragment newFragment;
-                FragmentManager fragmentManager;
-                FragmentTransaction fragmentTransaction;
-
-                newFragment = new ShopItemFragment();
-                newFragment.setArguments(b);
-                fragmentManager = getFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, newFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_shopItemFragment);
             }
         });
         recyclerView.setAdapter(adapter);

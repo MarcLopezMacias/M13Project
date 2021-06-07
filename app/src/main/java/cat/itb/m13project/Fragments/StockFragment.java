@@ -122,8 +122,6 @@ public class StockFragment extends Fragment {
                     for (DataSnapshot ds : snapshot.getChildren()) {
                         Producto producto1 = ds.getValue(Producto.class);
                         DB_PRODUCTO_REF.child(producto1.getKey()).removeValue();
-
-
                     }
                 } else {
                     Toast.makeText(CONTEXT, "NO PRODUCTS TO DELETE", Toast.LENGTH_SHORT).show();
@@ -170,7 +168,6 @@ public class StockFragment extends Fragment {
                 productos = ser.read(Productos.class, f);
                 productosList = productos.getProductos();
                 for (int i = 0; i < productosList.size(); i++) {
-                    System.out.println(i);
                     Producto producto = productosList.get(i);
                     Query query = DB_PRODUCTO_REF.orderByChild(CODIGO).equalTo(producto.getCodigo());
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -182,7 +179,7 @@ public class StockFragment extends Fragment {
                                     producto.setKey(producto1.getKey());
                                     makeValidProduct(producto1);
                                     System.out.println("PRODUCT VALID");
-                                    if (!(producto1.getStock() == producto.getStock())) {
+                                    if (!(producto1.getStock() == producto.getStock()) || producto1.getFotos() == null && producto.getFotos() != null) {
                                         DB_PRODUCTO_REF.child(producto.getKey()).setValue(producto);
                                     }
 

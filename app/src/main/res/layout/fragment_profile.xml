@@ -8,7 +8,7 @@
     android:background="@color/backgroundColor"
     tools:context=".Fragments.ProfileFragment">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/usernameTextView"
         style="@style/biggestText"
         android:layout_width="wrap_content"
@@ -53,6 +53,17 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/updateStock" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/developerButton"
+        style="@style/OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="DEVELOPER OPTIONS"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

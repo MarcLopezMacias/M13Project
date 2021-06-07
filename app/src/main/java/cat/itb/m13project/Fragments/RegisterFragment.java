@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
@@ -194,41 +195,41 @@ public class RegisterFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment newFragment = new LoginFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, newFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_loginFragment);
             }
         });
 
 
-        if (!LOGGED_USER.getEmail().equals(getString(R.string.guest)) && !(LOGGED_USER.getName().equals(getString(R.string.guest)))) {
-            name.getEditText().setText(LOGGED_USER.getName());
-            email.getEditText().setText(LOGGED_USER.getEmail());
-            password.getEditText().setText(LOGGED_USER.getPassword());
-            repeatedPassword.getEditText().setText(LOGGED_USER.getPassword());
-            address.getEditText().setText(LOGGED_USER.getAddress());
-            hint.getEditText().setText(LOGGED_USER.getForgottenPasswordHint());
+        if (LOGGED_USER != null) {
+            if (!LOGGED_USER.getEmail().equals(getString(R.string.guest)) && !(LOGGED_USER.getName().equals(getString(R.string.guest)))) {
+                name.getEditText().setText(LOGGED_USER.getName());
+                email.getEditText().setText(LOGGED_USER.getEmail());
+                password.getEditText().setText(LOGGED_USER.getPassword());
+                repeatedPassword.getEditText().setText(LOGGED_USER.getPassword());
+                address.getEditText().setText(LOGGED_USER.getAddress());
+                hint.getEditText().setText(LOGGED_USER.getForgottenPasswordHint());
 
-            termsCheckBox.setVisibility(View.INVISIBLE);
-            termsCheckBox.setChecked(true);
-            loginButton.setVisibility(View.INVISIBLE);
+                termsCheckBox.setVisibility(View.INVISIBLE);
+                termsCheckBox.setChecked(true);
+                loginButton.setVisibility(View.INVISIBLE);
 
-            registerButton.setOnClickListener(updateListener);
-            registerButton.setText(getString(R.string.edit_profile));
+                registerButton.setOnClickListener(updateListener);
+                registerButton.setText(getString(R.string.edit_profile));
 
-            email.setFocusable(false);
-            email.getEditText().setFocusable(false);
-            email.setClickable(false);
-            email.getEditText().setClickable(false);
-            email.setOnKeyListener(null);
-            email.setOnClickListener(null);
-            titleTextView.setText(getString(R.string.edit_profile));
+                email.setFocusable(false);
+                email.getEditText().setFocusable(false);
+                email.setClickable(false);
+                email.getEditText().setClickable(false);
+                email.setOnKeyListener(null);
+                email.setOnClickListener(null);
+                titleTextView.setText(getString(R.string.edit_profile));
+            } else {
+                registerButton.setOnClickListener(registerListener);
+            }
         } else {
-            registerButton.setOnClickListener(registerListener);
+            Toast.makeText(CONTEXT, "ERROR: INVALID USER", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private boolean isValidData(Usuario u) {

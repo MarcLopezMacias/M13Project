@@ -1,5 +1,7 @@
 package cat.itb.m13project;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,7 +15,12 @@ import com.google.firebase.database.ValueEventListener;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 
 import cat.itb.m13project.pojo.Producto;
@@ -27,6 +34,7 @@ import static cat.itb.m13project.ConstantVariables.GUEST;
 import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;
 import static cat.itb.m13project.ConstantVariables.LOGGED_USER;
 import static cat.itb.m13project.Fragments.StockFragment.makeValidProduct;
+import static cat.itb.m13project.Fragments.StockFragment.productos;
 
 public class AddedFunctionalities {
 
@@ -112,6 +120,41 @@ public class AddedFunctionalities {
         LOGGED_USER.setName(GUEST);
         LOGGED_USER.setEmail(GUEST);
         System.out.println("WELCOME GUEST");
+    }
+
+    public static Bitmap cargarBitmap(String link) {
+        Bitmap bm = null;
+        try {
+            URL aURL = new URL(link);
+            URLConnection conn = aURL.openConnection();
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            BufferedInputStream bis = new BufferedInputStream(is);
+            bm = BitmapFactory.decodeStream(bis);
+            bis.close();
+            is.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            return bm;
+    }
+
+    public static void showPics() {
+        try {
+            File f = new File(LOCAL_FILE_PATH);
+            List<Producto> productosList = new ArrayList<>();
+            Serializer ser = new Persister();
+            productos = ser.read(Productos.class, f);
+            productosList = productos.getProductos();
+            for (int i = 0; i < productosList.size(); i++) {
+                Producto producto = productosList.get(i);
+                if (producto.getFotos() != null && producto.getFotos().getFotos().get(0) != null) {
+                        System.out.println(producto.getFotos().toString());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
