@@ -48,6 +48,7 @@ import static cat.itb.m13project.FakeProducts.addFakeProducts;
 public class MainActivity extends AppCompatActivity {
 
     private static void withGreatPowerComesGreatResponsibility() {
+        System.out.println(BuildConfig.APPLICATION_ID);
         Query filter = DB_PRODUCTO_REF.orderByChild(CODIGO).limitToFirst(DEFAULT_AMOUNT);
         filter.addValueEventListener(new ValueEventListener() {
             @Override

@@ -73,14 +73,14 @@
             android:id="@+id/action_carritoFragment_to_shopItemFragment"
             app:destination="@id/shopItemFragment" />
         <action
-            android:id="@+id/action_carritoFragment_to_payPalAPI"
-            app:destination="@id/payPalAPI" />
-        <action
             android:id="@+id/action_carritoFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
         <action
             android:id="@+id/action_carritoFragment_to_welcomeFragment2"
             app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_carritoFragment_to_checkoutActivity"
+            app:destination="@id/checkoutActivity" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"
@@ -121,7 +121,8 @@
             app:destination="@id/registerFragment" />
     </fragment>
     <activity
-        android:id="@+id/payPalAPI"
-        android:name="cat.itb.m13project.payment.PayPalAPI"
-        android:label="PayPalAPI" />
+        android:id="@+id/checkoutActivity"
+        android:name="cat.itb.m13project.payment.CheckoutActivity"
+        android:label="activity_checkout"
+        tools:layout="@layout/activity_checkout" />
 </navigation>

@@ -53,6 +53,7 @@ import static cat.itb.m13project.ConstantVariables.COMPONENTES;
 import static cat.itb.m13project.ConstantVariables.CONSUMIBLES;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
+import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT_HELPER;
 import static cat.itb.m13project.ConstantVariables.DB;
 import static cat.itb.m13project.ConstantVariables.DB_PRODUCTO_REF;
 import static cat.itb.m13project.ConstantVariables.DB_USER_REF;
@@ -232,10 +233,7 @@ public class HomeFragment extends Fragment {
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle b = new Bundle();
-                Producto p = HOME_PRODUCTS.get(recyclerView.getChildAdapterPosition(v));
-                b.putSerializable(CURRENT_PRODUCT, p);
-
+                CURRENT_PRODUCT_HELPER = HOME_PRODUCTS.get(recyclerView.getChildAdapterPosition(v));
                 Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_shopItemFragment);
             }
         });

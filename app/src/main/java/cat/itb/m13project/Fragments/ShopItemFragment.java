@@ -29,11 +29,13 @@ import cat.itb.m13project.AddedFunctionalities;
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
 
-import static android.content.ContentValues.TAG;
+
 import static cat.itb.m13project.ConstantVariables.CART_PRODUCTS;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
 import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
+import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT_HELPER;
+import static cat.itb.m13project.ConstantVariables.DEFAULT_AMOUNT;
 import static cat.itb.m13project.ConstantVariables.ERROR;
 
 
@@ -41,7 +43,6 @@ public class ShopItemFragment extends Fragment {
 
     static MaterialTextView productPriceTextView;
     static MaterialTextView quantityTextView;
-    private static Producto p;
     private static int quantity;
     private static View.OnClickListener subtractListener = new View.OnClickListener() {
         @Override
@@ -77,7 +78,7 @@ public class ShopItemFragment extends Fragment {
 
     private static void setValues() {
         quantityTextView.setText(String.valueOf(quantity));
-        double precio = quantity * p.getPrecioFinalProveedor();
+        double precio = quantity * CURRENT_PRODUCT_HELPER.getPrecioFinalProveedor();
         productPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", precio).concat(" ").concat(CURRENCY));
     }
 
@@ -109,22 +110,22 @@ public class ShopItemFragment extends Fragment {
 
         CONTEXT = getContext();
 
-        p = (Producto) getArguments().getSerializable(CURRENT_PRODUCT);
-        productNameTextView.setText(p.getDescripcion());
-        if (p.getFotos() != null) {
-            Bitmap bm = AddedFunctionalities.cargarBitmap(String.valueOf(p.getFotos().getFotos().get(0)));
+        productNameTextView.setText(CURRENT_PRODUCT_HELPER.getDescripcion());
+        if (CURRENT_PRODUCT_HELPER.getFotos() != null) {
+            Bitmap bm = AddedFunctionalities.cargarBitmap(String.valueOf(CURRENT_PRODUCT_HELPER.getFotos().getFotos().get(0)));
             productImageView.setImageBitmap(bm);
         } else {
-            productImageView.setImageResource(R.drawable.cio_paypal_logo);
+            productImageView.setImageResource(R.drawable.ic_baseline_broken_image_24);
         }
         moreSpecsTextTextView.setText(R.string.more_specs);
-        moreSpecsTextView.setText(p.getCaracteristicas());
         moreSpecsTextView.setVisibility(View.INVISIBLE);
         showMoreSpecsSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    moreSpecsTextView.setText(CURRENT_PRODUCT_HELPER.getCaracteristicas());
                     moreSpecsTextView.setVisibility(View.VISIBLE);
                 } else {
+                    moreSpecsTextView.setText(DEFAULT_AMOUNT);
                     moreSpecsTextView.setVisibility(View.INVISIBLE);
                 }
             }
@@ -134,7 +135,7 @@ public class ShopItemFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < quantity; i++) {
-                    CART_PRODUCTS.add(p);
+                    CART_PRODUCTS.add(CURRENT_PRODUCT_HELPER);
                 }
                 Toast.makeText(CONTEXT, quantity + " added to Cart", Toast.LENGTH_SHORT).show();
             }

@@ -101,7 +101,7 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
             productNameTextView.setText(trim(producto.getDescripcion()));
             if (producto.getFotos() != null) {
                 System.out.println("Binding pics: " + producto.getFotos().getFotos().get(0));
-                Picasso.with(CONTEXT).load(String.valueOf(producto.getFotos().getFotos().get(0)));
+                Picasso.get().load(String.valueOf(producto.getFotos().getFotos().get(0)));
             }
             productPriceTextView.setText(String.format(Locale.ENGLISH, "%.2f", producto.getPrecioFinalProveedor()).concat(" ").concat(CURRENCY));
 

@@ -23,7 +23,6 @@ import static com.blankj.utilcode.util.StringUtils.getString;
 
 public class ConstantVariables {
 
-    // NOT TOO CONSTANT
     public static final int REQUEST_EXTERNAL_STORAGE = 69;
     public static final String CLIENT_KEY = "AUCACjUMbAHh_8sboKLPynyXChsCSQYDUxYev7ixGmsr94ct52fEq7SIin7fvAB4RwmkZ7rII-4XAEjL";
     public static final int PAYPAL_REQUEST_CODE = 123;
@@ -51,6 +50,7 @@ public class ConstantVariables {
     public static final String ERROR = getString(R.string.error);
     public static final String REFRESH_DATABASE = "Don't forget to update the database!";
     public static final String GUEST = getString(R.string.guest);
+
     // CATEGORIES
     public static final String ACCESORIOS = getString(R.string.accesorios).toUpperCase();
     public static final String CAPTURADORAS = getString(R.string.capturadoras).toUpperCase();
@@ -88,6 +88,7 @@ public class ConstantVariables {
     public static final String TECLADOS = "TECLADOS";
     public static final String TELEFONIA_Y_MOVILIDAD = getString(R.string.telefonia_y_movilidad).toUpperCase();
     public static final String TPV = getString(R.string.tpv).toUpperCase();
+
     // OTHER STUFF
     public static final String DEFAULT = "DEFAULT";
     public static final String CODIGO = "codigo";
@@ -101,16 +102,18 @@ public class ConstantVariables {
     public static final String NOT_TODAY = "NOT TODAY";
     public static final String CHANNEL_ID = "ISI COMPUTER Channel";
     public static final String DELETING_ALL_PRODUCTS = "DELETING ALL PRODUCTS";
-    public static FirebaseDatabase DB;
-    public static DatabaseReference DB_USER_REF;
-    public static DatabaseReference DB_PRODUCTO_REF;
-    public static List<Usuario> USER_LIST;
-    public static String[] PERMISSIONS_STORAGE = {
+    public static final String[] PERMISSIONS_STORAGE = {
             READ_EXTERNAL_STORAGE,
             WRITE_EXTERNAL_STORAGE,
             INTERNET,
             MANAGE_EXTERNAL_STORAGE
     };
+
+    // NOT TOO CONSTANT
+    public static FirebaseDatabase DB;
+    public static DatabaseReference DB_USER_REF;
+    public static DatabaseReference DB_PRODUCTO_REF;
+    public static List<Usuario> USER_LIST;
     public static Usuario LOGGED_USER;
     public static Cart CARRITO;
     public static Query QUERY;
@@ -118,6 +121,7 @@ public class ConstantVariables {
     public static List<Producto> CART_PRODUCTS = new ArrayList<>();
     public static Context CONTEXT;
     public static Activity ACTIVITY;
+    public static Producto CURRENT_PRODUCT_HELPER;
 
 
 }

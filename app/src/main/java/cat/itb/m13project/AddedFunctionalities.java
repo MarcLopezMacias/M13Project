@@ -29,6 +29,8 @@ import cat.itb.m13project.pojo.Usuario;
 
 import static cat.itb.m13project.ConstantVariables.CODIGO;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
+import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
+import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT_HELPER;
 import static cat.itb.m13project.ConstantVariables.DB_PRODUCTO_REF;
 import static cat.itb.m13project.ConstantVariables.GUEST;
 import static cat.itb.m13project.ConstantVariables.LOCAL_FILE_PATH;

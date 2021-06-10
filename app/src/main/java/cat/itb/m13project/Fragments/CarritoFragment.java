@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,16 +20,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
-import com.paypal.android.sdk.payments.PayPalConfiguration;
-import com.paypal.android.sdk.payments.PayPalPayment;
-import com.paypal.android.sdk.payments.PayPalService;
-import com.paypal.android.sdk.payments.PaymentActivity;
-import com.paypal.android.sdk.payments.PaymentConfirmation;
+import com.paypal.checkout.approve.Approval;
+import com.paypal.checkout.approve.OnApprove;
+import com.paypal.checkout.cancel.OnCancel;
+import com.paypal.checkout.createorder.CreateOrder;
+import com.paypal.checkout.createorder.CreateOrderActions;
+import com.paypal.checkout.createorder.CurrencyCode;
+import com.paypal.checkout.createorder.OrderIntent;
+import com.paypal.checkout.createorder.UserAction;
+import com.paypal.checkout.error.ErrorInfo;
+import com.paypal.checkout.error.OnError;
+import com.paypal.checkout.order.Amount;
+import com.paypal.checkout.order.AppContext;
+import com.paypal.checkout.order.CaptureOrderResult;
+import com.paypal.checkout.order.OnCaptureComplete;
+import com.paypal.checkout.order.Order;
+import com.paypal.checkout.order.PurchaseUnit;
+import com.paypal.checkout.paymentbutton.PaymentButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -39,6 +53,7 @@ import cat.itb.m13project.adapters.CartItemAdapter;
 import cat.itb.m13project.pojo.Producto;
 
 import static cat.itb.m13project.ConstantVariables.APP_NAME;
+import static cat.itb.m13project.ConstantVariables.CARRITO;
 import static cat.itb.m13project.ConstantVariables.CART;
 import static cat.itb.m13project.ConstantVariables.CART_PRODUCTS;
 import static cat.itb.m13project.ConstantVariables.CLIENT_KEY;
@@ -51,14 +66,7 @@ import static cat.itb.m13project.ConstantVariables.PAYPAL_REQUEST_CODE;
 
 public class CarritoFragment extends Fragment {
 
-    private static PayPalConfiguration config = new PayPalConfiguration()
-            // Start with mock environment.  When ready,
-            // switch to sandbox (ENVIRONMENT_SANDBOX)
-            // or live (ENVIRONMENT_PRODUCTION)
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
-            // on below line we are passing a client id.
-            .clientId(CLIENT_KEY);
-    private MaterialTextView paymentTV;
+    private PaymentButton payPalButton;
     private RecyclerView recyclerView;
     private View.OnClickListener buyListener = new View.OnClickListener() {
         @Override
@@ -68,24 +76,65 @@ public class CarritoFragment extends Fragment {
             } else if(LOGGED_USER.getEmail().equals(GUEST) || LOGGED_USER.getName().equals(GUEST)) {
                     Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_welcomeFragment);
             } else {
-                // Creating a paypal payment on below line.
-                PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(getTotalCost(CART_PRODUCTS))), CURRENCY, APP_NAME.concat(" ").concat(CART).concat(" - ").concat(String.valueOf(Calendar.getInstance().getTime())),
-                        PayPalPayment.PAYMENT_INTENT_SALE);
+                payPalButton.setup(
+                        new CreateOrder() {
+                            @Override
+                            public void create(@NonNull CreateOrderActions createOrderActions) {
+                                ArrayList purchaseUnits = new ArrayList<>();
+                                purchaseUnits.add(
+                                        new PurchaseUnit.Builder()
+                                                .amount(
+                                                        new Amount.Builder()
+                                                                .currencyCode(CurrencyCode.EUR)
+                                                                .value(String.valueOf(getTotalCost(CARRITO.getCarrito())))
+                                                                .build()
+                                                )
+                                                .build()
+                                );
+                                Order order = new Order(
+                                        OrderIntent.CAPTURE,
+                                        new AppContext.Builder()
+                                                .userAction(UserAction.PAY_NOW)
+                                                .build(),
+                                        purchaseUnits
+                                );
+                                createOrderActions.create(order, (CreateOrderActions.OnOrderCreated) null);
+                            }
+                        },
 
-                // Creating Paypal Payment activity intent
-                Intent intent = new Intent(CONTEXT, PaymentActivity.class);
+                        new OnApprove() {
+                            @Override
+                            public void onApprove(@NonNull Approval approval) {
+                                approval.getOrderActions().capture(new OnCaptureComplete() {
+                                    @Override
+                                    public void onCaptureComplete(@NonNull CaptureOrderResult result) {
+                                        String msg = String.format("CaptureOrderResult: %s", result);
+                                        Log.i("CaptureOrder", msg);
+                                        Toast.makeText(CONTEXT, msg, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        },
 
-                //putting the paypal configuration to the intent
-                intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+                        new OnCancel() {
+                            @Override
+                            public void onCancel() {
+                                String msg = "Buyer cancelled the PayPal experience.";
+                                Log.d("OnCancel", msg);
+                                Toast.makeText(CONTEXT, msg, Toast.LENGTH_SHORT).show();
+                            }
+                        },
 
-                // Puting paypal payment to the intent
-                intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
-
-                // Starting the intent activity for result
-                // the request code will be used on the method onActivityResult
-                startActivityForResult(intent, PAYPAL_REQUEST_CODE);
+                        new OnError() {
+                            @Override
+                            public void onError(@NonNull ErrorInfo errorInfo) {
+                                String msg = String.format("Error: %s", errorInfo);
+                                Log.d("OnError", msg);
+                                Toast.makeText(CONTEXT, msg, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
             }
-
         }
     };
 
@@ -154,49 +203,8 @@ public class CarritoFragment extends Fragment {
         double totalValue = getTotalCost(CART_PRODUCTS);
         infoTextView.setText(String.valueOf(CART_PRODUCTS.size()).concat(" products. " + String.format(Locale.ENGLISH, "%.2f", totalValue).concat(" ").concat(CURRENCY)));
 
-        paymentTV = v.findViewById(R.id.idTVStatus);
-
-        MaterialButton buyButton = v.findViewById(R.id.buyButton);
-        buyButton.setOnClickListener(buyListener);
+        payPalButton = v.findViewById(R.id.payPalButton);
 
         return v;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // If the result is from paypal
-        if (requestCode == PAYPAL_REQUEST_CODE) {
-
-            // If the result is OK i.e. user has not canceled the payment
-            if (resultCode == Activity.RESULT_OK) {
-
-                // Getting the payment confirmation
-                PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-
-                // if confirmation is not null
-                if (confirm != null) {
-                    try {
-                        // Getting the payment details
-                        String paymentDetails = confirm.toJSONObject().toString(4);
-                        // on below line we are extracting json response and displaying it in a text view.
-                        JSONObject payObj = new JSONObject(paymentDetails);
-                        String payID = payObj.getJSONObject("response").getString("id");
-                        String state = payObj.getJSONObject("response").getString("state");
-                        paymentTV.setText("".concat("Payment ".concat(state).concat("\n with payment id is ").concat(payID)));
-                    } catch (JSONException e) {
-                        // handling json exception on below line
-                        Log.e("Error", "an extremely unlikely failure occurred: ", e);
-                    }
-                }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                // on below line we are checking the payment status.
-                Log.i("paymentExample", "The user canceled.");
-            } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
-                // on below line when the invalid paypal config is submitted.
-                Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
-            }
-        }
     }
 }

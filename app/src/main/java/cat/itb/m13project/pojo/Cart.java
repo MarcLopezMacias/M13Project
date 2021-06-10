@@ -1,6 +1,5 @@
 package cat.itb.m13project.pojo;
 
-import com.paypal.android.sdk.payments.PayPalItem;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -33,20 +32,6 @@ public class Cart {
             total += (carrito.get(i).getPrecioFinalProveedor());
         }
         return total;
-    }
-
-    public PayPalItem[] getItems() {
-        PayPalItem[] productos = new PayPalItem[carrito.size()];
-        for (int i = 0; i < carrito.size(); i++) {
-            PayPalItem producto = new PayPalItem(
-                    carrito.get(i).getDescripcion(),
-                    DEFAULT_AMOUNT,
-                    BigDecimal.valueOf(carrito.get(i).getPrecioFinalProveedor()),
-                    CURRENCY,
-                    carrito.get(i).getEan());
-            productos[i] = producto;
-        }
-        return productos;
     }
 
 }

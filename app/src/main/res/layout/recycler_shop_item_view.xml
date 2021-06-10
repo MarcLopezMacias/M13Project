@@ -13,7 +13,7 @@
         android:layout_centerVertical="true"
         android:layout_margin="8dp"
         android:contentDescription="@string/shop_item_image_view"
-        android:src="@drawable/cio_paypal_logo" />
+        android:src="@drawable/common_google_signin_btn_icon_dark" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/shop_item_name_text_view"

@@ -1,149 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".Fragments.ShopItemFragment">
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/showMoreSpecsTextView">
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productNameTextView"
-        style="@style/productName"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:hint="@string/product_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:context=".Fragments.ShopItemFragment">
 
-    <ImageView
-        android:id="@+id/productImageSwitcher"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
-        android:contentDescription="@string/product_image_view_context_description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productNameTextView" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productSpecsTextView"
-        style="@style/normalSizeText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productImageSwitcher" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/productNameTextView"
+            style="@style/productName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/product_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/showMoreSpecsTextView"
-        style="@style/smallerText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:hint="@string/more_specs_text_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addToCartButton" />
+        <ImageView
+            android:id="@+id/productImageSwitcher"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
+            android:contentDescription="@string/product_image_view_context_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productNameTextView" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/showMoreSpecsSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/showMoreSpecsTextView"
-        app:layout_constraintTop_toBottomOf="@+id/addToCartButton" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/productSpecsTextView"
+            style="@style/normalSizeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productImageSwitcher" />
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showMoreSpecsTextView">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/showMoreSpecsTextView"
+            style="@style/smallerText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/more_specs_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addToCartButton" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/showMoreSpecsSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/showMoreSpecsTextView"
+            app:layout_constraintTop_toBottomOf="@+id/addToCartButton" />
+
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/moreSpecsTextView"
             style="@style/smallerText"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
             android:hint="@string/more_specs"
-
-            />
-    </ScrollView>
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/addToCartButton"
-        style="@style/smallerTextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/add_to_cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productSpecsTextView" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/productPriceTextView"
-        style="@style/bigText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="@string/unit_price"
-        app:layout_constraintEnd_toStartOf="@+id/subtractButton"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productSpecsTextView" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/subtractButton"
-        style="@style/smallerTextButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/less"
-        app:layout_constraintEnd_toStartOf="@+id/countTextView"
-        app:layout_constraintTop_toBottomOf="@+id/productSpecsTextView" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/countTextView"
-        style="@style/normalSizeText"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
-        android:layout_toEndOf="@id/subtractButton"
-        android:gravity="center"
-        android:hint="@string/quantity"
-        app:layout_constraintEnd_toStartOf="@+id/addButton"
-        app:layout_constraintTop_toBottomOf="@+id/productSpecsTextView" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/addButton"
-        style="@style/smallerTextButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_toEndOf="@id/countTextView"
-        android:text="@string/more"
-        app:layout_constraintEnd_toStartOf="@+id/addToCartButton"
-        app:layout_constraintTop_toBottomOf="@+id/productSpecsTextView" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/showMoreSpecsTextView" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addToCartButton"
+            style="@style/smallerTextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/add_to_cart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productSpecsTextView" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/productPriceTextView"
+            style="@style/bigText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:hint="@string/unit_price"
+            app:layout_constraintEnd_toStartOf="@+id/subtractButton"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productSpecsTextView" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/subtractButton"
+            style="@style/smallerTextButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/less"
+            app:layout_constraintEnd_toStartOf="@+id/countTextView"
+            app:layout_constraintTop_toBottomOf="@+id/productSpecsTextView" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/countTextView"
+            style="@style/normalSizeText"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@id/subtractButton"
+            android:gravity="center"
+            android:hint="@string/quantity"
+            app:layout_constraintEnd_toStartOf="@+id/addButton"
+            app:layout_constraintTop_toBottomOf="@+id/productSpecsTextView" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addButton"
+            style="@style/smallerTextButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:layout_toEndOf="@id/countTextView"
+            android:text="@string/more"
+            app:layout_constraintEnd_toStartOf="@+id/addToCartButton"
+            app:layout_constraintTop_toBottomOf="@+id/productSpecsTextView" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
