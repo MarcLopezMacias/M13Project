@@ -2,18 +2,16 @@ package cat.itb.m13project.pojo;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Root(name = "producto", strict = false)
 public class Producto implements Serializable {
 
     String key;
 
-    @Attribute(name="num")
+    @Attribute(name = "num")
     int num;
 
     @Element(name = "codigo")

@@ -15,8 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.NavigableMap;
 
 import cat.itb.m13project.R;
 import cat.itb.m13project.adapters.ShopItemAdapter;
@@ -52,7 +49,6 @@ import static cat.itb.m13project.ConstantVariables.CODIGO;
 import static cat.itb.m13project.ConstantVariables.COMPONENTES;
 import static cat.itb.m13project.ConstantVariables.CONSUMIBLES;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
-import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
 import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT_HELPER;
 import static cat.itb.m13project.ConstantVariables.DB;
 import static cat.itb.m13project.ConstantVariables.DB_PRODUCTO_REF;

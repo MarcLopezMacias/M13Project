@@ -1,9 +1,11 @@
 package cat.itb.m13project;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
 
+import com.amplitude.api.AmplitudeClient;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -18,12 +20,14 @@ import cat.itb.m13project.pojo.Usuario;
 import static android.Manifest.permission.INTERNET;
 import static android.Manifest.permission.MANAGE_EXTERNAL_STORAGE;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.READ_PHONE_STATE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.blankj.utilcode.util.StringUtils.getString;
 
 public class ConstantVariables {
 
     public static final int REQUEST_EXTERNAL_STORAGE = 69;
+    public static final String SANDBOX_ACCOUNT = "spanish@business.com";
     public static final String CLIENT_KEY = "AUCACjUMbAHh_8sboKLPynyXChsCSQYDUxYev7ixGmsr94ct52fEq7SIin7fvAB4RwmkZ7rII-4XAEjL";
     public static final int PAYPAL_REQUEST_CODE = 123;
     public static final int USER_PASSWORD_LENGTH = 7;
@@ -53,15 +57,6 @@ public class ConstantVariables {
 
     // CATEGORIES
     public static final String ACCESORIOS = getString(R.string.accesorios).toUpperCase();
-    public static final String CAPTURADORAS = getString(R.string.capturadoras).toUpperCase();
-    public static final String CARGADORES = getString(R.string.cargadores).toUpperCase();
-    public static final String ERGONOMIA = getString(R.string.ergonom_a).toUpperCase();
-    public static final String GRABADORA_EXTERNA = getString(R.string.grabadora_externa).toUpperCase();
-    public static final String HUB_USB = getString(R.string.hub_usb).toUpperCase();
-    public static final String KVM_SPLITTER = getString(R.string.kvm_splitter).toUpperCase();
-    public static final String LIMPIEZA = getString(R.string.limpieza).toUpperCase();
-    public static final String PILAS_BATERIAS_Y_CARGADORES = getString(R.string.pilas_bater_as_y_cargadores).toUpperCase();
-    public static final String POWERBANK = getString(R.string.powerbank).toUpperCase();
     public static final String ALMACENAMIENTO_EXTERNO = getString(R.string.almacenamiento_externo).toUpperCase();
     public static final String APPLE = getString(R.string.apple).toUpperCase();
     public static final String CABLES_Y_ADAPTADORES = "CABLES & ADAPTADORES";
@@ -106,7 +101,8 @@ public class ConstantVariables {
             READ_EXTERNAL_STORAGE,
             WRITE_EXTERNAL_STORAGE,
             INTERNET,
-            MANAGE_EXTERNAL_STORAGE
+            MANAGE_EXTERNAL_STORAGE,
+            READ_PHONE_STATE
     };
 
     // NOT TOO CONSTANT
@@ -122,6 +118,6 @@ public class ConstantVariables {
     public static Context CONTEXT;
     public static Activity ACTIVITY;
     public static Producto CURRENT_PRODUCT_HELPER;
-
+    public static AmplitudeClient AMPLITUDE_CLIENT;
 
 }

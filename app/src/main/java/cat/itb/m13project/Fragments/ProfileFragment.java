@@ -4,11 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.button.MaterialButton;
@@ -17,7 +14,6 @@ import com.google.android.material.textview.MaterialTextView;
 import cat.itb.m13project.R;
 
 import static android.view.View.VISIBLE;
-import static android.view.View.inflate;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.LOGGED_USER;
 import static cat.itb.m13project.Fragments.StockFragment.updateListener;
@@ -32,6 +28,13 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment() {
         // Required empty public constructor
+    }
+
+    private static boolean checkAdmin() {
+        if (LOGGED_USER != null) {
+            return LOGGED_USER.getEmail().equals("e@e.e");
+        }
+        return false;
     }
 
     @Override
@@ -75,12 +78,5 @@ public class ProfileFragment extends Fragment {
 
 
         return v;
-    }
-
-    private static boolean checkAdmin() {
-        if (LOGGED_USER != null) {
-            return LOGGED_USER.getEmail().equals("e@e.e");
-        }
-        return false;
     }
 }

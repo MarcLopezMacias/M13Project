@@ -1,11 +1,7 @@
 package cat.itb.m13project.pojo;
 
 
-import java.math.BigDecimal;
 import java.util.List;
-
-import static cat.itb.m13project.ConstantVariables.CURRENCY;
-import static cat.itb.m13project.ConstantVariables.DEFAULT_AMOUNT;
 
 public class Cart {
 

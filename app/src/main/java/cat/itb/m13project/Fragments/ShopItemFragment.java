@@ -1,10 +1,7 @@
 package cat.itb.m13project.Fragments;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,22 +15,14 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textview.MaterialTextView;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Locale;
 
 import cat.itb.m13project.AddedFunctionalities;
 import cat.itb.m13project.R;
-import cat.itb.m13project.pojo.Producto;
-
 
 import static cat.itb.m13project.ConstantVariables.CART_PRODUCTS;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
-import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
 import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT_HELPER;
 import static cat.itb.m13project.ConstantVariables.DEFAULT_AMOUNT;
 import static cat.itb.m13project.ConstantVariables.ERROR;

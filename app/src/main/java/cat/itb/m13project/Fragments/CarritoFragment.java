@@ -1,7 +1,5 @@
 package cat.itb.m13project.Fragments;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,14 +8,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplitude.api.Amplitude;
+import com.amplitude.api.AmplitudeClient;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.paypal.checkout.approve.Approval;
@@ -38,31 +35,21 @@ import com.paypal.checkout.order.Order;
 import com.paypal.checkout.order.PurchaseUnit;
 import com.paypal.checkout.paymentbutton.PaymentButton;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.NavigableMap;
 
 import cat.itb.m13project.R;
 import cat.itb.m13project.adapters.CartItemAdapter;
 import cat.itb.m13project.pojo.Producto;
 
-import static cat.itb.m13project.ConstantVariables.APP_NAME;
 import static cat.itb.m13project.ConstantVariables.CARRITO;
-import static cat.itb.m13project.ConstantVariables.CART;
 import static cat.itb.m13project.ConstantVariables.CART_PRODUCTS;
-import static cat.itb.m13project.ConstantVariables.CLIENT_KEY;
 import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
-import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT;
+import static cat.itb.m13project.ConstantVariables.CURRENT_PRODUCT_HELPER;
 import static cat.itb.m13project.ConstantVariables.GUEST;
 import static cat.itb.m13project.ConstantVariables.LOGGED_USER;
-import static cat.itb.m13project.ConstantVariables.PAYPAL_REQUEST_CODE;
 
 public class CarritoFragment extends Fragment {
 
@@ -73,9 +60,10 @@ public class CarritoFragment extends Fragment {
         public void onClick(View v) {
             if (LOGGED_USER.getEmail() == null) {
                 Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_welcomeFragment);
-            } else if(LOGGED_USER.getEmail().equals(GUEST) || LOGGED_USER.getName().equals(GUEST)) {
-                    Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_welcomeFragment);
+            } else if (LOGGED_USER.getEmail().equals(GUEST) || LOGGED_USER.getName().equals(GUEST)) {
+                Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_welcomeFragment);
             } else {
+                payPalButton.setVisibility(View.VISIBLE);
                 payPalButton.setup(
                         new CreateOrder() {
                             @Override
@@ -130,6 +118,7 @@ public class CarritoFragment extends Fragment {
                             public void onError(@NonNull ErrorInfo errorInfo) {
                                 String msg = String.format("Error: %s", errorInfo);
                                 Log.d("OnError", msg);
+                                System.out.println("ERROR ON PAYPAL TRANSACTION: " + msg);
                                 Toast.makeText(CONTEXT, msg, Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -171,21 +160,8 @@ public class CarritoFragment extends Fragment {
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle b = new Bundle();
-                Producto p = CART_PRODUCTS.get(recyclerView.getChildAdapterPosition(v));
-                b.putSerializable(CURRENT_PRODUCT, p);
-
-                Fragment newFragment;
-                FragmentManager fragmentManager;
-                FragmentTransaction fragmentTransaction;
-
-                newFragment = new ShopItemFragment();
-                newFragment.setArguments(b);
-                fragmentManager = getFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment, newFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                CURRENT_PRODUCT_HELPER = CART_PRODUCTS.get(recyclerView.getChildAdapterPosition(v));
+                Navigation.findNavController(v).navigate(R.id.action_carritoFragment_to_shopItemFragment2);
             }
         });
         adapter.setOnLongClickListener(new View.OnLongClickListener() {
@@ -204,6 +180,11 @@ public class CarritoFragment extends Fragment {
         infoTextView.setText(String.valueOf(CART_PRODUCTS.size()).concat(" products. " + String.format(Locale.ENGLISH, "%.2f", totalValue).concat(" ").concat(CURRENCY)));
 
         payPalButton = v.findViewById(R.id.payPalButton);
+        payPalButton.setVisibility(View.INVISIBLE);
+
+        MaterialButton buyButtton;
+        buyButtton = v.findViewById(R.id.buyButton);
+        buyButtton.setOnClickListener(buyListener);
 
         return v;
     }

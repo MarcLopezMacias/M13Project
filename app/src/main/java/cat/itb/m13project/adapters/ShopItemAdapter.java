@@ -1,6 +1,5 @@
 package cat.itb.m13project.adapters;
 
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +14,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
-import cat.itb.m13project.AddedFunctionalities;
 import cat.itb.m13project.R;
 import cat.itb.m13project.pojo.Producto;
 
-import static cat.itb.m13project.ConstantVariables.CONTEXT;
 import static cat.itb.m13project.ConstantVariables.CURRENCY;
 import static cat.itb.m13project.ConstantVariables.DEFAULT_AMOUNT;
 import static cat.itb.m13project.ConstantVariables.HOME_PRODUCTS;

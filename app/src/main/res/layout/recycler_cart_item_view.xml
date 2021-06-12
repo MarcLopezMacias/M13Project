@@ -1,64 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/backgroundColor"
 
     >
 
-    <View
-        android:id="@+id/topSeparator"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@drawable/rectangle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/carrito_item_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/topSeparator"
-        android:contentDescription="@string/carrito_product_image_view"
-        app:layout_constraintBottom_toTopOf="@+id/bottomSeparator"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/shop_item_image_view"
+        android:src="@drawable/common_google_signin_btn_icon_dark" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/carrito_item_name_text_view"
         style="@style/smallerText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        android:hint="@string/name"
-        app:layout_constraintEnd_toStartOf="@+id/carrito_item_total_price_text_view"
-        app:layout_constraintStart_toEndOf="@+id/carrito_item_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
+        android:layout_toStartOf="@+id/carrito_item_total_price_text_view"
+        android:layout_toEndOf="@id/carrito_item_image_view"
+        android:hint="@string/product_name" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/carrito_item_total_price_text_view"
         style="@style/smallerText"
         android:layout_width="wrap_content"
-        android:layout_height="17dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomSeparator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topSeparator" />
+        android:hint="@string/unit_price" />
+
+    <View
+        android:id="@+id/topSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/rectangle" />
 
     <View
         android:id="@+id/bottomSeparator"
-        style="@style/smallerText"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@drawable/rectangle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-96dp" />
+        android:layout_below="@id/carrito_item_name_text_view"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rectangle" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
