@@ -1,7 +1,6 @@
 package cat.itb.m13project;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
 

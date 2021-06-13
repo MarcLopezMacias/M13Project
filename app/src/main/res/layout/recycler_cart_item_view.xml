@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/carrito_item_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="69dp"
+        android:layout_height="69dp"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"

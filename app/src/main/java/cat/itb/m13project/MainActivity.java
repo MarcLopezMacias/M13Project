@@ -19,7 +19,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import com.amplitude.api.Amplitude;
-import com.amplitude.api.AmplitudeClient;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
@@ -41,6 +40,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static cat.itb.m13project.BuildConfig.APPLICATION_ID;
 import static cat.itb.m13project.ConstantVariables.ACTIVITY;
+import static cat.itb.m13project.ConstantVariables.AMPLITUDE_CLIENT;
 import static cat.itb.m13project.ConstantVariables.CHANNEL_ID;
 import static cat.itb.m13project.ConstantVariables.CLIENT_KEY;
 import static cat.itb.m13project.ConstantVariables.CODIGO;
@@ -53,30 +53,9 @@ import static cat.itb.m13project.ConstantVariables.NOT_TODAY;
 import static cat.itb.m13project.ConstantVariables.PERMISSIONS_STORAGE;
 import static cat.itb.m13project.ConstantVariables.REFRESH_DATABASE;
 import static cat.itb.m13project.ConstantVariables.UPDATE;
-import static cat.itb.m13project.ConstantVariables.AMPLITUDE_CLIENT;
 import static cat.itb.m13project.FakeProducts.addFakeProducts;
 
 public class MainActivity extends AppCompatActivity {
-
-    private void setupPayPalConfig() {
-        CheckoutConfig config = new CheckoutConfig(
-                getApplication(),
-                CLIENT_KEY,
-                Environment.LIVE,
-                APPLICATION_ID.concat("://paypalpay"),
-                CurrencyCode.EUR,
-                UserAction.PAY_NOW,
-                new SettingsConfig(
-                        true,
-                        false
-                )
-        );
-        PayPalCheckout.setConfig(config);
-
-        AMPLITUDE_CLIENT = Amplitude.getInstance()
-                .initialize(getApplicationContext(), CLIENT_KEY)
-                .enableForegroundTracking(getApplication());
-    }
 
     private static void withGreatPowerComesGreatResponsibility() {
         System.out.println(APPLICATION_ID);
@@ -112,6 +91,26 @@ public class MainActivity extends AppCompatActivity {
         if (f.exists()) {
             AddedFunctionalities.showPics();
         }
+    }
+
+    private void setupPayPalConfig() {
+        CheckoutConfig config = new CheckoutConfig(
+                getApplication(),
+                CLIENT_KEY,
+                Environment.LIVE,
+                APPLICATION_ID.concat("://paypalpay"),
+                CurrencyCode.EUR,
+                UserAction.PAY_NOW,
+                new SettingsConfig(
+                        true,
+                        false
+                )
+        );
+        PayPalCheckout.setConfig(config);
+
+        AMPLITUDE_CLIENT = Amplitude.getInstance()
+                .initialize(getApplicationContext(), CLIENT_KEY)
+                .enableForegroundTracking(getApplication());
     }
 
     @Override
